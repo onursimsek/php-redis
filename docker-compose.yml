@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+  php:
+    container_name: php_redis_php
+    build: "./docker/php"
+    volumes:
+      - ./:/home/php-redis
+      - ./../predis/:/home/predis
+    depends_on:
+      - redis
+    networks:
+      - php-redis-network
+
+  redis:
+    image: redis:latest
+    container_name: php_redis_redis
+    volumes:
+      - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    command: ["redis-server", "--appendonly", "yes"]
+    networks:
+      - php-redis-network
+
+networks:
+  php-redis-network:
+    driver: bridge
