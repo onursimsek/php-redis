@@ -20,7 +20,8 @@ RUN apk add --no-cache \
 #RUN docker-php-ext-enable xdebug
 
 # Cleanup dev dependencies
-RUN apk del -f .build-deps
+RUN apk del -f .build-deps \
+    && sed -i -e 's/bind 127.0.0.1/bind 0.0.0.0/' /etc/redis.conf
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -29,4 +30,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 WORKDIR /home/php-redis
 
-CMD ["redis-server"]
+EXPOSE 6379
+
+CMD ["redis-server", "/etc/redis.conf"]
