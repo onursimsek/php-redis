@@ -3,7 +3,7 @@
     "description": "Redis client for PHP",
     "keywords": ["redis", "cache", "no-sql"],
     "type": "library",
-    "license": "GPL-3.0-only",
+    "license": "MIT",
     "authors": [
         {
             "name": "Onur Şimşek",
