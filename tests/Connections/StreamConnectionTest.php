@@ -2,8 +2,10 @@
 
 namespace PhpRedis\Tests\Connections;
 
+use PhpRedis\Commands\Command;
 use PhpRedis\Configurations\ConnectionParameter;
 use PhpRedis\Connections\StreamConnection;
+use PhpRedis\Exceptions\ConnectionException;
 use PHPUnit\Framework\TestCase;
 
 class StreamConnectionTest extends TestCase
@@ -33,6 +35,29 @@ class StreamConnectionTest extends TestCase
         $connection->disconnect();
 
         $this->assertFalse($connection->isConnected());
+    }
+
+    public function test_execute_command()
+    {
+        $connection = new StreamConnection();
+        $connection->connect($this->getConnectionParameter());
+
+        $command = $this->getMockBuilder(Command::class)->getMock();
+
+        $command->expects($this->once())
+            ->method('__toString')
+            ->willReturn("*3\r\n$3\r\nSET\r\n$3\r\nkey\r\n$5\r\nvalue\r\n");
+
+        $this->assertTrue($connection->executeCommand($command));
+    }
+
+    public function test_unable_to_connect()
+    {
+        $connection = new StreamConnection();
+
+        $this->expectException(ConnectionException::class);
+
+        $connection->connect(new ConnectionParameter('tcp://localhost:637'));
     }
 
     private function getConnectionParameter()

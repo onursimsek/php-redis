@@ -2,15 +2,18 @@
 
 namespace PhpRedis\Connections;
 
+use PhpRedis\Commands\Command;
+use PhpRedis\Configurations\Parameter;
+
 interface Connection
 {
-    public function connect();
+    public function connect(Parameter $parameter);
 
     public function disconnect();
 
     public function isConnected();
 
-    public function read();
+    public function executeCommand(Command $command);
 
-    public function write();
+    public function readResponse();
 }
