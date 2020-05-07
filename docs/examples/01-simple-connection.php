@@ -11,7 +11,6 @@ $hosts = [
 ];
 
 $connectionParameter = new \PhpRedis\Configurations\ConnectionParameter($connectionString);
-//$connectionParameter->setConnectionString($connectionString);
 
 $phpRedis = new \PhpRedis\PhpRedis();
 $phpRedis->setConnectionParameter($connectionParameter)

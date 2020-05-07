@@ -35,13 +35,13 @@ class ConnectionParameter implements Parameter
                 $this->setConnectionString($hosts);
                 break;
             case is_array($hosts):
-                $this->setHosts($hosts);
+                $this->hosts = $hosts;
                 break;
             default:
                 throw new \InvalidArgumentException('Not supported host type');
         }
 
-        $this->setOptions($options);
+        $this->options = $options;
     }
 
     /**
@@ -53,31 +53,11 @@ class ConnectionParameter implements Parameter
     }
 
     /**
-     * @param array $hosts
-     * @return $this
-     */
-    public function setHosts(array $hosts): self
-    {
-        $this->hosts = $hosts;
-        return $this;
-    }
-
-    /**
      * @return array
      */
     public function getOptions(): array
     {
         return $this->options;
-    }
-
-    /**
-     * @param array $options
-     * @return $this
-     */
-    public function setOptions(array $options): self
-    {
-        $this->options = $options;
-        return $this;
     }
 
     /**
@@ -95,6 +75,7 @@ class ConnectionParameter implements Parameter
     public function setConnectionString(string $connectionString): self
     {
         $this->connectionString = $connectionString;
-        return $this->setHosts(parse_url($connectionString));
+        $this->hosts = parse_url($connectionString);
+        return $this;
     }
 }
