@@ -36,22 +36,12 @@ class ConnectionParameterTest extends TestCase
 
     public function test_connection_with_array()
     {
-        $connectionParameter = new ConnectionParameter();
-        $connectionParameter->setHosts($this->hosts);
-
-        $this->assertEquals($this->hosts, $connectionParameter->getHosts());
-
         $connectionParameter = new ConnectionParameter($this->hosts);
         $this->assertEquals($this->hosts, $connectionParameter->getHosts());
     }
 
     public function test_connection_options()
     {
-        $connectionParameter = new ConnectionParameter();
-        $connectionParameter->setOptions($this->options);
-
-        $this->assertEquals($this->options, $connectionParameter->getOptions());
-
         $connectionParameter = new ConnectionParameter($this->hosts, $this->options);
         $this->assertEquals($this->options, $connectionParameter->getOptions());
     }

@@ -40,7 +40,7 @@ class StreamConnection implements Connection
 
     public function isConnected()
     {
-        return !!$this->resource;
+        return (bool)$this->resource;
     }
 
     public function executeCommand(Command $command)
@@ -69,8 +69,14 @@ class StreamConnection implements Connection
         return (new ResponseUnserializer())->unserialize($this->read());
     }
 
-    protected function read()
+    public function read(): \Generator
     {
-        return fgets($this->resource);
+        while (true) {
+            $data = yield fgets($this->resource);
+
+            if ($data == 'stop') {
+                return;
+            }
+        }
     }
 }
