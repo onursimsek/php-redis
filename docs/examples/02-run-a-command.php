@@ -2,12 +2,15 @@
 
 require __DIR__ . '/01-simple-connection.php';
 
-$command = new \PhpRedis\Commands\Strings\Set();
-$command->setArguments(['key', 'value']);
+$phpRedis->set('key', 'value1');
+echo 'GET => ' . $phpRedis->get('key') . PHP_EOL;
 
-var_dump($phpRedis->executeCommand($command));
+echo 'INCR => ' . $phpRedis->incr('counter') . PHP_EOL;
 
-$command = new \PhpRedis\Commands\Strings\Get();
-$command->setArguments(['key']);
+echo 'INCRBY => ' . $phpRedis->incrby('counterBy', 2) . PHP_EOL;
 
-var_dump($phpRedis->executeCommand($command));
+echo 'INCRBYFLOAT => ' . $phpRedis->incrbyfloat('counterByFloat', .5) . PHP_EOL;
+
+echo 'DECR => ' . $phpRedis->decr('decr') . PHP_EOL;
+
+echo 'DECRBY => ' . $phpRedis->decrby('decrBy', 2) . PHP_EOL;
