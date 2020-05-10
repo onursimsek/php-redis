@@ -29,6 +29,6 @@ class RequiredValidator implements Validator
 
     public function getErrorMessage(): string
     {
-        return sprintf('%s is required', $this->key);
+        return $this->key . ' is required';
     }
 }

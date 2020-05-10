@@ -13,6 +13,6 @@ class IntegerValidator extends AbstractValidator implements Validator
 
     public function getErrorMessage(): string
     {
-        return sprintf('The \'%s\' key must be integer.', $this->key);
+        return "The '{$this->key}' key must be integer.";
     }
 }
