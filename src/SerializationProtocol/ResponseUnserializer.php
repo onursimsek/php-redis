@@ -32,7 +32,6 @@ class ResponseUnserializer implements UnserializationProtocol
                 }
 
                 $data = '';
-
                 while ($response->valid()) {
                     $response->next();
                     $data .= $response->current();
@@ -41,11 +40,19 @@ class ResponseUnserializer implements UnserializationProtocol
                     }
                 }
 
-                return substr($data, 0, -2);
+                return $this->discardCRLF($data);
+                break;
+            case self::INTEGER_FIRST_BYTE:
+                return $this->discardCRLF($payload);
                 break;
             default:
                 throw new IOException('Unknown protocol response: ' . $response->current());
                 break;
         }
+    }
+
+    private function discardCRLF(string $string)
+    {
+        return preg_replace('/' . self::EOL . '/', '', $string);
     }
 }

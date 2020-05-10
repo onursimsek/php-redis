@@ -12,35 +12,42 @@ class ResponseUnserializerTest extends TestCase
     {
         $unserializer = $this->getUnserializer();
 
-        $this->assertTrue($unserializer->unserialize($this->dataAsGenerator("+OK\r\n")));
+        self::assertTrue($unserializer->unserialize($this->dataAsGenerator("+OK\r\n")));
     }
 
     public function test_unserialize_simple_string_response()
     {
         $unserializer = $this->getUnserializer();
 
-        $this->assertEquals('foo', $unserializer->unserialize($this->dataAsGenerator("+foo\r\n")));
+        self::assertEquals('foo', $unserializer->unserialize($this->dataAsGenerator("+foo\r\n")));
     }
 
     public function test_unserialize_bulk_string()
     {
         $unserializer = $this->getUnserializer();
 
-        $this->assertEquals('bar', $unserializer->unserialize($this->dataAsGenerator("$3\r\nbar\r\n")));
+        self::assertEquals('bar', $unserializer->unserialize($this->dataAsGenerator("$3\r\nbar\r\n")));
     }
 
     public function test_unserialize_null_bulk_string()
     {
         $unserializer = $this->getUnserializer();
 
-        $this->assertEmpty($unserializer->unserialize($this->dataAsGenerator("$-1\r\n")));
+        self::assertEmpty($unserializer->unserialize($this->dataAsGenerator("$-1\r\n")));
+    }
+
+    public function test_unserialize_integer_response()
+    {
+        $unserializer = $this->getUnserializer();
+
+        self::assertEquals(123, $unserializer->unserialize($this->dataAsGenerator(":123\r\n")));
     }
 
     public function test_unserialize_unknown_response()
     {
         $unserializer = $this->getUnserializer();
 
-        $this->expectException(IOException::class);
+        self::expectException(IOException::class);
 
         $unserializer->unserialize($this->dataAsGenerator("/OK\r\n"));
     }
@@ -54,7 +61,7 @@ class ResponseUnserializerTest extends TestCase
     {
         $lines = explode("\r\n", $data);
         array_pop($lines);
-        foreach($lines as $line) {
+        foreach ($lines as $line) {
             yield $line . "\r\n";
         }
     }
