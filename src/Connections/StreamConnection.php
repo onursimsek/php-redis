@@ -22,7 +22,7 @@ class StreamConnection implements Connection
      */
     private $parameters;
 
-    public function connect(Parameter $parameter)
+    public function connect(Parameter $parameter): bool
     {
         try {
             $this->resource = stream_socket_client($parameter->getConnectionString(), $errNo, $errStr);
@@ -33,12 +33,12 @@ class StreamConnection implements Connection
         }
     }
 
-    public function disconnect()
+    public function disconnect(): bool
     {
         return stream_socket_shutdown($this->resource, STREAM_SHUT_RDWR) && $this->resource = null;
     }
 
-    public function isConnected()
+    public function isConnected(): bool
     {
         return (bool)$this->resource;
     }
