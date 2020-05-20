@@ -27,7 +27,7 @@ class RequestSerializer implements SerializationProtocol
         }
 
         throw new \UnexpectedValueException(
-            sprintf('This type (%s) is not supported from REDIS Protocol', gettype($data))
+            'This type (\'' . gettype($data) . '\') is not supported from REDIS Protocol'
         );
     }
 
@@ -37,7 +37,31 @@ class RequestSerializer implements SerializationProtocol
      */
     private function serializeCommand(Command $command): string
     {
-        return $this->arrayProtocol(array_merge([$command->getCommand()], $command->getArguments()));
+        return $this->arrayProtocol(
+            array_merge([$command->getCommand()], $this->flattenArray($command->getArguments()))
+        );
+    }
+
+    /**
+     * @param array $arguments
+     * @return array
+     */
+    private function flattenArray(array $arguments): array
+    {
+        $result = [];
+        foreach ($arguments as $key => $item) {
+            if (is_string($key)) {
+                $result[] = $key;
+            }
+
+            if (!is_array($item)) {
+                $result[] = $item;
+            } else {
+                $result = array_merge($result, $this->flattenArray($item));
+            }
+        }
+
+        return $result;
     }
 
     /**
@@ -46,7 +70,8 @@ class RequestSerializer implements SerializationProtocol
      */
     private function arrayProtocol(array $array): string
     {
-        return self::ARRAY_FIRST_BYTE . count($array) . self::EOL . array_reduce(
+        $array = $this->flattenArray($array);
+        return self::ARRAY_FIRST_BYTE . count($array) . self::CRLF . array_reduce(
                 $array,
                 function (?string $carry, string $item): string {
                     return $carry . $this->bulkStringProtocol($item);
@@ -60,6 +85,6 @@ class RequestSerializer implements SerializationProtocol
      */
     private function bulkStringProtocol(string $string): string
     {
-        return self::BULK_STRING_FIRST_BYTE . strlen($string) . self::EOL . $string . self::EOL;
+        return self::BULK_STRING_FIRST_BYTE . strlen($string) . self::CRLF . $string . self::CRLF;
     }
 }

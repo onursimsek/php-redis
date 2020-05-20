@@ -6,7 +6,7 @@ namespace PhpRedis\SerializationProtocol;
 
 interface Protocol
 {
-    public const EOL = "\r\n";
+    public const CRLF = "\r\n";
 
     public const SIMPLE_STRING_FIRST_BYTE = '+';
     public const BULK_STRING_FIRST_BYTE = '$';
