@@ -14,10 +14,10 @@ RUN apk add --no-cache \
     vim
 
 # Install PECL and PEAR extensions
-#RUN pecl install xdebug
+RUN pecl install xdebug
 
 # Enable PECL and PEAR extensions
-#RUN docker-php-ext-enable xdebug
+RUN docker-php-ext-enable xdebug
 
 # Cleanup dev dependencies
 RUN apk del -f .build-deps \
@@ -26,7 +26,7 @@ RUN apk del -f .build-deps \
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-#COPY ./docker/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+COPY ./docker/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 WORKDIR /home/php-redis
 
