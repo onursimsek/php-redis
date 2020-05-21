@@ -10,37 +10,50 @@ use PHPUnit\Framework\TestCase;
 
 class StreamConnectionTest extends TestCase
 {
+    /**
+     * @var StreamConnection
+     */
+    protected $connection;
+
+    /**
+     * @var ConnectionParameter
+     */
+    protected $connectionParameter;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->connection = new StreamConnection();
+        $this->connectionParameter = new ConnectionParameter('tcp://127.0.0.1:6379');
+    }
+
     public function test_connect()
     {
-        $connection = new StreamConnection();
-
-        $this->assertTrue($connection->connect($this->getConnectionParameter()));
+        $this->assertTrue($this->connection->connect($this->connectionParameter));
     }
 
     public function test_is_connected()
     {
-        $connection = new StreamConnection();
-        $connection->connect($this->getConnectionParameter());
+        $this->connection->connect($this->connectionParameter);
 
-        $this->assertTrue($connection->isConnected());
+        self::assertTrue($this->connection->isConnected());
     }
 
     public function test_disconnect()
     {
-        $connection = new StreamConnection();
-        $connection->connect($this->getConnectionParameter());
+        $this->connection->connect($this->connectionParameter);
 
-        $this->assertTrue($connection->isConnected());
+        self::assertTrue($this->connection->isConnected());
 
-        $connection->disconnect();
+        $this->connection->disconnect();
 
-        $this->assertFalse($connection->isConnected());
+        self::assertFalse($this->connection->isConnected());
     }
 
     public function test_execute_command()
     {
-        $connection = new StreamConnection();
-        $connection->connect($this->getConnectionParameter());
+        $this->connection->connect($this->connectionParameter);
 
         $command = $this->getMockBuilder(Command::class)->getMock();
 
@@ -48,20 +61,13 @@ class StreamConnectionTest extends TestCase
             ->method('__toString')
             ->willReturn("*3\r\n$3\r\nSET\r\n$3\r\nkey\r\n$5\r\nvalue\r\n");
 
-        $this->assertTrue($connection->executeCommand($command));
+        self::assertTrue($this->connection->executeCommand($command));
     }
 
     public function test_unable_to_connect()
     {
-        $connection = new StreamConnection();
+        self::expectException(ConnectionException::class);
 
-        $this->expectException(ConnectionException::class);
-
-        $connection->connect(new ConnectionParameter('tcp://localhost:637'));
-    }
-
-    private function getConnectionParameter()
-    {
-        return new ConnectionParameter('tcp://127.0.0.1:6379');
+        $this->connection->connect(new ConnectionParameter('tcp://localhost:637'));
     }
 }

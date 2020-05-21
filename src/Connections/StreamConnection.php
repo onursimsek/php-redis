@@ -75,8 +75,10 @@ class StreamConnection implements Connection
             $data = yield fgets($this->resource);
 
             if ($data == 'stop') {
-                return;
+                break;
             }
         }
+
+        return;
     }
 }
