@@ -49,6 +49,12 @@ class StreamConnection implements Connection
             ->readResponse();
     }
 
+    public function rawCommand(array $command)
+    {
+        return $this->write((new RequestSerializer())->serialize($command))
+            ->readResponse();
+    }
+
     /**
      * @param string $string
      * @return $this

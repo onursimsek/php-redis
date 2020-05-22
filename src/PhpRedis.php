@@ -89,6 +89,11 @@ class PhpRedis implements Client
         return new CommandList($this->getVersion());
     }
 
+    public function raw(...$command)
+    {
+        return $this->connection->rawCommand($command);
+    }
+
     private function executeCommand(Command $command)
     {
         return $this->connection->executeCommand($command);
