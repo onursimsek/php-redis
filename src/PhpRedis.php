@@ -78,15 +78,36 @@ class PhpRedis implements Client
         return $this->connection->disconnect() && $this->connection = null;
     }
 
-    public function getVersion(): string
+    public function getRedisVersion(): string
     {
-        // TODO: Redis versiyonuna göre çalıştırılacak
-        return self::REDIS_VERSION_320;
+        $this->connect();
+        return $this->connection->getInfo('server')['redis_version'];
+    }
+
+    public function getLibraryRedisVersion(): string
+    {
+        [$major, $minor] = explode('.', $this->getRedisVersion());
+        $version = $major . '.' . $minor;
+        switch (true) {
+            case self::REDIS_VERSION_320 >= $version:
+            default:
+                return self::REDIS_VERSION_320;
+                break;
+            case self::REDIS_VERSION_400 >= $version:
+                return self::REDIS_VERSION_400;
+                break;
+            case self::REDIS_VERSION_500 >= $version;
+                return self::REDIS_VERSION_500;
+                break;
+            case self::REDIS_VERSION_600 >= $version:
+                return self::REDIS_VERSION_600;
+                break;
+        }
     }
 
     private function getCommandList()
     {
-        return new CommandList($this->getVersion());
+        return new CommandList($this->getLibraryRedisVersion());
     }
 
     public function raw(...$command)

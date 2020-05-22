@@ -17,7 +17,9 @@ interface Client
 
     public function disconnect(): bool;
 
-    public function getVersion(): string;
+    public function getRedisVersion(): string;
+
+    public function getLibraryRedisVersion(): string;
 
     public function __call(string $name, array $arguments);
 }

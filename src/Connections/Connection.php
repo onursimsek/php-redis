@@ -16,4 +16,6 @@ interface Connection
     public function executeCommand(Command $command);
 
     public function readResponse();
+
+    public function getInfo(string $section = null): array;
 }
