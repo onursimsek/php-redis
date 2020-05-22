@@ -8,6 +8,9 @@ use PhpRedis\Commands\Command;
 use PhpRedis\Configurations\Parameter;
 use PhpRedis\Exceptions\ConnectionException;
 use PhpRedis\Exceptions\IOException;
+use PhpRedis\Exceptions\PhpRedisException;
+use PhpRedis\SerializationProtocol\Protocol;
+use PhpRedis\SerializationProtocol\RequestSerializer;
 use PhpRedis\SerializationProtocol\ResponseUnserializer;
 
 class StreamConnection implements Connection
@@ -21,6 +24,11 @@ class StreamConnection implements Connection
      * @var Parameter
      */
     private $parameters;
+
+    /**
+     * @var array
+     */
+    private $info = [];
 
     public function connect(Parameter $parameter): bool
     {
@@ -86,5 +94,45 @@ class StreamConnection implements Connection
         }
 
         return;
+    }
+
+    public function getInfo(string $section = null): array
+    {
+        if ($section && array_key_exists($section, $this->info)) {
+            return $this->info[$section];
+        }
+
+        if ($this->info) {
+            return $this->info;
+        }
+
+        $this->info = $this->parseInfoResponse($this->rawCommand($section ? ['INFO', $section] : ['INFO']));
+
+        return $section ? $this->info[$section] : $this->info;
+    }
+
+    private function parseInfoResponse(string $response): array
+    {
+        $activeSection = '';
+        $info = [];
+        foreach (explode(Protocol::CRLF, $response) as $row) {
+            if ($row[0] == '#') {
+                $activeSection = strtolower(substr($row, 2));
+                continue;
+            }
+
+            if (!$activeSection) {
+                throw new PhpRedisException('Section not found');
+            }
+
+            [$key, $value] = explode(':', $row);
+            if (!$key) {
+                continue;
+            }
+
+            $info[$activeSection][$key] = $value;
+        }
+
+        return $info;
     }
 }

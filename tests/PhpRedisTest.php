@@ -42,9 +42,21 @@ class PhpRedisTest extends TestCase
 
     public function test_client_can_be_returned_redis_version()
     {
+        $redisVersion = $this->client->getRedisVersion();
+        $libraryRedisVersion = $this->client->getLibraryRedisVersion();
+        self::assertIsString($redisVersion);
+        self::assertIsString($libraryRedisVersion);
+        self::assertStringStartsWith($libraryRedisVersion, $redisVersion);
+    }
+
+    public function test_client_can_be_run_raw_command()
+    {
         $this->client->connect();
 
-        self::assertIsString($this->client->getVersion());
+        $argument = 'Hello';
+        $expect = 'Hello';
+        self::assertTrue($this->client->raw('set', 'mykey', $argument));
+        self::assertEquals($expect, $this->client->raw('get', 'mykey'));
     }
 
     public function test_client_should_be_run_defined_command()
@@ -90,7 +102,7 @@ class PhpRedisTest extends TestCase
     {
         /** @var Parameter $parameter */
         $parameter = $this->getMockBuilder(Parameter::class)->getMock();
-        $parameter->expects($this->once())
+        $parameter->expects($this->any())
             ->method('getConnectionString')
             ->willReturn('tcp://localhost:6379');
 

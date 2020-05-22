@@ -67,7 +67,6 @@ class Version320 implements Version
             'STRLEN' => [
                 'key' => ['required', 'string'],
             ],
-
         ];
     }
 

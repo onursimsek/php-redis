@@ -64,6 +64,21 @@ class StreamConnectionTest extends TestCase
         self::assertTrue($this->connection->executeCommand($command));
     }
 
+    public function test_raw_command()
+    {
+        $this->connection->connect($this->connectionParameter);
+
+        self::assertTrue($this->connection->rawCommand(['SET', 'key', 'value']));
+    }
+
+    public function test_redis_info()
+    {
+        $this->connection->connect($this->connectionParameter);
+
+        self::assertArrayHasKey('server', $this->connection->getInfo());
+        self::assertIsArray($this->connection->getInfo());
+    }
+
     public function test_unable_to_connect()
     {
         self::expectException(ConnectionException::class);
