@@ -10,6 +10,7 @@ use PhpRedis\Configurations\Parameter;
 use PhpRedis\Connections\Connection;
 use PhpRedis\Connections\StreamConnection;
 use PhpRedis\Exceptions\UnsupportedCommandException;
+use PhpRedis\Parameters\ClientKill;
 use PhpRedis\Versions\CommandList;
 
 /**
@@ -41,6 +42,25 @@ use PhpRedis\Versions\CommandList;
  * @method int      setNx(string $key, string $value)
  * @method string   setRange(string $key, int $start, string $value)
  * @method int      strlen(string $key)
+ *
+ * Connection commands
+ * @method bool auth(string $password, string $username = null)
+ * @method bool clientCaching(bool $status)
+ * @method string|null clientGetName()
+ * @method int clientGetRedir()
+ * @method int clientId()
+ * @method mixed clientKill(ClientKill $kill)           NOT COMPLETED
+ * @method string clientList(string $type = null)
+ * @method bool clientPause(int $milliseconds)
+ * @method string|void clientReply(string $status)
+ * @method bool clientSetName(string $name)             NOT WORKING
+ * @method bool clientTracking()                        NOT IMPLEMENTED
+ * @method int clientUnblock(int $clientId)             NOT TESTED
+ * @method string echo(string $string)
+ * @method string hello()                               NOT IMPLEMENTED
+ * @method string ping(string $string = null)
+ * @method bool quit()
+ * @method bool select(int $index)
  */
 class PhpRedis implements Client
 {
@@ -96,7 +116,7 @@ class PhpRedis implements Client
             case self::REDIS_VERSION_400 >= $version:
                 return self::REDIS_VERSION_400;
                 break;
-            case self::REDIS_VERSION_500 >= $version;
+            case self::REDIS_VERSION_500 >= $version:
                 return self::REDIS_VERSION_500;
                 break;
             case self::REDIS_VERSION_600 >= $version:
@@ -122,13 +142,15 @@ class PhpRedis implements Client
 
     public function __call(string $name, array $arguments)
     {
-        $command = strtoupper($name);
-        $commandList = $this->getCommandList();
+        $commandName = strtoupper($name);
+        $commandList = $this->getCommandList()->toArray();
 
-        if (!array_key_exists($command, $commandList->toArray())) {
-            throw new UnsupportedCommandException("This command ('{$command}') is not supported");
+        if (!array_key_exists($commandName, $commandList)) {
+            throw new UnsupportedCommandException("This command ('{$commandName}') is not supported");
         }
 
-        return $this->executeCommand(CommandFactory::make($command, $arguments));
+        return $this->executeCommand(
+            CommandFactory::make($commandList[$commandName]['class'], $arguments, $commandName)
+        );
     }
 }
