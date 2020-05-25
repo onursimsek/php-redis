@@ -32,7 +32,8 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
-        "coverage": "vendor/bin/phpunit --coverage-text"
+        "coverage": "@test --coverage-text",
+        "coverage-report": "@test --coverage-html .tmp"
     },
     "config": {
         "sort-packages": true
