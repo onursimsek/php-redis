@@ -6,6 +6,12 @@ namespace PhpRedis\SerializationProtocol;
 
 use PhpRedis\Commands\Command;
 
+/**
+ * Class RequestSerializer
+ *
+ * @link https://redis.io/topics/protocol
+ * @author Onur Şimşek <posta@onursimsek.com>
+ */
 class RequestSerializer implements SerializationProtocol
 {
     /**
@@ -17,13 +23,10 @@ class RequestSerializer implements SerializationProtocol
         switch (true) {
             case $data instanceof Command:
                 return $this->serializeCommand($data);
-                break;
             case is_array($data):
                 return $this->arrayProtocol($data);
-                break;
             case is_string($data):
                 return $this->bulkStringProtocol($data);
-                break;
         }
 
         throw new \UnexpectedValueException(
@@ -37,31 +40,7 @@ class RequestSerializer implements SerializationProtocol
      */
     private function serializeCommand(Command $command): string
     {
-        return $this->arrayProtocol(
-            array_merge([$command->getCommand()], $this->flattenArray($command->getArguments()))
-        );
-    }
-
-    /**
-     * @param array $arguments
-     * @return array
-     */
-    private function flattenArray(array $arguments): array
-    {
-        $result = [];
-        foreach ($arguments as $key => $item) {
-            if (is_string($key)) {
-                $result[] = $key;
-            }
-
-            if (!is_array($item)) {
-                $result[] = $item;
-            } else {
-                $result = array_merge($result, $this->flattenArray($item));
-            }
-        }
-
-        return $result;
+        return $this->arrayProtocol($command->toArray());
     }
 
     /**
@@ -86,5 +65,27 @@ class RequestSerializer implements SerializationProtocol
     private function bulkStringProtocol(string $string): string
     {
         return self::BULK_STRING_FIRST_BYTE . strlen($string) . self::CRLF . $string . self::CRLF;
+    }
+
+    /**
+     * @param array $arguments
+     * @return array
+     */
+    private function flattenArray(array $arguments): array
+    {
+        $result = [];
+        foreach ($arguments as $key => $item) {
+            if (is_string($key)) {
+                $result[] = $key;
+            }
+
+            if (!is_array($item)) {
+                $result[] = $item;
+            } else {
+                $result = array_merge($result, $this->flattenArray($item));
+            }
+        }
+
+        return $result;
     }
 }
