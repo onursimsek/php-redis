@@ -93,6 +93,63 @@ class Version100 implements Version
                 'class' => GenericCommand::class,
                 'rules' => [],
             ],
+            // Set commands
+            'SADD' => [
+                'class' => GenericCommand::class,
+                'rules' => [],
+            ],
+            'SCARD' => [
+                'class' => GenericCommand::class,
+                'rules' => [],
+            ],
+            'SDIFF' => [
+                'class' => GenericCommand::class,
+                'rules' => [],
+            ],
+            'SDIFFSTORE' => [
+                'class' => GenericCommand::class,
+                'rules' => [],
+            ],
+            'SINTER' => [
+                'class' => GenericCommand::class,
+                'rules' => [],
+            ],
+            'SINTERSTORE' => [
+                'class' => GenericCommand::class,
+                'rules' => [],
+            ],
+            'SISMEMBER' => [
+                'class' => GenericCommand::class,
+                'rules' => [],
+            ],
+            'SMEMBERS' => [
+                'class' => GenericCommand::class,
+                'rules' => [],
+            ],
+            'SMOVE' => [
+                'class' => GenericCommand::class,
+                'rules' => [],
+            ],
+            'SPOP' => [
+                'class' => GenericCommand::class,
+                'rules' => [],
+            ],
+            'SRANDMEMBER' => [
+                'class' => GenericCommand::class,
+                'rules' => [],
+            ],
+            'SREM' => [
+                'class' => GenericCommand::class,
+                'rules' => [],
+            ],
+            'SUNION' => [
+                'class' => GenericCommand::class,
+                'rules' => [],
+            ],
+            'SUNIONSTORE' => [
+                'class' => GenericCommand::class,
+                'rules' => [],
+            ],
         ];
     }
 
