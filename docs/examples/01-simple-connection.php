@@ -19,7 +19,7 @@ $hosts = [
 
 $connectionParameter = new \PhpRedis\Configurations\ConnectionParameter($connectionString);
 
-$phpRedis = new \PhpRedis\PhpRedis($connectionParameter);
-$phpRedis->connect();
+$redis = new \PhpRedis\PhpRedis($connectionParameter);
+$redis->connect();
 
-echo ($phpRedis->isConnected() ? 'connected' : 'not connected') . PHP_EOL;
+echo ($redis->isConnected() ? 'connected' : 'not connected') . PHP_EOL;

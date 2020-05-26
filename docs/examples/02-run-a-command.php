@@ -2,10 +2,10 @@
 
 require __DIR__ . '/01-simple-connection.php';
 
-echo $phpRedis->getRedisVersion() . PHP_EOL;
-echo $phpRedis->getLibraryRedisVersion() . PHP_EOL;
+echo $redis->getRedisVersion() . PHP_EOL;
+echo $redis->getLibraryRedisVersion() . PHP_EOL;
 
-$phpRedis->set('key', 'value1');
-echo 'GET => ' . $phpRedis->get('key') . PHP_EOL;
+$redis->set('key', 'value1');
+echo 'GET => ' . $redis->get('key') . PHP_EOL;
 
-echo $phpRedis->raw('INFO', 'server') . PHP_EOL;
+echo $redis->raw('INFO', 'server') . PHP_EOL;

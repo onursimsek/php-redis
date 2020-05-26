@@ -4,11 +4,24 @@ namespace PhpRedis\Commands;
 
 interface Command
 {
-    public function getCommand();
+    /**
+     * Redis command name
+     *
+     * @return string
+     */
+    public function getCommand(): string;
 
-    public function getArguments(): array;
+    /**
+     * Convert command to array for serialization
+     *
+     * @return array
+     */
+    public function toArray(): array;
 
-    public function setArguments(array $arguments);
-
+    /**
+     * Serialize according to RESP
+     *
+     * @return string
+     */
     public function __toString(): string;
 }
