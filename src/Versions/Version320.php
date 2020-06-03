@@ -4,33 +4,26 @@ declare(strict_types=1);
 
 namespace PhpRedis\Versions;
 
+use PhpRedis\Commands\CommandObject;
 use PhpRedis\Commands\Connections\ClientPause;
 use PhpRedis\Commands\Connections\ClientReply;
 use PhpRedis\Commands\GenericCommand;
 
 class Version320 implements Version
 {
-    public function addedCommands(): array
+    public function added(): iterable
     {
         return [
             // String commands
-            'BITFIELD' => [
-                'class' => GenericCommand::class,
-                'rules' => [],
-            ],
+            'BITFIELD' => new CommandObject( GenericCommand::class),
+
             // Connection commands
-            'CLIENTPAUSE' => [
-                'class' => ClientPause::class,
-                'rules' => [],
-            ],
-            'CLIENTREPLY' => [
-                'class' => ClientReply::class,
-                'rules' => [],
-            ],
+            'CLIENTPAUSE' => new CommandObject( ClientPause::class),
+            'CLIENTREPLY' => new CommandObject( ClientReply::class),
         ];
     }
 
-    public function deletedCommands(): array
+    public function deleted(): iterable
     {
         return [];
     }

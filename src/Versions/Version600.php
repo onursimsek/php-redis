@@ -4,51 +4,29 @@ declare(strict_types=1);
 
 namespace PhpRedis\Versions;
 
-use PhpRedis\Commands\GenericCommand;
+use PhpRedis\Commands\CommandObject;
 use PhpRedis\Commands\Connections\ClientCaching;
+use PhpRedis\Commands\Connections\ClientGetRedirecting;
+use PhpRedis\Commands\GenericCommand;
 
 class Version600 implements Version
 {
-    public function addedCommands(): array
+    public function added(): iterable
     {
         return [
             // String commands
-            'SET' => [
-                'class' => GenericCommand::class,
-                'rules' => [
-                    'key' => ['required', 'string'],
-                    'value' => ['required', 'string'],
-                    'expire_type' => ['enum' => ['EX', 'PX']],
-                    'expire_time' => ['integer'],
-                    'exist' => ['enum' => ['NX', 'XX']],
-                    'keep_ttl' => [],
-                ],
-            ],
-            'STRALGOLCS' => [
-                'class' => GenericCommand::class,
-                'rules' => [],
-            ],
+            'SET' => new CommandObject( GenericCommand::class),
+            'STRALGOLCS' => new CommandObject( GenericCommand::class),
+
             // Connection commands
-            'CLIENTCACHING' => [
-                'class' => ClientCaching::class,
-                'rules' => [],
-            ],
-            'CLIENTGETREDIR' => [
-                'class' => GenericCommand::class,
-                'rules' => [],
-            ],
-            'CLIENTTRACKING' => [
-                'class' => GenericCommand::class,
-                'rules' => [],
-            ],
-            'HELLO' => [
-                'class' => GenericCommand::class,
-                'rules' => [],
-            ],
+            'CLIENTCACHING' => new CommandObject( ClientCaching::class),
+            'CLIENTGETREDIR' => new CommandObject( ClientGetRedirecting::class),
+            'CLIENTTRACKING' => new CommandObject( GenericCommand::class),
+            'HELLO' => new CommandObject( GenericCommand::class),
         ];
     }
 
-    public function deletedCommands(): array
+    public function deleted(): iterable
     {
         return [];
     }

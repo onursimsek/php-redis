@@ -4,99 +4,38 @@ declare(strict_types=1);
 
 namespace PhpRedis\Versions;
 
-use PhpRedis\Commands\GenericCommand;
+use PhpRedis\Commands\CommandObject;
 use PhpRedis\Commands\Connections\Auth;
+use PhpRedis\Commands\GenericCommand;
 
 class Version100 implements Version
 {
-    public function addedCommands(): array
+    public function added(): iterable
     {
         return [
             // String commands
-            'DECR' => [
-                'class' => GenericCommand::class,
-                'rules' => ['key' => ['required', 'string'],],
-            ],
-            'DECRBY' => [
-                'class' => GenericCommand::class,
-                'rules' => [
-                    'key' => ['required', 'string'],
-                    'decriment' => ['required', 'integer'],
-                ],
-            ],
-            'GET' => [
-                'class' => GenericCommand::class,
-                'rules' => ['key' => ['required', 'string'],],
-            ],
-            'GETSET' => [
-                'class' => GenericCommand::class,
-                'rules' => ['key', 'value'],
-            ],
-            'INCR' => [
-                'class' => GenericCommand::class,
-                'rules' => [
-                    'key' => ['required', 'string'],
-                ],
-            ],
-            'INCRBY' => [
-                'class' => GenericCommand::class,
-                'rules' => [
-                    'key' => ['required', 'string'],
-                    'increment' => ['required', 'integer'],
-                ],
-            ],
-            'MGET' => [
-                'class' => GenericCommand::class,
-                'rules' => [
-                    '*' => ['required', 'string'],
-                ],
-            ],
-            'MSET' => [
-                'class' => GenericCommand::class,
-                'rules' => [
-                    '*' => ['required', 'array'],
-                ],
-            ],
-            'MSETNX' => [
-                'class' => GenericCommand::class,
-                'rules' => ['key', 'value'],
-            ],
-            'SET' => [
-                'class' => GenericCommand::class,
-                'rules' => [
-                    'key' => ['required', 'string'],
-                    'value' => ['required', 'string'],
-                ],
-            ],
-            'SETNX' => [
-                'class' => GenericCommand::class,
-                'rules' => ['key', 'value'],
-            ],
+            'DECR' => new CommandObject( GenericCommand::class),
+            'DECRBY' => new CommandObject( GenericCommand::class),
+            'GET' => new CommandObject( GenericCommand::class),
+            'GETSET' => new CommandObject( GenericCommand::class),
+            'INCR' => new CommandObject( GenericCommand::class),
+            'INCRBY' => new CommandObject( GenericCommand::class),
+            'MGET' => new CommandObject( GenericCommand::class),
+            'MSET' => new CommandObject( GenericCommand::class),
+            'MSETNX' => new CommandObject( GenericCommand::class),
+            'SET' => new CommandObject( GenericCommand::class),
+            'SETNX' => new CommandObject( GenericCommand::class),
+
             // Connection commands
-            'AUTH' => [
-                'class' => Auth::class,
-                'rules' => [],
-            ],
-            'ECHO' => [
-                'class' => GenericCommand::class,
-                'rules' => [],
-            ],
-            'PING' => [
-                'class' => GenericCommand::class,
-                'rules' => [],
-            ],
-            'QUIT' => [
-                'class' => GenericCommand::class,
-                'rules' => [],
-            ],
-            'SELECT' => [
-                'class' => GenericCommand::class,
-                'rules' => [],
-            ],
+            'AUTH' => new CommandObject( Auth::class),
+            'ECHO' => new CommandObject( GenericCommand::class),
+            'PING' => new CommandObject( GenericCommand::class),
+            'QUIT' => new CommandObject( GenericCommand::class),
+            'SELECT' => new CommandObject( GenericCommand::class),
         ];
     }
 
-    public function deletedCommands(): array
+    public function deleted(): iterable
     {
         return [];
     }
