@@ -1,0 +1,10 @@
+/.github            export-ignore
+/docker             export-ignore
+/docs               export-ignore
+/tests              export-ignore
+Dockerfile          export-ignore
+phpunit.xml.dist    export-ignore
+.editorconfig       export-ignore
+.gitignore          export-ignore
+.gitattributes      export-ignore
+
