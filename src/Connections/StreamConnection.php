@@ -116,6 +116,10 @@ class StreamConnection implements Connection
         $activeSection = '';
         $info = [];
         foreach (explode(Protocol::CRLF, $response) as $row) {
+            if (!$row) {
+                continue;
+            }
+
             if ($row[0] == '#') {
                 $activeSection = strtolower(substr($row, 2));
                 continue;

@@ -53,7 +53,7 @@ use PhpRedis\Versions\CommandList;
  * @method string clientList(string $type = null)
  * @method bool clientPause(int $milliseconds)
  * @method string|void clientReply(string $status)
- * @method bool clientSetName(string $name)             NOT WORKING
+ * @method bool clientSetName(string $name)
  * @method bool clientTracking()                        NOT IMPLEMENTED
  * @method int clientUnblock(int $clientId)             NOT TESTED
  * @method string echo(string $string)
@@ -81,13 +81,17 @@ class PhpRedis implements Client
 
     public function isConnected(): bool
     {
-        return (bool)$this->connection;
+        return $this->connection && $this->connection->isConnected();
     }
 
     public function connect(): bool
     {
-        if (!$this->isConnected()) {
+        if (!$this->connection) {
             $this->connection = new StreamConnection();
+        }
+
+        if ($this->connection->isConnected()) {
+            return true;
         }
 
         return $this->connection->connect($this->connectionParameter);
@@ -112,16 +116,12 @@ class PhpRedis implements Client
             case self::REDIS_VERSION_320 >= $version:
             default:
                 return self::REDIS_VERSION_320;
-                break;
             case self::REDIS_VERSION_400 >= $version:
                 return self::REDIS_VERSION_400;
-                break;
             case self::REDIS_VERSION_500 >= $version:
                 return self::REDIS_VERSION_500;
-                break;
             case self::REDIS_VERSION_600 >= $version:
                 return self::REDIS_VERSION_600;
-                break;
         }
     }
 
