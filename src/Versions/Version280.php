@@ -4,22 +4,20 @@ declare(strict_types=1);
 
 namespace PhpRedis\Versions;
 
+use PhpRedis\Commands\CommandObject;
 use PhpRedis\Commands\GenericCommand;
 
 class Version280 implements Version
 {
-    public function addedCommands(): array
+    public function added(): iterable
     {
         return [
             // String commands
-            'BITPOS' => [
-                'class' => GenericCommand::class,
-                'rules' => ['key', 'bit', 'start', 'end'],
-            ],
+            'BITPOS' => new CommandObject( GenericCommand::class),
         ];
     }
 
-    public function deletedCommands(): array
+    public function deleted(): iterable
     {
         return [];
     }

@@ -22,7 +22,7 @@ echoInfo('DECR BY');
 echo $redis->decrBy('decrBy', 2) . PHP_EOL;
 
 echoInfo('GET RANGE');
-echo $redis->getRange('foo', 0, 10) . PHP_EOL;
+echo $redis->getRange('key', 0, 10) . PHP_EOL;
 
 echoInfo('SET RANGE');
 echo $redis->setRange('key', 8, 'range test') . PHP_EOL;

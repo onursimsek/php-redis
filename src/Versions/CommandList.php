@@ -70,9 +70,9 @@ class CommandList
             $version = new $versionClassName();
 
             $commandList = array_filter(
-                array_merge($commandList, $version->addedCommands()),
+                array_merge($commandList, $version->added()),
                 static function ($key) use ($version) {
-                    return !in_array($key, $version->deletedCommands());
+                    return !in_array($key, $version->deleted());
                 },
                 ARRAY_FILTER_USE_KEY
             );

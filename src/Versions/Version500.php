@@ -4,27 +4,22 @@ declare(strict_types=1);
 
 namespace PhpRedis\Versions;
 
+use PhpRedis\Commands\CommandObject;
 use PhpRedis\Commands\Connections\ClientId;
 use PhpRedis\Commands\Connections\ClientUnblock;
 
 class Version500 implements Version
 {
-    public function addedCommands(): array
+    public function added(): iterable
     {
         return [
             // Connection commands
-            'CLIENTID' => [
-                'class' => ClientId::class,
-                'rules' => [],
-            ],
-            'CLIENTUNBLOCK' => [
-                'class' => ClientUnblock::class,
-                'rules' => [],
-            ],
+            'CLIENTID' => new CommandObject( ClientId::class),
+            'CLIENTUNBLOCK' => new CommandObject( ClientUnblock::class),
         ];
     }
 
-    public function deletedCommands(): array
+    public function deleted(): iterable
     {
         return [];
     }

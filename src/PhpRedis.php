@@ -150,7 +150,7 @@ class PhpRedis implements Client
         }
 
         return $this->executeCommand(
-            CommandFactory::make($commandList[$commandName]['class'], $arguments, $commandName)
+            CommandFactory::make($commandList[$commandName], $arguments, $commandName)
         );
     }
 }

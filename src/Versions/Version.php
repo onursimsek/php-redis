@@ -6,7 +6,7 @@ namespace PhpRedis\Versions;
 
 interface Version
 {
-    public function addedCommands(): array;
+    public function added(): iterable;
 
-    public function deletedCommands(): array;
+    public function deleted(): iterable;
 }
