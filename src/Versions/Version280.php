@@ -13,7 +13,7 @@ class Version280 implements Version
     {
         return [
             // String commands
-            'BITPOS' => new CommandObject( GenericCommand::class),
+            'BITPOS' => new CommandObject(GenericCommand::class),
         ];
     }
 

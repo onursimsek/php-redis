@@ -14,8 +14,8 @@ class Version500 implements Version
     {
         return [
             // Connection commands
-            'CLIENTID' => new CommandObject( ClientId::class),
-            'CLIENTUNBLOCK' => new CommandObject( ClientUnblock::class),
+            'CLIENTID' => new CommandObject(ClientId::class),
+            'CLIENTUNBLOCK' => new CommandObject(ClientUnblock::class),
         ];
     }
 

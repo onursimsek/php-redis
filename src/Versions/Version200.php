@@ -13,8 +13,8 @@ class Version200 implements Version
     {
         return [
             // String commands
-            'APPEND' => new CommandObject( GenericCommand::class),
-            'SETEX' => new CommandObject( GenericCommand::class),
+            'APPEND' => new CommandObject(GenericCommand::class),
+            'SETEX' => new CommandObject(GenericCommand::class),
         ];
     }
 

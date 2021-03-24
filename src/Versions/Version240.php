@@ -15,11 +15,11 @@ class Version240 implements Version
     {
         return [
             // String commands
-            'GETRANGE' => new CommandObject( GenericCommand::class),
+            'GETRANGE' => new CommandObject(GenericCommand::class),
 
             // Connection commands
-            'CLIENTKILL' => new CommandObject( ClientKill::class),
-            'CLIENTLIST' => new CommandObject( ClientList::class),
+            'CLIENTKILL' => new CommandObject(ClientKill::class),
+            'CLIENTLIST' => new CommandObject(ClientList::class),
         ];
     }
 
