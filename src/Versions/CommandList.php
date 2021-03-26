@@ -75,6 +75,7 @@ class CommandList
             Client::REDIS_VERSION_240 => Version240::class,
             Client::REDIS_VERSION_260 => Version260::class,
             Client::REDIS_VERSION_280 => Version280::class,
+            Client::REDIS_VERSION_300 => Version300::class,
             Client::REDIS_VERSION_320 => Version320::class,
             Client::REDIS_VERSION_400 => Version400::class,
             Client::REDIS_VERSION_500 => Version500::class,

@@ -103,6 +103,7 @@ use PhpRedis\Versions\CommandList;
  * @method int          ttl(string $key)
  * @method string       type(string $key)
  * @method int          unlink(string ...$key)
+ * @method int          wait(int $numReplicas, int $milliseconds)
  */
 class PhpRedis implements Client
 {

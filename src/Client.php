@@ -13,6 +13,7 @@ interface Client
     public const REDIS_VERSION_240 = '2.4';
     public const REDIS_VERSION_260 = '2.6';
     public const REDIS_VERSION_280 = '2.8';
+    public const REDIS_VERSION_300 = '3.0';
     public const REDIS_VERSION_320 = '3.2';
     public const REDIS_VERSION_400 = '4.0';
     public const REDIS_VERSION_500 = '5.0';

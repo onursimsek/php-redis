@@ -113,3 +113,7 @@ var_dump($redis->type('key01'));
 echoInfo('UNLINK');
 $redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
 var_dump($redis->unlink('key01', 'key02'));
+
+echoInfo('WAIT');
+$redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
+var_dump($redis->wait(2, 1000));
