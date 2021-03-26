@@ -32,6 +32,7 @@ class Version260 implements Version
             'PEXPIRE' => $this->commandObject(),
             'PEXPIREAT' => $this->commandObject(),
             'PTTL' => $this->commandObject(),
+            'RESTORE' => $this->commandObject(),
         ];
     }
 

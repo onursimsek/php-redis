@@ -82,3 +82,9 @@ var_dump($redis->rename('key02', 'key05'));
 echoInfo('RENAMENX');
 $redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
 var_dump($redis->renameNx('key01', 'key02'));
+
+echoInfo('RESTORE');
+$redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
+$dump = $redis->dump('key01');
+$redis->del('key01');
+var_dump($redis->restore('key01', 0, $dump));
