@@ -7,6 +7,8 @@ use PhpRedis\Configurations\Parameter;
 
 interface Connection
 {
+    const STOP_KEYWORD = 'stop';
+
     public function connect(Parameter $parameter): bool;
 
     public function disconnect(): bool;

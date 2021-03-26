@@ -46,3 +46,9 @@ var_dump($redis->sUnion('key1', 'key2'));
 
 echoInfo('SUNIONSTORE');
 var_dump($redis->sUnionStore('union', 'key1', 'key2'));
+
+echoInfo('SSCAN');
+$redis->sAdd('foofoo', 1, range(1, 50));
+var_dump($redis->sScan('foo', 0));
+var_dump($redis->sScan('foo', 0, '1*'));
+var_dump($redis->sScan('foo', 0, null, 5));

@@ -75,9 +75,9 @@ use PhpRedis\Versions\CommandList;
  * @method string|array sPop(string $key, int $count = null)
  * @method string|array sRandMember(string $key, int $count = null)
  * @method int sRem(string $key, $member, ...$members)
- *
  * @method array sUnion(string $key, string ...$keys)
  * @method int sUnionStore(string $destination, string $key, string ...$keys)
+ * @method array sScan(string $key, int $cursor, string $match = null, int $count = null)
  */
 class PhpRedis implements Client
 {
