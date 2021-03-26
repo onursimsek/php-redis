@@ -82,6 +82,7 @@ use PhpRedis\Versions\CommandList;
  * Key commands
  * @method int          del(string ...$key)
  * @method string       dump(string $key)
+ * @method int          exists(string ...$key)
  */
 class PhpRedis implements Client
 {

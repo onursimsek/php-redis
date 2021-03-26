@@ -10,6 +10,8 @@ use PhpRedis\Commands\GenericCommand;
 
 class Version100 implements Version
 {
+    use GenericCommandObject;
+
     public function added(): iterable
     {
         return [
@@ -51,6 +53,7 @@ class Version100 implements Version
 
             // Key commands
             'DEL' => new CommandObject(GenericCommand::class),
+            'EXISTS' => $this->commandObject(),
         ];
     }
 
