@@ -88,6 +88,7 @@ use PhpRedis\Versions\CommandList;
  * @method array        keys(string $pattern)
  * @method bool|string  migrate(string $host, int $port, string $key = '')          NOT IMPLEMENTED
  * @method int          move(string $key, int $db)
+ * @method int|string   object(string $subCommand, string ...$keys)
  */
 class PhpRedis implements Client
 {

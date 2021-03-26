@@ -43,3 +43,10 @@ var_dump($redis->migrate('key*'));*/
 echoInfo('MOVE');
 $redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
 var_dump($redis->move('key01', 5));
+
+echoInfo('OBJECT');
+$redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
+var_dump($redis->object('REFCOUNT', 'key01'));
+var_dump($redis->object('ENCODING', 'key01'));
+var_dump($redis->object('IDLETIME', 'key01'));
+//var_dump($redis->object('FREQ', 'key01'));
