@@ -57,6 +57,7 @@ class Version100 implements Version
             'EXPIRE' => $this->commandObject(),
             'KEYS' => $this->commandObject(),
             'MOVE' => $this->commandObject(),
+            'RANDOMKEY' => $this->commandObject(),
         ];
     }
 

@@ -71,3 +71,6 @@ echoInfo('PTTL');
 $redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
 $redis->pExpire('key01', 2000);
 var_dump($redis->pTtl('key01'));
+
+echoInfo('RANDOMKEY');
+var_dump($redis->randomKey());
