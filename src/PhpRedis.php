@@ -99,6 +99,7 @@ use PhpRedis\Versions\CommandList;
  * @method bool         restore(string $key, int $ttl, string $dump)
  * @method array        scan(int $cursor, string $match = null, int $count = null, string $type = null)
  * @method array        sort(string $key, array $options = [])
+ * @method int          touch(string ...$key)
  */
 class PhpRedis implements Client
 {

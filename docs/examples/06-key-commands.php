@@ -96,3 +96,7 @@ var_dump($redis->scan(0, 'key*'));
 echoInfo('SORT');
 $redis->sAdd('list', range(1, 10));
 var_dump($redis->sort('list'));
+
+echoInfo('TOUCH');
+$redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
+var_dump($redis->touch('key01', 'key02'));
