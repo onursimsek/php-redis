@@ -100,3 +100,8 @@ var_dump($redis->sort('list'));
 echoInfo('TOUCH');
 $redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
 var_dump($redis->touch('key01', 'key02'));
+
+echoInfo('TTL');
+$redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
+$redis->expire('key01', 2);
+var_dump($redis->ttl('key01'));
