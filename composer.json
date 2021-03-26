@@ -1,5 +1,5 @@
 {
-    "name": "php-redis/php-redis",
+    "name": "onursimsek/php-redis",
     "description": "Redis client for PHP",
     "keywords": ["redis", "cache", "no-sql"],
     "type": "library",

@@ -16,7 +16,7 @@ RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
     && cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini \
     && pecl install xdebug \
     && echo "zend_extension = xdebug.so" >> /usr/local/etc/php/php.ini \
-    && echo "xdebug.mode = debug" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.mode = debug,coverage" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.start_with_request = yes" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.discover_client_host = 1" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.client_host = 172.17.0.1" >> /usr/local/etc/php/conf.d/xdebug.ini \
