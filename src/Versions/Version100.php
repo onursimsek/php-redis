@@ -63,6 +63,7 @@ class Version100 implements Version
             'RENAMENX' => $this->commandObject(),
             'SORT' => $this->commandObject(Sort::class),
             'TTL' => $this->commandObject(),
+            'TYPE' => $this->commandObject(),
         ];
     }
 

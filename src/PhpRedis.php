@@ -101,6 +101,7 @@ use PhpRedis\Versions\CommandList;
  * @method array        sort(string $key, array $options = [])
  * @method int          touch(string ...$key)
  * @method int          ttl(string $key)
+ * @method string       type(string $key)
  */
 class PhpRedis implements Client
 {
