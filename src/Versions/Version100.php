@@ -48,6 +48,9 @@ class Version100 implements Version
             'SREM' => new CommandObject(GenericCommand::class),
             'SUNION' => new CommandObject(GenericCommand::class),
             'SUNIONSTORE' => new CommandObject(GenericCommand::class),
+
+            // Key commands
+            'DEL' => new CommandObject(GenericCommand::class),
         ];
     }
 
