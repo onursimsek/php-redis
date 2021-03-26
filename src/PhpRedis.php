@@ -83,18 +83,13 @@ use PhpRedis\Versions\CommandList;
  * @method int          del(string ...$key)
  * @method string       dump(string $key)
  * @method int          exists(string ...$key)
+ * @method int          expire(string $key, int $seconds)
  */
 class PhpRedis implements Client
 {
-    /**
-     * @var Parameter
-     */
-    private $connectionParameter;
+    private Parameter $connectionParameter;
 
-    /**
-     * @var Connection
-     */
-    private $connection = null;
+    private ?Connection $connection = null;
 
     public function __construct(Parameter $parameter)
     {
@@ -106,28 +101,33 @@ class PhpRedis implements Client
         return $this->connection && $this->connection->isConnected();
     }
 
-    public function connect(): bool
-    {
-        if (!$this->connection) {
-            $this->connection = new StreamConnection();
-        }
-
-        if ($this->connection->isConnected()) {
-            return true;
-        }
-
-        return $this->connection->connect($this->connectionParameter);
-    }
-
     public function disconnect(): bool
     {
         return $this->connection->disconnect() && $this->connection = null;
     }
 
-    public function getRedisVersion(): string
+    public function raw(...$command)
     {
-        $this->connect();
-        return $this->connection->getInfo('server')['redis_version'];
+        return $this->connection->rawCommand($command);
+    }
+
+    public function __call(string $name, array $arguments)
+    {
+        $commandName = strtoupper($name);
+        $commandList = $this->getCommandList()->toArray();
+
+        if (!array_key_exists($commandName, $commandList)) {
+            throw new UnsupportedCommandException("This command ('{$commandName}') is not supported");
+        }
+
+        return $this->executeCommand(
+            CommandFactory::make($commandList[$commandName], $arguments, $commandName)
+        );
+    }
+
+    private function getCommandList(): CommandList
+    {
+        return new CommandList($this->getLibraryRedisVersion());
     }
 
     public function getLibraryRedisVersion(): string
@@ -147,32 +147,27 @@ class PhpRedis implements Client
         }
     }
 
-    private function getCommandList()
+    public function getRedisVersion(): string
     {
-        return new CommandList($this->getLibraryRedisVersion());
+        $this->connect();
+        return $this->connection->getInfo('server')['redis_version'];
     }
 
-    public function raw(...$command)
+    public function connect(): bool
     {
-        return $this->connection->rawCommand($command);
+        if (!$this->connection) {
+            $this->connection = new StreamConnection();
+        }
+
+        if ($this->connection->isConnected()) {
+            return true;
+        }
+
+        return $this->connection->connect($this->connectionParameter);
     }
 
     private function executeCommand(Command $command)
     {
         return $this->connection->executeCommand($command);
-    }
-
-    public function __call(string $name, array $arguments)
-    {
-        $commandName = strtoupper($name);
-        $commandList = $this->getCommandList()->toArray();
-
-        if (!array_key_exists($commandName, $commandList)) {
-            throw new UnsupportedCommandException("This command ('{$commandName}') is not supported");
-        }
-
-        return $this->executeCommand(
-            CommandFactory::make($commandList[$commandName], $arguments, $commandName)
-        );
     }
 }

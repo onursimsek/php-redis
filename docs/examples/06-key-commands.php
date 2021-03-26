@@ -16,3 +16,10 @@ $redis->set('key01', 'Hello');
 $redis->set('key02', 'World');
 echo $redis->exists('key00') . PHP_EOL;
 echo $redis->exists('key01', 'key02') . PHP_EOL;
+
+echoInfo('EXPIRE');
+$redis->set('key01', 'Hello');
+$redis->expire('key01', 2);
+echo $redis->exists('key01') . PHP_EOL;
+sleep(5);
+echo $redis->exists('key01') . PHP_EOL;
