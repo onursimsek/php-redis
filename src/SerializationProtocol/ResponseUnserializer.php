@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace PhpRedis\SerializationProtocol;
 
+use PhpRedis\Connections\Connection;
 use PhpRedis\Exceptions\IOException;
 use PhpRedis\Exceptions\RespException;
 
 class ResponseUnserializer implements UnserializationProtocol
 {
+    protected int $stopperCount = 0;
+
     public function unserialize(\Generator $response)
     {
         $payload = substr($response->current(), 1);
@@ -56,12 +59,14 @@ class ResponseUnserializer implements UnserializationProtocol
             return null;
         }
 
+        $this->stopperCount++;
+
         $data = '';
         while ($response->valid()) {
             $response->next();
             $data .= $response->current();
-            if (strlen($data) === $totalBytes + 2) {
-                $response->send('stop');
+            if (strlen($data) === $totalBytes + 2 && !$this->stop($response)) {
+                break;
             }
         }
 
@@ -75,22 +80,14 @@ class ResponseUnserializer implements UnserializationProtocol
             return null;
         }
 
+        $this->stopperCount++;
+
         $data = [];
         while ($response->valid()) {
             $response->next();
-            $data[] = $this->unserialize(
-                (static function () use ($response) {
-                    if ($response->current()[0] !== self::BULK_STRING_FIRST_BYTE) {
-                        yield $response->current();
-                    }
-
-                    yield $response->current();
-                    $response->next();
-                    yield $response->current();
-                })()
-            );
-            if (count($data) === $totalRow) {
-                $response->send('stop');
+            $data[] = $this->unserialize($response);
+            if (count($data) === $totalRow && !$this->stop($response)) {
+                break;
             }
         }
 
@@ -105,5 +102,17 @@ class ResponseUnserializer implements UnserializationProtocol
     private function discardCRLF(string $string)
     {
         return preg_replace('/' . self::CRLF . '$/', '', $string);
+    }
+
+    private function stop(\Generator $response): bool
+    {
+        $this->stopperCount--;
+        if ($this->stopperCount == 0) {
+            $response->send(Connection::STOP_KEYWORD);
+
+            return true;
+        }
+
+        return false;
     }
 }

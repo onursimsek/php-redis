@@ -15,11 +15,11 @@ class Version320 implements Version
     {
         return [
             // String commands
-            'BITFIELD' => new CommandObject( GenericCommand::class),
+            'BITFIELD' => new CommandObject(GenericCommand::class),
 
             // Connection commands
-            'CLIENTPAUSE' => new CommandObject( ClientPause::class),
-            'CLIENTREPLY' => new CommandObject( ClientReply::class),
+            'CLIENTPAUSE' => new CommandObject(ClientPause::class),
+            'CLIENTREPLY' => new CommandObject(ClientReply::class),
         ];
     }
 

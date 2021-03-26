@@ -61,6 +61,23 @@ use PhpRedis\Versions\CommandList;
  * @method string ping(string $string = null)
  * @method bool quit()
  * @method bool select(int $index)
+ *
+ * Set commands
+ * @method int sAdd(string $key, $member, ...$members)
+ * @method int sCard(string $key)
+ * @method array sDiff(string $key, string ...$keys)
+ * @method int sDiffStore(string $destination, string $key, string ...$keys)
+ * @method array sInter(string $key, string ...$keys)
+ * @method int sInterStore(string $destination, string $key, string ...$keys)
+ * @method int sIsMember(string $key, $member)
+ * @method array sMembers(string $key)
+ * @method int sMove(string $source, string $destination, $member)
+ * @method string|array sPop(string $key, int $count = null)
+ * @method string|array sRandMember(string $key, int $count = null)
+ * @method int sRem(string $key, $member, ...$members)
+ * @method array sUnion(string $key, string ...$keys)
+ * @method int sUnionStore(string $destination, string $key, string ...$keys)
+ * @method array sScan(string $key, int $cursor, string $match = null, int $count = null)
  */
 class PhpRedis implements Client
 {

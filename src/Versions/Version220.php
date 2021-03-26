@@ -13,10 +13,10 @@ class Version220 implements Version
     {
         return [
             // String commands
-            'GETBIT' => new CommandObject( GenericCommand::class),
-            'SETBIT' => new CommandObject( GenericCommand::class),
-            'SETRANGE' => new CommandObject( GenericCommand::class),
-            'STRLEN' => new CommandObject( GenericCommand::class),
+            'GETBIT' => new CommandObject(GenericCommand::class),
+            'SETBIT' => new CommandObject(GenericCommand::class),
+            'SETRANGE' => new CommandObject(GenericCommand::class),
+            'STRLEN' => new CommandObject(GenericCommand::class),
         ];
     }
 

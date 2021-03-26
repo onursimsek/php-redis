@@ -15,14 +15,14 @@ class Version600 implements Version
     {
         return [
             // String commands
-            'SET' => new CommandObject( GenericCommand::class),
-            'STRALGOLCS' => new CommandObject( GenericCommand::class),
+            'SET' => new CommandObject(GenericCommand::class),
+            'STRALGOLCS' => new CommandObject(GenericCommand::class),
 
             // Connection commands
-            'CLIENTCACHING' => new CommandObject( ClientCaching::class),
-            'CLIENTGETREDIR' => new CommandObject( ClientGetRedirecting::class),
-            'CLIENTTRACKING' => new CommandObject( GenericCommand::class),
-            'HELLO' => new CommandObject( GenericCommand::class),
+            'CLIENTCACHING' => new CommandObject(ClientCaching::class),
+            'CLIENTGETREDIR' => new CommandObject(ClientGetRedirecting::class),
+            'CLIENTTRACKING' => new CommandObject(GenericCommand::class),
+            'HELLO' => new CommandObject(GenericCommand::class),
         ];
     }
 
