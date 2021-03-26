@@ -60,6 +60,11 @@ class ResponseUnserializerTest extends TestCase
 
         self::assertEquals($expected, $this->unserializer->unserialize($arguments));
 
+        $arguments = $this->dataAsGenerator("*2\r\n$3\r\nfoo\r\n*2\r\n:100\r\n+A\r\n");
+        $expected = ['foo', [100, 'A']];
+
+        self::assertEquals($expected, $this->unserializer->unserialize($arguments));
+
         $arguments = $this->dataAsGenerator("*-1\r\n");
 
         self::assertNull($this->unserializer->unserialize($arguments));
