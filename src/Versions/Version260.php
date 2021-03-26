@@ -24,6 +24,9 @@ class Version260 implements Version
             // Connection commands
             'CLIENTGETNAME' => new CommandObject(ClientGetName::class),
             'CLIENTSETNAME' => new CommandObject(ClientSetName::class),
+
+            // Key commands
+            'DUMP' => new CommandObject(GenericCommand::class),
         ];
     }
 
