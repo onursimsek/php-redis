@@ -31,3 +31,7 @@ $redis->expireAt('key01', $date->modify('+2 seconds')->getTimestamp());
 echo $redis->exists('key01') . PHP_EOL;
 sleep(2);
 echo $redis->exists('key01') . PHP_EOL;
+
+echoInfo('KEYS');
+$redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
+var_dump($redis->keys('key*'));

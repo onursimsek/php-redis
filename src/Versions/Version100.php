@@ -55,6 +55,7 @@ class Version100 implements Version
             'DEL' => new CommandObject(GenericCommand::class),
             'EXISTS' => $this->commandObject(),
             'EXPIRE' => $this->commandObject(),
+            'KEYS' => $this->commandObject(),
         ];
     }
 
