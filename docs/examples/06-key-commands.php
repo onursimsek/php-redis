@@ -19,17 +19,17 @@ echo $redis->exists('key01', 'key02') . PHP_EOL;
 
 echoInfo('EXPIRE');
 $redis->set('key01', 'Hello');
-$redis->expire('key01', 2);
+$redis->expire('key01', 1);
 echo $redis->exists('key01') . PHP_EOL;
-sleep(2);
+sleep(1);
 echo $redis->exists('key01') . PHP_EOL;
 
 echoInfo('EXPIREAT');
 $redis->set('key01', 'Hello');
 $date = new DateTime();
-$redis->expireAt('key01', $date->modify('+2 seconds')->getTimestamp());
+$redis->expireAt('key01', $date->modify('+1 seconds')->getTimestamp());
 echo $redis->exists('key01') . PHP_EOL;
-sleep(2);
+sleep(1);
 echo $redis->exists('key01') . PHP_EOL;
 
 echoInfo('KEYS');
@@ -49,8 +49,25 @@ var_dump($redis->object('REFCOUNT', 'key01'));
 var_dump($redis->object('ENCODING', 'key01'));
 var_dump($redis->object('IDLETIME', 'key01'));
 //var_dump($redis->object('FREQ', 'key01'));
-$redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
 
 echoInfo('PERSIST');
-$redis->set('key01', 'Hello', 'EX', 5);
+$redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
 var_dump($redis->persist('key01'));
+
+echoInfo('PEXPIRE');
+$redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
+var_dump($redis->pExpire('key01', 1000));
+sleep(1);
+echo $redis->exists('key01') . PHP_EOL;
+
+echoInfo('PEXPIREAT');
+$redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
+echo $redis->exists('key01') . PHP_EOL;
+var_dump($redis->pExpireAt('key01', intval(microtime(true) * 1000)));
+sleep(1);
+echo $redis->exists('key01') . PHP_EOL;
+
+echoInfo('PTTL');
+$redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
+$redis->pExpire('key01', 2000);
+var_dump($redis->pTtl('key01'));

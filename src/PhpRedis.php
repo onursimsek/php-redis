@@ -90,6 +90,9 @@ use PhpRedis\Versions\CommandList;
  * @method int          move(string $key, int $db)
  * @method int|string   object(string $subCommand, string ...$keys)
  * @method int          persist(string $key)
+ * @method int          pExpire(string $key, int $milliseconds)
+ * @method int          pExpireAt(string $key, int $millisecondsTimestamp)
+ * @method int          pTtl(string $key)
  */
 class PhpRedis implements Client
 {
