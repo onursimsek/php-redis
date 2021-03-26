@@ -6,9 +6,13 @@ namespace PhpRedis\Versions;
 
 class Version400 implements Version
 {
+    use GenericCommandObject;
+
     public function added(): iterable
     {
-        return [];
+        return [
+            'UNLINK' => $this->commandObject(),
+        ];
     }
 
     public function deleted(): iterable

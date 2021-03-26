@@ -102,6 +102,7 @@ use PhpRedis\Versions\CommandList;
  * @method int          touch(string ...$key)
  * @method int          ttl(string $key)
  * @method string       type(string $key)
+ * @method int          unlink(string ...$key)
  */
 class PhpRedis implements Client
 {

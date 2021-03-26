@@ -109,3 +109,7 @@ var_dump($redis->ttl('key01'));
 echoInfo('TYPE');
 $redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
 var_dump($redis->type('key01'));
+
+echoInfo('UNLINK');
+$redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
+var_dump($redis->unlink('key01', 'key02'));
