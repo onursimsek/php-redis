@@ -35,3 +35,11 @@ echo $redis->exists('key01') . PHP_EOL;
 echoInfo('KEYS');
 $redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
 var_dump($redis->keys('key*'));
+
+/*echoInfo('MIGRATE');
+$redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
+var_dump($redis->migrate('key*'));*/
+
+echoInfo('MOVE');
+$redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
+var_dump($redis->move('key01', 5));
