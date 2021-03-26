@@ -59,6 +59,7 @@ class Version100 implements Version
             'MOVE' => $this->commandObject(),
             'RANDOMKEY' => $this->commandObject(),
             'RENAME' => $this->commandObject(),
+            'RENAMENX' => $this->commandObject(),
         ];
     }
 

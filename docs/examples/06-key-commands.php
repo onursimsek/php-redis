@@ -78,3 +78,7 @@ var_dump($redis->randomKey());
 echoInfo('RENAME');
 $redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
 var_dump($redis->rename('key02', 'key05'));
+
+echoInfo('RENAMENX');
+$redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
+var_dump($redis->renameNx('key01', 'key02'));
