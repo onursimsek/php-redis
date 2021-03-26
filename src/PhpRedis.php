@@ -94,6 +94,7 @@ use PhpRedis\Versions\CommandList;
  * @method int          pExpireAt(string $key, int $millisecondsTimestamp)
  * @method int          pTtl(string $key)
  * @method string|null  randomKey()
+ * @method string       rename(string $key, string $newKey)
  */
 class PhpRedis implements Client
 {

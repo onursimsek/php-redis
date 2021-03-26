@@ -74,3 +74,7 @@ var_dump($redis->pTtl('key01'));
 
 echoInfo('RANDOMKEY');
 var_dump($redis->randomKey());
+
+echoInfo('RENAME');
+$redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
+var_dump($redis->rename('key02', 'key05'));
