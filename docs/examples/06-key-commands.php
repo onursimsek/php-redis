@@ -92,3 +92,7 @@ var_dump($redis->restore('key01', 0, $dump));
 echoInfo('SCAN');
 $redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
 var_dump($redis->scan(0, 'key*'));
+
+echoInfo('SORT');
+$redis->sAdd('list', range(1, 10));
+var_dump($redis->sort('list'));

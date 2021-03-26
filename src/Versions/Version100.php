@@ -7,6 +7,7 @@ namespace PhpRedis\Versions;
 use PhpRedis\Commands\CommandObject;
 use PhpRedis\Commands\Connections\Auth;
 use PhpRedis\Commands\GenericCommand;
+use PhpRedis\Commands\Keys\Sort;
 
 class Version100 implements Version
 {
@@ -60,6 +61,7 @@ class Version100 implements Version
             'RANDOMKEY' => $this->commandObject(),
             'RENAME' => $this->commandObject(),
             'RENAMENX' => $this->commandObject(),
+            'SORT' => $this->commandObject(Sort::class),
         ];
     }
 

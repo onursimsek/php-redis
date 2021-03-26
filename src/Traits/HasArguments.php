@@ -4,10 +4,7 @@ namespace PhpRedis\Traits;
 
 trait HasArguments
 {
-    /**
-     * @var array
-     */
-    private $arguments = [];
+    private array $arguments = [];
 
     /**
      * @return array
