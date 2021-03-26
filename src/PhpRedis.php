@@ -84,6 +84,7 @@ use PhpRedis\Versions\CommandList;
  * @method string       dump(string $key)
  * @method int          exists(string ...$key)
  * @method int          expire(string $key, int $seconds)
+ * @method int          expireAt(string $key, string $timestamp)
  */
 class PhpRedis implements Client
 {

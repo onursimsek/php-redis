@@ -21,5 +21,13 @@ echoInfo('EXPIRE');
 $redis->set('key01', 'Hello');
 $redis->expire('key01', 2);
 echo $redis->exists('key01') . PHP_EOL;
-sleep(5);
+sleep(2);
+echo $redis->exists('key01') . PHP_EOL;
+
+echoInfo('EXPIREAT');
+$redis->set('key01', 'Hello');
+$date = new DateTime();
+$redis->expireAt('key01', $date->modify('+2 seconds')->getTimestamp());
+echo $redis->exists('key01') . PHP_EOL;
+sleep(2);
 echo $redis->exists('key01') . PHP_EOL;

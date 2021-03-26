@@ -69,6 +69,7 @@ class CommandList
     {
         return [
             Client::REDIS_VERSION_100 => Version100::class,
+            Client::REDIS_VERSION_120 => Version120::class,
             Client::REDIS_VERSION_200 => Version200::class,
             Client::REDIS_VERSION_220 => Version220::class,
             Client::REDIS_VERSION_240 => Version240::class,

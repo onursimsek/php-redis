@@ -7,6 +7,7 @@ namespace PhpRedis;
 interface Client
 {
     public const REDIS_VERSION_100 = '1.0';
+    public const REDIS_VERSION_120 = '1.2';
     public const REDIS_VERSION_200 = '2.0';
     public const REDIS_VERSION_220 = '2.2';
     public const REDIS_VERSION_240 = '2.4';
