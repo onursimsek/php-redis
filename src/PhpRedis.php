@@ -97,6 +97,7 @@ use PhpRedis\Versions\CommandList;
  * @method bool         rename(string $key, string $newKey)
  * @method int          renameNx(string $key, string $newKey)
  * @method bool         restore(string $key, int $ttl, string $dump)
+ * @method array        scan(int $cursor, string $match = null, int $count = null, string $type = null)
  */
 class PhpRedis implements Client
 {

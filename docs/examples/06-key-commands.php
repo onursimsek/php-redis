@@ -88,3 +88,7 @@ $redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
 $dump = $redis->dump('key01');
 $redis->del('key01');
 var_dump($redis->restore('key01', 0, $dump));
+
+echoInfo('SCAN');
+$redis->mSet(['key01' => 'Hello', 'key02' => 'World']);
+var_dump($redis->scan(0, 'key*'));
