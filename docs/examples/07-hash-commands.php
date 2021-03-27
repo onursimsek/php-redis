@@ -13,3 +13,6 @@ var_dump($redis->hGet('hashkey01', 'field01'));
 
 echoInfo('HGETALL');
 var_dump($redis->hGetAll('hashkey01'));
+
+echoInfo('HINCRBY');
+var_dump($redis->hIncrBy('hashkey01', 'field01', 1));
