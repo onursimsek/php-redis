@@ -22,6 +22,7 @@ class Version200 implements Version
             'HGETALL' => $this->commandObject(),
             'HINCRBY' => $this->commandObject(),
             'HKEYS' => $this->commandObject(),
+            'HLEN' => $this->commandObject(),
         ];
     }
 

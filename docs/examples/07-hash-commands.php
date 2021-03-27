@@ -22,3 +22,6 @@ var_dump($redis->hIncrByFloat('hashkey01', 'field01', 1.5));
 
 echoInfo('HKEYS');
 var_dump($redis->hKeys('hashkey01'));
+
+echoInfo('HLEN');
+var_dump($redis->hLen('hashkey01'));

@@ -113,6 +113,7 @@ use PhpRedis\Versions\CommandList;
  * @method int          hIncrBy(string $key, string $field, int $increment)
  * @method float        hIncrByFloat(string $key, string $field, float $increment)
  * @method array        hKeys(string $key)
+ * @method int          hLen(string $key)
  */
 class PhpRedis implements Client
 {
