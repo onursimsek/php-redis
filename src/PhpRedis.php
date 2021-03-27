@@ -104,6 +104,9 @@ use PhpRedis\Versions\CommandList;
  * @method string       type(string $key)
  * @method int          unlink(string ...$key)
  * @method int          wait(int $numReplicas, int $milliseconds)
+ *
+ * Hash commands
+ * @method int          hDel(string $key, string ...$field)
  */
 class PhpRedis implements Client
 {

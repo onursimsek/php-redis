@@ -14,6 +14,9 @@ class Version200 implements Version
             // String commands
             'APPEND' => $this->commandObject(),
             'SETEX' => $this->commandObject(),
+
+            // Hash commands
+            'HDEL' => $this->commandObject(),
         ];
     }
 
