@@ -26,6 +26,7 @@ class Version200 implements Version
             'HMGET' => $this->commandObject(),
             'HMSET' => $this->commandObject(),
             'HSET' => $this->commandObject(),
+            'HSETNX' => $this->commandObject(),
         ];
     }
 

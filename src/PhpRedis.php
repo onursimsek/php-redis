@@ -118,6 +118,7 @@ use PhpRedis\Versions\CommandList;
  * @method boolean      hMSet(string $key, array $data)
  * @method array        hScan(string $key, int $cursor, string $match = null, int $count = null)
  * @method int          hSet(string $key, array $data)
+ * @method int          hSetNx(string $key, string $field, $value)
  */
 class PhpRedis implements Client
 {
