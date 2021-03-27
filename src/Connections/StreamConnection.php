@@ -129,8 +129,8 @@ class StreamConnection implements Connection
                 throw new PhpRedisException('Section not found');
             }
 
-            [$key, $value] = explode(':', $row);
-            if (!$key) {
+            [$key, $value] = array_pad(explode(':', $row), 2, null);
+            if (!$key || !$value) {
                 continue;
             }
 

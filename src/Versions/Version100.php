@@ -7,9 +7,12 @@ namespace PhpRedis\Versions;
 use PhpRedis\Commands\CommandObject;
 use PhpRedis\Commands\Connections\Auth;
 use PhpRedis\Commands\GenericCommand;
+use PhpRedis\Commands\Keys\Sort;
 
 class Version100 implements Version
 {
+    use GenericCommandObject;
+
     public function added(): iterable
     {
         return [
@@ -48,6 +51,19 @@ class Version100 implements Version
             'SREM' => new CommandObject(GenericCommand::class),
             'SUNION' => new CommandObject(GenericCommand::class),
             'SUNIONSTORE' => new CommandObject(GenericCommand::class),
+
+            // Key commands
+            'DEL' => new CommandObject(GenericCommand::class),
+            'EXISTS' => $this->commandObject(),
+            'EXPIRE' => $this->commandObject(),
+            'KEYS' => $this->commandObject(),
+            'MOVE' => $this->commandObject(),
+            'RANDOMKEY' => $this->commandObject(),
+            'RENAME' => $this->commandObject(),
+            'RENAMENX' => $this->commandObject(),
+            'SORT' => $this->commandObject(Sort::class),
+            'TTL' => $this->commandObject(),
+            'TYPE' => $this->commandObject(),
         ];
     }
 

@@ -11,6 +11,8 @@ use PhpRedis\Commands\GenericCommand;
 
 class Version260 implements Version
 {
+    use GenericCommandObject;
+
     public function added(): iterable
     {
         return [
@@ -24,6 +26,13 @@ class Version260 implements Version
             // Connection commands
             'CLIENTGETNAME' => new CommandObject(ClientGetName::class),
             'CLIENTSETNAME' => new CommandObject(ClientSetName::class),
+
+            // Key commands
+            'DUMP' => new CommandObject(GenericCommand::class),
+            'PEXPIRE' => $this->commandObject(),
+            'PEXPIREAT' => $this->commandObject(),
+            'PTTL' => $this->commandObject(),
+            'RESTORE' => $this->commandObject(),
         ];
     }
 

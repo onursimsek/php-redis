@@ -9,6 +9,8 @@ use PhpRedis\Commands\GenericCommand;
 
 class Version220 implements Version
 {
+    use GenericCommandObject;
+
     public function added(): iterable
     {
         return [
@@ -17,6 +19,10 @@ class Version220 implements Version
             'SETBIT' => new CommandObject(GenericCommand::class),
             'SETRANGE' => new CommandObject(GenericCommand::class),
             'STRLEN' => new CommandObject(GenericCommand::class),
+
+            // Key commands
+            'OBJECT' => $this->commandObject(),
+            'PERSIST' => $this->commandObject(),
         ];
     }
 

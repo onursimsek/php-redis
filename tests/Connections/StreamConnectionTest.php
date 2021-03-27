@@ -6,6 +6,7 @@ use PhpRedis\Commands\Command;
 use PhpRedis\Configurations\ConnectionParameter;
 use PhpRedis\Connections\StreamConnection;
 use PhpRedis\Exceptions\ConnectionException;
+use PhpRedis\Exceptions\PhpRedisException;
 use PHPUnit\Framework\TestCase;
 
 class StreamConnectionTest extends TestCase
@@ -77,6 +78,13 @@ class StreamConnectionTest extends TestCase
 
         self::assertArrayHasKey('server', $this->connection->getInfo());
         self::assertIsArray($this->connection->getInfo());
+
+        $parseInfoResponseReflection = new \ReflectionMethod(StreamConnection::class, 'parseInfoResponse');
+        $parseInfoResponseReflection->setAccessible('public');
+
+        self::assertEquals([], $parseInfoResponseReflection->invoke($this->connection, "# Server\r\nredisinfo\r\n"));
+        self::expectException(PhpRedisException::class);
+        $parseInfoResponseReflection->invoke($this->connection, "Server\r\nredisinfo\r\n");
     }
 
     public function test_unable_to_connect()

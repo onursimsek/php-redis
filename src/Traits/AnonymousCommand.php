@@ -6,10 +6,7 @@ namespace PhpRedis\Traits;
 
 trait AnonymousCommand
 {
-    /**
-     * @var string
-     */
-    private $command;
+    private string $command;
 
     /**
      * @return string

@@ -11,6 +11,8 @@ use PhpRedis\Commands\GenericCommand;
 
 class Version320 implements Version
 {
+    use GenericCommandObject;
+
     public function added(): iterable
     {
         return [
@@ -20,6 +22,9 @@ class Version320 implements Version
             // Connection commands
             'CLIENTPAUSE' => new CommandObject(ClientPause::class),
             'CLIENTREPLY' => new CommandObject(ClientReply::class),
+
+            // Key commands
+            'TOUCH' => $this->commandObject(),
         ];
     }
 
