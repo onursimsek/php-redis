@@ -35,3 +35,5 @@ var_dump($redis->hMGet('hashkey01', 'field01', 'field02'));
 echoInfo('HSCAN');
 var_dump($redis->hScan('hashkey01', 0));
 
+echoInfo('HSET');
+var_dump($redis->hSet('hashkey01', ['field01' => 'value01', 'field02' => 'value02']));
