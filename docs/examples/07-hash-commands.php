@@ -10,3 +10,6 @@ var_dump($redis->hExists('hashkey01', 'field01'));
 
 echoInfo('HGET');
 var_dump($redis->hGet('hashkey01', 'field01'));
+
+echoInfo('HGETALL');
+var_dump($redis->hGetAll('hashkey01'));

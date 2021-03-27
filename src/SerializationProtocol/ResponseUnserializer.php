@@ -88,8 +88,11 @@ class ResponseUnserializer implements UnserializationProtocol
     private function arrayProtocol(Generator $response): ?array
     {
         $totalRow = (int)substr($response->current(), 1, -2);
-        if ($totalRow === -1) {
-            return null;
+        switch ($totalRow) {
+            case -1:
+                return null;
+            case 0:
+                return [];
         }
 
         $this->stopperCount++;

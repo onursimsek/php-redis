@@ -19,6 +19,7 @@ class Version200 implements Version
             'HDEL' => $this->commandObject(),
             'HEXISTS' => $this->commandObject(),
             'HGET' => $this->commandObject(),
+            'HGETALL' => $this->commandObject(),
         ];
     }
 

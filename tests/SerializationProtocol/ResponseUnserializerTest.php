@@ -68,6 +68,10 @@ class ResponseUnserializerTest extends TestCase
         $arguments = $this->dataAsGenerator("*-1\r\n");
 
         self::assertNull($this->unserializer->unserialize($arguments));
+
+        $arguments = $this->dataAsGenerator("*0\r\n");
+
+        self::assertEquals([], $this->unserializer->unserialize($arguments));
     }
 
     public function test_unserialize_error_response()

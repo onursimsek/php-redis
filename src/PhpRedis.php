@@ -109,6 +109,7 @@ use PhpRedis\Versions\CommandList;
  * @method int          hDel(string $key, string ...$field)
  * @method int          hExists(string $key, string $field)
  * @method string|null  hGet(string $key, string $field)
+ * @method array        hGetAll(string $key)
  */
 class PhpRedis implements Client
 {
