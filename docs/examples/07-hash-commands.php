@@ -25,3 +25,6 @@ var_dump($redis->hKeys('hashkey01'));
 
 echoInfo('HLEN');
 var_dump($redis->hLen('hashkey01'));
+
+echoInfo('HMGET');
+var_dump($redis->hMGet('hashkey01', 'field01', 'field02'));
