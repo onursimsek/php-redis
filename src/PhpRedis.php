@@ -107,6 +107,7 @@ use PhpRedis\Versions\CommandList;
  *
  * Hash commands
  * @method int          hDel(string $key, string ...$field)
+ * @method int          hExists(string $key, string $field)
  */
 class PhpRedis implements Client
 {

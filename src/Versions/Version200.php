@@ -17,6 +17,7 @@ class Version200 implements Version
 
             // Hash commands
             'HDEL' => $this->commandObject(),
+            'HEXISTS' => $this->commandObject(),
         ];
     }
 
