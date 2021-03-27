@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace PhpRedis\Versions;
 
-use PhpRedis\Commands\CommandObject;
-use PhpRedis\Commands\GenericCommand;
 use PhpRedis\Commands\Keys\Scan;
 use PhpRedis\Commands\Sets\SScan;
 
@@ -17,10 +15,10 @@ class Version280 implements Version
     {
         return [
             // String commands
-            'BITPOS' => new CommandObject(GenericCommand::class),
+            'BITPOS' => $this->commandObject(),
 
             // Set commands
-            'SSCAN' => new CommandObject(SScan::class),
+            'SSCAN' => $this->commandObject(SScan::class),
 
             // Key commands
             'SCAN' => $this->commandObject(Scan::class),

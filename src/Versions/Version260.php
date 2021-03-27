@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace PhpRedis\Versions;
 
-use PhpRedis\Commands\CommandObject;
 use PhpRedis\Commands\Connections\ClientGetName;
 use PhpRedis\Commands\Connections\ClientSetName;
-use PhpRedis\Commands\GenericCommand;
 
 class Version260 implements Version
 {
@@ -17,18 +15,18 @@ class Version260 implements Version
     {
         return [
             // String commands
-            'BITCOUNT' => new CommandObject(GenericCommand::class),
-            'BITOP' => new CommandObject(GenericCommand::class),
-            'INCRBYFLOAT' => new CommandObject(GenericCommand::class),
-            'PSETEX' => new CommandObject(GenericCommand::class),
-            'SET' => new CommandObject(GenericCommand::class),
+            'BITCOUNT' => $this->commandObject(),
+            'BITOP' => $this->commandObject(),
+            'INCRBYFLOAT' => $this->commandObject(),
+            'PSETEX' => $this->commandObject(),
+            'SET' => $this->commandObject(),
 
             // Connection commands
-            'CLIENTGETNAME' => new CommandObject(ClientGetName::class),
-            'CLIENTSETNAME' => new CommandObject(ClientSetName::class),
+            'CLIENTGETNAME' => $this->commandObject(ClientGetName::class),
+            'CLIENTSETNAME' => $this->commandObject(ClientSetName::class),
 
             // Key commands
-            'DUMP' => new CommandObject(GenericCommand::class),
+            'DUMP' => $this->commandObject(),
             'PEXPIRE' => $this->commandObject(),
             'PEXPIREAT' => $this->commandObject(),
             'PTTL' => $this->commandObject(),

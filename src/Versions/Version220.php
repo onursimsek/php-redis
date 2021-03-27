@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace PhpRedis\Versions;
 
-use PhpRedis\Commands\CommandObject;
-use PhpRedis\Commands\GenericCommand;
-
 class Version220 implements Version
 {
     use GenericCommandObject;
@@ -15,10 +12,10 @@ class Version220 implements Version
     {
         return [
             // String commands
-            'GETBIT' => new CommandObject(GenericCommand::class),
-            'SETBIT' => new CommandObject(GenericCommand::class),
-            'SETRANGE' => new CommandObject(GenericCommand::class),
-            'STRLEN' => new CommandObject(GenericCommand::class),
+            'GETBIT' => $this->commandObject(),
+            'SETBIT' => $this->commandObject(),
+            'SETRANGE' => $this->commandObject(),
+            'STRLEN' => $this->commandObject(),
 
             // Key commands
             'OBJECT' => $this->commandObject(),
