@@ -23,6 +23,9 @@ class Version320 implements Version
 
             // Key commands
             'TOUCH' => $this->commandObject(),
+
+            // Hash command
+            'HSTRLEN' => $this->commandObject(),
         ];
     }
 
