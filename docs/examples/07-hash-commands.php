@@ -43,3 +43,6 @@ var_dump($redis->hSetNx('hashkey01', 'field01', 'value01'));
 
 echoInfo('HSTRLEN');
 var_dump($redis->hStrlen('hashkey01', 'field01'));
+
+echoInfo('HVALS');
+var_dump($redis->hVals('hashkey01'));
