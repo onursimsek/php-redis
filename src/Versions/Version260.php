@@ -31,6 +31,9 @@ class Version260 implements Version
             'PEXPIREAT' => $this->commandObject(),
             'PTTL' => $this->commandObject(),
             'RESTORE' => $this->commandObject(),
+
+            // Hash commands
+            'HINCRBYFLOAT' => $this->commandObject(),
         ];
     }
 

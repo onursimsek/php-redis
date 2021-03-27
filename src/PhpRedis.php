@@ -110,7 +110,8 @@ use PhpRedis\Versions\CommandList;
  * @method int          hExists(string $key, string $field)
  * @method string|null  hGet(string $key, string $field)
  * @method array        hGetAll(string $key)
- * @method int          hIncrBy(string $key, string $field, int $increment = 1)
+ * @method int          hIncrBy(string $key, string $field, int $increment)
+ * @method float        hIncrByFloat(string $key, string $field, float $increment)
  */
 class PhpRedis implements Client
 {
