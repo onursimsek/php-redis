@@ -24,6 +24,7 @@ class Version200 implements Version
             'HKEYS' => $this->commandObject(),
             'HLEN' => $this->commandObject(),
             'HMGET' => $this->commandObject(),
+            'HMSET' => $this->commandObject(),
         ];
     }
 
