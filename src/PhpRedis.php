@@ -121,6 +121,9 @@ use PhpRedis\Versions\CommandList;
  * @method int          hSetNx(string $key, string $field, $value)
  * @method int          hStrlen(string $key, string $field)
  * @method array        hVals(string $key)
+ *
+ * List commands
+ * @method array|null   blPop(string|array $key, int $seconds)
  */
 class PhpRedis implements Client
 {
