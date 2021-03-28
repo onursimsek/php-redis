@@ -104,6 +104,23 @@ use PhpRedis\Versions\CommandList;
  * @method string       type(string $key)
  * @method int          unlink(string ...$key)
  * @method int          wait(int $numReplicas, int $milliseconds)
+ *
+ * Hash commands
+ * @method int          hDel(string $key, string ...$field)
+ * @method int          hExists(string $key, string $field)
+ * @method string|null  hGet(string $key, string $field)
+ * @method array        hGetAll(string $key)
+ * @method int          hIncrBy(string $key, string $field, int $increment)
+ * @method float        hIncrByFloat(string $key, string $field, float $increment)
+ * @method array        hKeys(string $key)
+ * @method int          hLen(string $key)
+ * @method array        hMGet(string $key, string ...$field)
+ * @method boolean      hMSet(string $key, array $data)
+ * @method array        hScan(string $key, int $cursor, string $match = null, int $count = null)
+ * @method int          hSet(string $key, array $data)
+ * @method int          hSetNx(string $key, string $field, $value)
+ * @method int          hStrlen(string $key, string $field)
+ * @method array        hVals(string $key)
  */
 class PhpRedis implements Client
 {

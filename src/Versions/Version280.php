@@ -22,6 +22,9 @@ class Version280 implements Version
 
             // Key commands
             'SCAN' => $this->commandObject(Scan::class),
+
+            // Hash commands
+            'HSCAN' => $this->commandObject(),
         ];
     }
 

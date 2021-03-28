@@ -17,6 +17,9 @@ class Version400 implements Version
 
     public function deleted(): iterable
     {
-        return [];
+        return [
+            // Hash commands
+            'HMSET',
+        ];
     }
 }
