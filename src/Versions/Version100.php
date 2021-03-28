@@ -62,6 +62,9 @@ class Version100 implements Version
             'SORT' => $this->commandObject(Sort::class),
             'TTL' => $this->commandObject(),
             'TYPE' => $this->commandObject(),
+
+            // List commands
+            'LINDEX' => $this->commandObject(),
         ];
     }
 
