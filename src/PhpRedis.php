@@ -125,6 +125,7 @@ use PhpRedis\Versions\CommandList;
  * List commands
  * @method array|null   blPop(string|array $key, int $seconds)
  * @method array|null   brPop(string|array $key, int $seconds)
+ * @method string|null  brPoplPush(string $source, string $destination, int $seconds)
  */
 class PhpRedis implements Client
 {

@@ -20,6 +20,9 @@ class Version220 implements Version
             // Key commands
             'OBJECT' => $this->commandObject(),
             'PERSIST' => $this->commandObject(),
+
+            // List commands
+            'BRPOPLPUSH' => $this->commandObject(),
         ];
     }
 
