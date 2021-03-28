@@ -23,6 +23,7 @@ class Version220 implements Version
 
             // List commands
             'BRPOPLPUSH' => $this->commandObject(),
+            'LINSERT' => $this->commandObject(),
         ];
     }
 

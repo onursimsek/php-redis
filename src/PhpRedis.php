@@ -115,7 +115,7 @@ use PhpRedis\Versions\CommandList;
  * @method array        hKeys(string $key)
  * @method int          hLen(string $key)
  * @method array        hMGet(string $key, string ...$field)
- * @method boolean      hMSet(string $key, array $data)
+ * @method bool         hMSet(string $key, array $data)
  * @method array        hScan(string $key, int $cursor, string $match = null, int $count = null)
  * @method int          hSet(string $key, array $data)
  * @method int          hSetNx(string $key, string $field, $value)
@@ -127,6 +127,7 @@ use PhpRedis\Versions\CommandList;
  * @method array|null   brPop(string|array $key, int $seconds)
  * @method string|null  brPoplPush(string $source, string $destination, int $seconds)
  * @method string|null  lIndex(string $key, int $index)
+ * @method integer      lInsert(string $key, string $position, string $pivot, string $element)
  */
 class PhpRedis implements Client
 {

@@ -13,3 +13,6 @@ var_dump($redis->brPoplPush('list01', 'list02', 1));
 
 echoInfo('LINDEX');
 var_dump($redis->lIndex('list01', 5));
+
+echoInfo('LINSERT');
+var_dump($redis->lInsert('list01', 'BEFORE', 'A', 'B'));
