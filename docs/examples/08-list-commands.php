@@ -16,3 +16,6 @@ var_dump($redis->lIndex('list01', 5));
 
 echoInfo('LINSERT');
 var_dump($redis->lInsert('list01', 'BEFORE', 'A', 'B'));
+
+echoInfo('LLEN');
+var_dump($redis->lLen('list01'));
