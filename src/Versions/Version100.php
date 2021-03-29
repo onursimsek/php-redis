@@ -66,6 +66,7 @@ class Version100 implements Version
             // List commands
             'LINDEX' => $this->commandObject(),
             'LLEN' => $this->commandObject(),
+            'LPOP' => $this->commandObject(),
         ];
     }
 

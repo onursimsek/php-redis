@@ -19,3 +19,6 @@ var_dump($redis->lInsert('list01', 'BEFORE', 'A', 'B'));
 
 echoInfo('LLEN');
 var_dump($redis->lLen('list01'));
+
+echoInfo('LPOP');
+var_dump($redis->lPop('list01'));

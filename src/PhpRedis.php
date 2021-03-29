@@ -129,6 +129,7 @@ use PhpRedis\Versions\CommandList;
  * @method string|null  lIndex(string $key, int $index)
  * @method int          lInsert(string $key, string $position, string $pivot, string $element)
  * @method int          lLen(string $key)
+ * @method int          lPop(string $key, int $count = null)
  */
 class PhpRedis implements Client
 {
