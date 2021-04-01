@@ -136,6 +136,7 @@ use PhpRedis\Versions\CommandList;
  * @method array        lRange(string $key, int $start, int $stop)
  * @method int          lRem(string $key, int $count, string $element)
  * @method bool         lSet(string $key, int $index, string $element)
+ * @method bool         lTrim(string $key, int $start, int $stop)
  */
 class PhpRedis implements Client
 {

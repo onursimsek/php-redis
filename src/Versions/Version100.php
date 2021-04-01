@@ -71,6 +71,7 @@ class Version100 implements Version
             'LRANGE' => $this->commandObject(),
             'LREM' => $this->commandObject(),
             'LSET' => $this->commandObject(),
+            'LTRIM' => $this->commandObject(),
         ];
     }
 
