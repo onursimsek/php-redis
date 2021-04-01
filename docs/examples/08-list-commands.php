@@ -38,3 +38,6 @@ var_dump($redis->lRange('non-existing-list', 0, -1));
 
 echoInfo('LREM');
 var_dump($redis->lRem('list01', 0, 'B'));
+
+echoInfo('LSET');
+var_dump($redis->lSet('list01', -1, 'B'));

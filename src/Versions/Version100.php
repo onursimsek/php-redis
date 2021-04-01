@@ -70,6 +70,7 @@ class Version100 implements Version
             'LPUSH' => $this->commandObject(),
             'LRANGE' => $this->commandObject(),
             'LREM' => $this->commandObject(),
+            'LSET' => $this->commandObject(),
         ];
     }
 
