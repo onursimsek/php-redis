@@ -28,3 +28,6 @@ var_dump($redis->lPos('list01', 'A', ['COUNT' => 0, 'RANK' => 1]));
 
 echoInfo('LPUSH');
 var_dump($redis->lPush('list01', 'A', 'B'));
+
+echoInfo('LPUSHX');
+var_dump($redis->lPushX('non-existing-list', 'A', 'B'));
