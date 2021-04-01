@@ -17,6 +17,9 @@ class Version500 implements Version
             // Connection commands
             'CLIENTID' => $this->commandObject(ClientId::class),
             'CLIENTUNBLOCK' => $this->commandObject(ClientUnblock::class),
+
+            // Sorted set commands
+            'BZPOPMAX' => $this->commandObject(),
         ];
     }
 

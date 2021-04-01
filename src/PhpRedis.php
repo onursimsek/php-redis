@@ -141,6 +141,9 @@ use PhpRedis\Versions\CommandList;
  * @method string|null  rPoplPush(string $source, string $destination)
  * @method int          rPush(string $key, string ...$element)
  * @method int          rPushX(string $key, string ...$element)
+ *
+ * Sorted Set commands
+ * @method array|null   bzPopMax(string|array $key, int $seconds)
  */
 class PhpRedis implements Client
 {
