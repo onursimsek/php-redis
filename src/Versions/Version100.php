@@ -67,6 +67,7 @@ class Version100 implements Version
             'LINDEX' => $this->commandObject(),
             'LLEN' => $this->commandObject(),
             'LPOP' => $this->commandObject(),
+            'LPUSH' => $this->commandObject(),
         ];
     }
 
