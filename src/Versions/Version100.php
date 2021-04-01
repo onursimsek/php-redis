@@ -73,6 +73,7 @@ class Version100 implements Version
             'LSET' => $this->commandObject(),
             'LTRIM' => $this->commandObject(),
             'RPOP' => $this->commandObject(),
+            'RPUSH' => $this->commandObject(),
         ];
     }
 
