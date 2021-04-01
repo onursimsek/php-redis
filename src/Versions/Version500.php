@@ -20,6 +20,7 @@ class Version500 implements Version
 
             // Sorted set commands
             'BZPOPMAX' => $this->commandObject(),
+            'BZPOPMIN' => $this->commandObject(),
         ];
     }
 
