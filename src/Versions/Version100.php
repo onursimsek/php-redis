@@ -62,6 +62,18 @@ class Version100 implements Version
             'SORT' => $this->commandObject(Sort::class),
             'TTL' => $this->commandObject(),
             'TYPE' => $this->commandObject(),
+
+            // List commands
+            'LINDEX' => $this->commandObject(),
+            'LLEN' => $this->commandObject(),
+            'LPOP' => $this->commandObject(),
+            'LPUSH' => $this->commandObject(),
+            'LRANGE' => $this->commandObject(),
+            'LREM' => $this->commandObject(),
+            'LSET' => $this->commandObject(),
+            'LTRIM' => $this->commandObject(),
+            'RPOP' => $this->commandObject(),
+            'RPUSH' => $this->commandObject(),
         ];
     }
 

@@ -3,12 +3,10 @@
 namespace PhpRedis\Tests\Commands\Keys;
 
 use PhpRedis\Commands\Keys\Sort;
-use PHPUnit\Framework\TestCase;
+use PhpRedis\Tests\Commands\BaseCommand;
 
-class SortTest extends TestCase
+class SortTest extends BaseCommand
 {
-    protected Sort $command;
-
     public function test_the_command_should_have_a_name()
     {
         self::assertEquals('SORT', $this->command->getCommand());

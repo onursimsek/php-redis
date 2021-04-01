@@ -115,12 +115,32 @@ use PhpRedis\Versions\CommandList;
  * @method array        hKeys(string $key)
  * @method int          hLen(string $key)
  * @method array        hMGet(string $key, string ...$field)
- * @method boolean      hMSet(string $key, array $data)
+ * @method bool         hMSet(string $key, array $data)
  * @method array        hScan(string $key, int $cursor, string $match = null, int $count = null)
  * @method int          hSet(string $key, array $data)
  * @method int          hSetNx(string $key, string $field, $value)
  * @method int          hStrlen(string $key, string $field)
  * @method array        hVals(string $key)
+ *
+ * List commands
+ * @method array|null   blPop(string|array $key, int $seconds)
+ * @method array|null   brPop(string|array $key, int $seconds)
+ * @method string|null  brPoplPush(string $source, string $destination, int $seconds)
+ * @method string|null  lIndex(string $key, int $index)
+ * @method int          lInsert(string $key, string $position, string $pivot, string $element)
+ * @method int          lLen(string $key)
+ * @method int          lPop(string $key, int $count = null)
+ * @method int|array    lPos(string $key, string $element, array $options = [])
+ * @method int          lPush(string $key, string ...$element)
+ * @method int          lPushX(string $key, string ...$element)
+ * @method array        lRange(string $key, int $start, int $stop)
+ * @method int          lRem(string $key, int $count, string $element)
+ * @method bool         lSet(string $key, int $index, string $element)
+ * @method bool         lTrim(string $key, int $start, int $stop)
+ * @method string|null  rPop(string $key)
+ * @method string|null  rPoplPush(string $source, string $destination)
+ * @method int          rPush(string $key, string ...$element)
+ * @method int          rPushX(string $key, string ...$element)
  */
 class PhpRedis implements Client
 {

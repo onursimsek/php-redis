@@ -3,22 +3,10 @@
 namespace PhpRedis\Tests\Commands\Sets;
 
 use PhpRedis\Commands\Sets\SScan;
-use PHPUnit\Framework\TestCase;
+use PhpRedis\Tests\Commands\BaseCommand;
 
-class SScanTest extends TestCase
+class SScanTest extends BaseCommand
 {
-    /**
-     * @var SScan
-     */
-    protected $command;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->command = new SScan();
-    }
-
     public function test_the_command_should_have_a_name()
     {
         self::assertEquals('SSCAN', $this->command->getCommand());
@@ -52,5 +40,12 @@ class SScanTest extends TestCase
 
         $this->command->setArguments(['key', 'cursor', null, 10]);
         self::assertEquals(['SSCAN', 'key', 'cursor', 'COUNT', 10], $this->command->toArray());
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->command = new SScan();
     }
 }

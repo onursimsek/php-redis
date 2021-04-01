@@ -28,6 +28,10 @@ class Version200 implements Version
             'HSET' => $this->commandObject(),
             'HSETNX' => $this->commandObject(),
             'HVALS' => $this->commandObject(),
+
+            // List commands
+            'BLPOP' => $this->commandObject(),
+            'BRPOP' => $this->commandObject(),
         ];
     }
 
