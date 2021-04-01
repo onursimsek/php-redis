@@ -44,3 +44,6 @@ var_dump($redis->lSet('list01', -1, 'B'));
 
 echoInfo('LTRIM');
 var_dump($redis->lTrim('list01', 1, -1));
+
+echoInfo('RPOP');
+var_dump($redis->rPop('list01'));
