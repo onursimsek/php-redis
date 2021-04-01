@@ -3,12 +3,10 @@
 namespace PhpRedis\Tests\Commands\Keys;
 
 use PhpRedis\Commands\Keys\Scan;
-use PHPUnit\Framework\TestCase;
+use PhpRedis\Tests\Commands\BaseCommand;
 
-class ScanTest extends TestCase
+class ScanTest extends BaseCommand
 {
-    protected Scan $command;
-
     public function test_the_command_should_have_a_name()
     {
         self::assertEquals('SCAN', $this->command->getCommand());

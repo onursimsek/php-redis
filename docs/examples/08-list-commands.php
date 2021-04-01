@@ -22,3 +22,6 @@ var_dump($redis->lLen('list01'));
 
 echoInfo('LPOP');
 var_dump($redis->lPop('list01'));
+
+echoInfo('LPOS');
+var_dump($redis->lPos('list01', 'A', ['COUNT' => 0, 'RANK' => 1]));
