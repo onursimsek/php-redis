@@ -68,6 +68,7 @@ class Version100 implements Version
             'LLEN' => $this->commandObject(),
             'LPOP' => $this->commandObject(),
             'LPUSH' => $this->commandObject(),
+            'LRANGE' => $this->commandObject(),
         ];
     }
 

@@ -133,6 +133,7 @@ use PhpRedis\Versions\CommandList;
  * @method int|array    lPos(string $key, string $element, array $options = [])
  * @method int          lPush(string $key, string ...$element)
  * @method int          lPushX(string $key, string ...$element)
+ * @method array        lRange(string $key, int $start, int $stop)
  */
 class PhpRedis implements Client
 {
