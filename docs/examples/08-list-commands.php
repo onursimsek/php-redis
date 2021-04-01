@@ -47,3 +47,6 @@ var_dump($redis->lTrim('list01', 1, -1));
 
 echoInfo('RPOP');
 var_dump($redis->rPop('list01'));
+
+echoInfo('RPOPLPUSH');
+var_dump($redis->rPoplPush('list01', 'other-list'));

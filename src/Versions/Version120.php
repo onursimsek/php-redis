@@ -13,6 +13,9 @@ class Version120 implements Version
         return [
             // Key commands
             'EXPIREAT' => $this->commandObject(),
+
+            // List commands
+            'RPOPLPUSH' => $this->commandObject(),
         ];
     }
 
