@@ -53,3 +53,6 @@ var_dump($redis->rPoplPush('list01', 'other-list'));
 
 echoInfo('RPUSH');
 var_dump($redis->rPush('list01', 1, 2, 3, 4));
+
+echoInfo('RPUSH');
+var_dump($redis->rPushX('list02', 1, 2, 3, 4));

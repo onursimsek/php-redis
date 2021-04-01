@@ -25,6 +25,7 @@ class Version220 implements Version
             'BRPOPLPUSH' => $this->commandObject(),
             'LINSERT' => $this->commandObject(),
             'LPUSHX' => $this->commandObject(),
+            'RPUSHX' => $this->commandObject(),
         ];
     }
 

@@ -140,6 +140,7 @@ use PhpRedis\Versions\CommandList;
  * @method string|null  rPop(string $key)
  * @method string|null  rPoplPush(string $source, string $destination)
  * @method int          rPush(string $key, string ...$element)
+ * @method int          rPushX(string $key, string ...$element)
  */
 class PhpRedis implements Client
 {
