@@ -145,6 +145,7 @@ use PhpRedis\Versions\CommandList;
  * Sorted Set commands
  * @method array|null   bzPopMax(string|array $key, int $seconds)
  * @method array|null   bzPopMin(string|array $key, int $seconds)
+ * @method int|string   zAdd(string $key, array $elementsAndScores, array $options = [])
  */
 class PhpRedis implements Client
 {
