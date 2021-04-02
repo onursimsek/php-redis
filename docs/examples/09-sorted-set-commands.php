@@ -13,3 +13,6 @@ var_dump($redis->zAdd('sorted-set02', ['John' => 5, 'Doe' => 1]));
 
 echoInfo('ZCARD');
 var_dump($redis->zCard('sorted-set02'));
+
+echoInfo('ZCOUNT');
+var_dump($redis->zCount('sorted-set02', 1, 10));

@@ -32,6 +32,9 @@ class Version200 implements Version
             // List commands
             'BLPOP' => $this->commandObject(),
             'BRPOP' => $this->commandObject(),
+
+            // Sorted set commands
+            'ZCOUNT' => $this->commandObject(),
         ];
     }
 
