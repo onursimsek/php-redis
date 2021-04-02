@@ -146,6 +146,7 @@ use PhpRedis\Versions\CommandList;
  * @method array|null   bzPopMax(string|array $key, int $seconds)
  * @method array|null   bzPopMin(string|array $key, int $seconds)
  * @method int|string   zAdd(string $key, array $elementsAndScores, array $options = [])
+ * @method int          zCard(string $key)
  */
 class PhpRedis implements Client
 {
