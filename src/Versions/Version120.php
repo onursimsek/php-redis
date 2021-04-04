@@ -22,6 +22,7 @@ class Version120 implements Version
             // Sorted set commands
             'ZADD' => $this->commandObject(ZAdd::class),
             'ZCARD' => $this->commandObject(),
+            'ZINCRBY' => $this->commandObject(),
         ];
     }
 

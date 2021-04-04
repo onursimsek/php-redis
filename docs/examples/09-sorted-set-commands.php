@@ -16,3 +16,6 @@ var_dump($redis->zCard('sorted-set02'));
 
 echoInfo('ZCOUNT');
 var_dump($redis->zCount('sorted-set02', 1, 10));
+
+echoInfo('ZINCRBY');
+var_dump($redis->zIncrBy('sorted-set02', 2, 'John'));
