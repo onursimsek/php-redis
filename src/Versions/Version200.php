@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace PhpRedis\Versions;
 
+use PhpRedis\Commands\SortedSets\ZInterStore;
+
 class Version200 implements Version
 {
     use GenericCommandObject;
@@ -35,6 +37,7 @@ class Version200 implements Version
 
             // Sorted set commands
             'ZCOUNT' => $this->commandObject(),
+            'ZINTERSTORE' => $this->commandObject(ZInterStore::class),
         ];
     }
 

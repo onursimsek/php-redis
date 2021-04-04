@@ -149,6 +149,7 @@ use PhpRedis\Versions\CommandList;
  * @method int          zCard(string $key)
  * @method int          zCount(string $key, int|string $min, int|string $max)
  * @method string       zIncrBy(string $key, int $increment, string $member)
+ * @method int          zInterStore(string $destination, string|array $key, array $options = [])
  */
 class PhpRedis implements Client
 {

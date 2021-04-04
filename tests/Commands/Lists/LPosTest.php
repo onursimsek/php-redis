@@ -27,18 +27,6 @@ class LPosTest extends BaseCommand
         self::assertEquals(['key', 'element', 'COUNT', 0], $this->command->normalizeArguments());
     }
 
-    public function test_the_command_can_be_convert_to_array()
-    {
-        $this->command->setArguments(['key', 'element']);
-        self::assertEquals(['LPOS', 'key', 'element'], $this->command->toArray());
-
-        $this->command->setArguments(['key', 'element', ['COUNT' => 0, 'RANK' => 1, 'MAXLEN' => 2]]);
-        self::assertEquals(['LPOS', 'key', 'element', 'COUNT', 0, 'RANK', 1, 'MAXLEN', 2], $this->command->toArray());
-
-        $this->command->setArguments(['key', 'element', ['COUNT' => 0, 'FOO' => 1]]);
-        self::assertEquals(['LPOS', 'key', 'element', 'COUNT', 0], $this->command->toArray());
-    }
-
     protected function setUp(): void
     {
         parent::setUp();

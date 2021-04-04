@@ -22,15 +22,6 @@ class ZAddTest extends BaseCommand
         self::assertEquals(['key', 'GT', 1, 'foo', 2, 'bar'], $this->command->normalizeArguments());
     }
 
-    public function test_the_command_can_be_convert_to_array()
-    {
-        $this->command->setArguments(['key', ['foo' => 1, 'bar' => 2]]);
-        self::assertEquals(['ZADD' ,'key', 1, 'foo', 2, 'bar'], $this->command->toArray());
-
-        $this->command->setArguments(['key', ['foo' => 1, 'bar' => 2], ['GT']]);
-        self::assertEquals(['ZADD', 'key', 'GT', 1, 'foo', 2, 'bar'], $this->command->toArray());
-    }
-
     public function test_the_command_can_not_be_normalize_multi_element_with_increment_option()
     {
         $this->command->setArguments(['key', ['foo' => 1, 'bar' => 2], ['INCR']]);

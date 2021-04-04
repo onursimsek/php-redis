@@ -45,36 +45,6 @@ class SortTest extends BaseCommand
         );
     }
 
-    public function test_the_command_can_be_convert_to_array()
-    {
-        $this->command->setArguments(
-            [
-                'key',
-                [
-                    Sort::OPTION_DIRECTION => Sort::DESC,
-                    Sort::OPTION_SORT => Sort::SORT_ALPHA,
-                    Sort::OPTION_STORE => 'other_key',
-                ]
-            ]
-        );
-        self::assertEquals(['SORT', 'key', Sort::DESC, Sort::SORT_ALPHA, 'other_key'], $this->command->toArray());
-
-        $this->command->setArguments(
-            [
-                'key',
-                [
-                    Sort::OPTION_BY => 'by*',
-                    Sort::OPTION_GET => 'get*',
-                    Sort::OPTION_LIMIT => '0 10',
-                ]
-            ]
-        );
-        self::assertEquals(
-            ['SORT', 'key', Sort::OPTION_BY, 'by*', Sort::OPTION_GET, 'get*', Sort::OPTION_LIMIT, '0 10'],
-            $this->command->toArray()
-        );
-    }
-
     protected function setUp(): void
     {
         parent::setUp();

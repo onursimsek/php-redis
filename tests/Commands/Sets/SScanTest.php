@@ -27,21 +27,6 @@ class SScanTest extends BaseCommand
         self::assertEquals(['key', 'cursor', 'COUNT', 10], $this->command->normalizeArguments());
     }
 
-    public function test_the_command_can_be_convert_to_array()
-    {
-        $this->command->setArguments(['key', 'cursor']);
-        self::assertEquals(['SSCAN', 'key', 'cursor'], $this->command->toArray());
-
-        $this->command->setArguments(['key', 'cursor', '*']);
-        self::assertEquals(['SSCAN', 'key', 'cursor', 'MATCH', '*'], $this->command->toArray());
-
-        $this->command->setArguments(['key', 'cursor', '*', 10]);
-        self::assertEquals(['SSCAN', 'key', 'cursor', 'MATCH', '*', 'COUNT', 10], $this->command->toArray());
-
-        $this->command->setArguments(['key', 'cursor', null, 10]);
-        self::assertEquals(['SSCAN', 'key', 'cursor', 'COUNT', 10], $this->command->toArray());
-    }
-
     protected function setUp(): void
     {
         parent::setUp();

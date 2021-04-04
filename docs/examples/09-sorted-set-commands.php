@@ -19,3 +19,7 @@ var_dump($redis->zCount('sorted-set02', 1, 10));
 
 echoInfo('ZINCRBY');
 var_dump($redis->zIncrBy('sorted-set02', 2, 'John'));
+
+echoInfo('ZINTERSTORE');
+$redis->zAdd('sorted-set01', ['John' => 1]);
+var_dump($redis->zInterStore('out', ['sorted-set01', 'sorted-set02']));
