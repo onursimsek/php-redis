@@ -28,6 +28,7 @@ class Version280 implements Version
 
             // Sorted set commands
             'ZLEXCOUNT' => $this->commandObject(),
+            'ZRANGEBYLEX' => $this->commandObject(),
         ];
     }
 

@@ -38,3 +38,7 @@ var_dump($redis->zPopMin('sorted-set03', 2));
 
 echoInfo('ZRANGE');
 var_dump($redis->zRange('sorted-set03', 0, -1));
+
+echoInfo('ZRANGEBYLEX');
+var_dump($redis->zRangeByLex('lex-sort', '-', '[c'));
+var_dump($redis->zRangeByLex('lex-sort', '-', '+', ['LIMIT' => [0, 2]]));
