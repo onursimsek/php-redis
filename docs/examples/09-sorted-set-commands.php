@@ -45,3 +45,6 @@ var_dump($redis->zRangeByLex('lex-sort', '-', '+', ['LIMIT' => [0, 2]]));
 
 echoInfo('ZRANGEBYSCORE');
 var_dump($redis->zRangeByScore('sorted-set03', '-inf', '+inf', ['WITHSCORES', 'LIMIT' => [0, 2]]));
+
+echoInfo('ZRANK');
+var_dump($redis->zRank('sorted-set03', 'd'));

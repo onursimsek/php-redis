@@ -38,6 +38,7 @@ class Version200 implements Version
             // Sorted set commands
             'ZCOUNT' => $this->commandObject(),
             'ZINTERSTORE' => $this->commandObject(ZInterStore::class),
+            'ZRANK' => $this->commandObject(),
         ];
     }
 
