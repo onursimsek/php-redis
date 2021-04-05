@@ -155,6 +155,7 @@ use PhpRedis\Versions\CommandList;
  * @method array        zPopMin(string $key, int $count = null)
  * @method array        zRange(string $key, int|string $min, int|string $max, array $options = [])
  * @method array        zRangeByLex(string $key, int|string $min, int|string $max, array $limit = [])
+ * @method array        zRangeByScore(string $key, int|string $min, int|string $max, array $options = [])
  */
 class PhpRedis implements Client
 {

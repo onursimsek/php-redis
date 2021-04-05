@@ -74,6 +74,9 @@ class Version100 implements Version
             'LTRIM' => $this->commandObject(),
             'RPOP' => $this->commandObject(),
             'RPUSH' => $this->commandObject(),
+
+            // Sorted set commands
+            'ZRANGEBYSCORE' => $this->commandObject(),
         ];
     }
 
