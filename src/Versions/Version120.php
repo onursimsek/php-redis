@@ -24,6 +24,7 @@ class Version120 implements Version
             'ZCARD' => $this->commandObject(),
             'ZINCRBY' => $this->commandObject(),
             'ZRANGE' => $this->commandObject(),
+            'ZREM' => $this->commandObject(),
         ];
     }
 

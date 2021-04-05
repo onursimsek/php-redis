@@ -48,3 +48,6 @@ var_dump($redis->zRangeByScore('sorted-set03', '-inf', '+inf', ['WITHSCORES', 'L
 
 echoInfo('ZRANK');
 var_dump($redis->zRank('sorted-set03', 'd'));
+
+echoInfo('ZREM');
+var_dump($redis->zRem('sorted-set03', 'd', 'b'));
