@@ -23,6 +23,7 @@ class Version120 implements Version
             'ZADD' => $this->commandObject(ZAdd::class),
             'ZCARD' => $this->commandObject(),
             'ZINCRBY' => $this->commandObject(),
+            'ZRANGE' => $this->commandObject(),
         ];
     }
 

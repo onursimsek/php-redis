@@ -153,12 +153,15 @@ use PhpRedis\Versions\CommandList;
  * @method int          zLexCount(string $key, int|string $min, int|string $max)
  * @method array        zPopMax(string $key, int $count = null)
  * @method array        zPopMin(string $key, int $count = null)
+ * @method array        zRange(string $key, int|string $min, int|string $max, array $options = [])
  */
 class PhpRedis implements Client
 {
     private Parameter $connectionParameter;
 
     private ?Connection $connection = null;
+
+    private $redisVersion;
 
     public function __construct(Parameter $parameter)
     {
@@ -218,8 +221,12 @@ class PhpRedis implements Client
 
     public function getRedisVersion(): string
     {
+        if ($this->redisVersion) {
+            return $this->redisVersion;
+        }
+
         $this->connect();
-        return $this->connection->getInfo('server')['redis_version'];
+        return $this->redisVersion = $this->connection->getInfo('server')['redis_version'];
     }
 
     public function connect(): bool
