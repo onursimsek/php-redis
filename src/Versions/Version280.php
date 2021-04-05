@@ -25,6 +25,9 @@ class Version280 implements Version
 
             // Hash commands
             'HSCAN' => $this->commandObject(),
+
+            // Sorted set commands
+            'ZLEXCOUNT' => $this->commandObject(),
         ];
     }
 

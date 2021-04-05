@@ -23,3 +23,7 @@ var_dump($redis->zIncrBy('sorted-set02', 2, 'John'));
 echoInfo('ZINTERSTORE');
 $redis->zAdd('sorted-set01', ['John' => 1]);
 var_dump($redis->zInterStore('out', ['sorted-set01', 'sorted-set02']));
+
+echoInfo('ZLEXCOUNT');
+$redis->zAdd('lex-sort', ['a' => 1, 'b' => 1, 'c' => 1, 'd' => 1, 'e' => 1, 'f' => 1, 'g' => 1]);
+var_dump($redis->zLexCount('lex-sort', '[b', '[f'));
