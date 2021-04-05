@@ -152,6 +152,7 @@ use PhpRedis\Versions\CommandList;
  * @method int          zInterStore(string $destination, string|array $key, array $options = [])
  * @method int          zLexCount(string $key, int|string $min, int|string $max)
  * @method array        zPopMax(string $key, int $count = null)
+ * @method array        zPopMin(string $key, int $count = null)
  */
 class PhpRedis implements Client
 {

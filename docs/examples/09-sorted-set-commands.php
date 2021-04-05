@@ -31,3 +31,7 @@ var_dump($redis->zLexCount('lex-sort', '[b', '[f'));
 echoInfo('ZPOPMAX');
 $redis->zAdd('sorted-set03', ['a' => 10, 'b' => 9, 'c' => 8, 'd' => 7, 'e' => 6, 'f' => 5, 'g' => 4]);
 var_dump($redis->zPopMax('sorted-set03', 2));
+
+echoInfo('ZPOPMIN');
+$redis->zAdd('sorted-set03', ['a' => 10, 'b' => 9, 'c' => 8, 'd' => 7, 'e' => 6, 'f' => 5, 'g' => 4]);
+var_dump($redis->zPopMin('sorted-set03', 2));

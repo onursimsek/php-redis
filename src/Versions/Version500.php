@@ -22,6 +22,7 @@ class Version500 implements Version
             'BZPOPMAX' => $this->commandObject(),
             'BZPOPMIN' => $this->commandObject(),
             'ZPOPMAX' => $this->commandObject(),
+            'ZPOPMIN' => $this->commandObject(),
         ];
     }
 
