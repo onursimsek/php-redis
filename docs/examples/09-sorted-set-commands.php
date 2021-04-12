@@ -51,3 +51,7 @@ var_dump($redis->zRank('sorted-set03', 'd'));
 
 echoInfo('ZREM');
 var_dump($redis->zRem('sorted-set03', 'd', 'b'));
+
+echoInfo('ZREMRANGEBYLEX');
+$redis->zAdd('sorted-set04', ['aaaa' => 0, 'b' => 0, 'c' => 0, 'd' => 0, 'e' => 0, 'foo' => 0, 'zap' => 0, 'zip' => 0, 'ALPHA' => 0, 'alpha' => 0]);
+var_dump($redis->zRemRangeByLex('sorted-set04', '[alpha', '[omega'));
