@@ -159,7 +159,8 @@ use PhpRedis\Versions\CommandList;
  * @method int|null     zRank(string $key, string $member)
  * @method int          zRem(string $key, string ...$member)
  * @method int          zRemRangeByLex(string $key, int|string $min, int|string $max)
- * @method int          zRemRangeByRank(string $key, int|string $start, int|string $stop)
+ * @method int          zRemRangeByRank(string $key, int $start, int $stop)
+ * @method int          zRemRangeByScore(string $key, int|string $min, int|string $max)
  */
 class PhpRedis implements Client
 {

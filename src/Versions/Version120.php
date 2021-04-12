@@ -25,6 +25,7 @@ class Version120 implements Version
             'ZINCRBY' => $this->commandObject(),
             'ZRANGE' => $this->commandObject(),
             'ZREM' => $this->commandObject(),
+            'ZREMRANGEBYSCORE' => $this->commandObject(),
         ];
     }
 
