@@ -63,3 +63,7 @@ var_dump($redis->zRemRangeByRank('sorted-set04', 0, 3));
 echoInfo('ZREMRANGEBYSCORE');
 $redis->zAdd('sorted-set04', ['aaaa' => 0, 'b' => 0, 'c' => 0, 'd' => 0, 'e' => 0, 'foo' => 0, 'zap' => 0, 'zip' => 0, 'ALPHA' => 0, 'alpha' => 0]);
 var_dump($redis->zRemRangeByScore('sorted-set04', '-inf', '(2'));
+
+echoInfo('ZREVRANGE');
+$redis->zAdd('sorted-set04', ['aaaa' => 0, 'b' => 0, 'c' => 0, 'd' => 0, 'e' => 0, 'foo' => 0, 'zap' => 0, 'zip' => 0, 'ALPHA' => 0, 'alpha' => 0]);
+var_dump($redis->zRevRange('sorted-set04', 0, -1));

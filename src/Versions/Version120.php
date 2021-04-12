@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PhpRedis\Versions;
 
 use PhpRedis\Commands\SortedSets\ZAdd;
+use PhpRedis\Commands\SortedSets\ZRevRange;
 
 class Version120 implements Version
 {
@@ -26,6 +27,7 @@ class Version120 implements Version
             'ZRANGE' => $this->commandObject(),
             'ZREM' => $this->commandObject(),
             'ZREMRANGEBYSCORE' => $this->commandObject(),
+            'ZREVRANGE' => $this->commandObject(ZRevRange::class),
         ];
     }
 

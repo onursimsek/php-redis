@@ -161,6 +161,7 @@ use PhpRedis\Versions\CommandList;
  * @method int          zRemRangeByLex(string $key, int|string $min, int|string $max)
  * @method int          zRemRangeByRank(string $key, int $start, int $stop)
  * @method int          zRemRangeByScore(string $key, int|string $min, int|string $max)
+ * @method array        zRevRange(string $key, int $start, int $stop, bool $withScores = false)
  */
 class PhpRedis implements Client
 {
