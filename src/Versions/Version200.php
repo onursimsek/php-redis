@@ -39,6 +39,7 @@ class Version200 implements Version
             'ZCOUNT' => $this->commandObject(),
             'ZINTERSTORE' => $this->commandObject(ZInterStore::class),
             'ZRANK' => $this->commandObject(),
+            'ZREMRANGEBYRANK' => $this->commandObject(),
         ];
     }
 
