@@ -14,13 +14,6 @@ class PhpRedisTest extends TestCase
      */
     protected $client;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->client = new PhpRedis($this->getParameter());
-    }
-
     public function test_client_can_be_connected_with_correct_parameters()
     {
         self::assertTrue($this->client->connect());
@@ -43,10 +36,44 @@ class PhpRedisTest extends TestCase
     public function test_client_can_be_returned_redis_version()
     {
         $redisVersion = $this->client->getRedisVersion();
-        $libraryRedisVersion = $this->client->getLibraryRedisVersion();
         self::assertIsString($redisVersion);
+
+        $libraryRedisVersion = $this->client->getLibraryRedisVersion();
         self::assertIsString($libraryRedisVersion);
         self::assertStringStartsWith($libraryRedisVersion, $redisVersion);
+
+        $client = $this->getMockBuilder(PhpRedis::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['getRedisVersion'])
+            ->getMock();
+
+        $client->expects($this->once())
+            ->method('getRedisVersion')
+            ->willReturn('3.2.0');
+
+        self::assertEquals(PhpRedis::REDIS_VERSION_320, $client->getLibraryRedisVersion());
+
+        $client = $this->getMockBuilder(PhpRedis::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['getRedisVersion'])
+            ->getMock();
+
+        $client->expects($this->once())
+            ->method('getRedisVersion')
+            ->willReturn('4.0.0');
+
+        self::assertEquals(PhpRedis::REDIS_VERSION_400, $client->getLibraryRedisVersion());
+
+        $client = $this->getMockBuilder(PhpRedis::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['getRedisVersion'])
+            ->getMock();
+
+        $client->expects($this->once())
+            ->method('getRedisVersion')
+            ->willReturn('5.0.0');
+
+        self::assertEquals(PhpRedis::REDIS_VERSION_500, $client->getLibraryRedisVersion());
     }
 
     public function test_client_can_be_run_raw_command()
@@ -96,6 +123,13 @@ class PhpRedisTest extends TestCase
 
         self::expectException(UnsupportedCommandException::class);
         $this->client->foo('key', 'value');
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->client = new PhpRedis($this->getParameter());
     }
 
     private function getParameter(): Parameter
