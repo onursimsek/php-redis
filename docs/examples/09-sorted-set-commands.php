@@ -73,3 +73,6 @@ var_dump($redis->zRevRangeByLex('sorted-set04', '+', '-'));
 
 echoInfo('ZREVRANGEBYSCORE');
 var_dump($redis->zRevRangeByScore('sorted-set04', 0, 0, ['WITHSCORES', 'LIMIT' => [0, 2]]));
+
+echoInfo('ZREVRANK');
+var_dump($redis->zRevRank('sorted-set04', 'foo'));
