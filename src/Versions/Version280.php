@@ -6,6 +6,7 @@ namespace PhpRedis\Versions;
 
 use PhpRedis\Commands\Keys\Scan;
 use PhpRedis\Commands\Sets\SScan;
+use PhpRedis\Commands\SortedSets\ZRevRangeByLex;
 
 class Version280 implements Version
 {
@@ -30,6 +31,7 @@ class Version280 implements Version
             'ZLEXCOUNT' => $this->commandObject(),
             'ZRANGEBYLEX' => $this->commandObject(),
             'ZREMRANGEBYLEX' => $this->commandObject(),
+            'ZREVRANGEBYLEX' => $this->commandObject(ZRevRangeByLex::class),
         ];
     }
 
