@@ -82,3 +82,6 @@ var_dump($redis->zScan('sorted-set04', 0, 'a*'));
 
 echoInfo('ZSCORE');
 var_dump($redis->zScore('sorted-set04', 'alpha'));
+
+echoInfo('ZUNIONSCORE');
+var_dump($redis->zUnionStore('sorted-set-out', 2, ['sorted-set03', 'sorted-set04']));

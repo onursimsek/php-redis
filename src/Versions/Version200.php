@@ -41,6 +41,7 @@ class Version200 implements Version
             'ZRANK' => $this->commandObject(),
             'ZREMRANGEBYRANK' => $this->commandObject(),
             'ZREVRANK' => $this->commandObject(),
+            'ZUNIONSTORE' => $this->commandObject(),
         ];
     }
 

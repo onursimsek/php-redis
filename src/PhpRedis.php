@@ -167,6 +167,7 @@ use PhpRedis\Versions\CommandList;
  * @method int|null     zRevRank(string $key, string $member)
  * @method array        zScan(string $key, int $cursor, string $match = null, int $count = null)
  * @method int|null     zScore(string $key, string $member)
+ * @method int          zUnionStore(string $destination, int $numKeys, string|array $key, array $options = [])
  */
 class PhpRedis implements Client
 {
