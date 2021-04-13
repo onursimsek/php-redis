@@ -22,4 +22,6 @@ $connectionParameter = new \PhpRedis\Configurations\ConnectionParameter($connect
 $redis = new \PhpRedis\PhpRedis($connectionParameter);
 $redis->connect();
 
+echo 'Redis version: ' . $redis->getRedisVersion() . PHP_EOL;
+
 echo ($redis->isConnected() ? 'connected' : 'not connected') . PHP_EOL;

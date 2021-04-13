@@ -1,15 +1,16 @@
 <?php
 
-namespace PhpRedis\Tests\Commands\Sets;
+namespace PhpRedis\Tests\Commands\SortedSets;
 
-use PhpRedis\Commands\Sets\SScan;
+use PhpRedis\Commands\SortedSets\ZScan;
 use PhpRedis\Tests\Commands\BaseCommand;
 
-class SScanTest extends BaseCommand
+class ZScanTest extends BaseCommand
 {
+
     public function test_the_command_should_have_a_name()
     {
-        self::assertEquals('SSCAN', $this->command->getCommand());
+        self::assertEquals('ZSCAN', $this->command->getCommand());
     }
 
     public function test_the_command_can_be_normalize_arguments()
@@ -31,6 +32,6 @@ class SScanTest extends BaseCommand
     {
         parent::setUp();
 
-        $this->command = new SScan();
+        $this->command = new ZScan();
     }
 }

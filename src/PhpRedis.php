@@ -141,12 +141,41 @@ use PhpRedis\Versions\CommandList;
  * @method string|null  rPoplPush(string $source, string $destination)
  * @method int          rPush(string $key, string ...$element)
  * @method int          rPushX(string $key, string ...$element)
+ *
+ * Sorted Set commands
+ * @method array|null   bzPopMax(string|array $key, int $seconds)
+ * @method array|null   bzPopMin(string|array $key, int $seconds)
+ * @method int|string   zAdd(string $key, array $elementsAndScores, array $options = [])
+ * @method int          zCard(string $key)
+ * @method int          zCount(string $key, int|string $min, int|string $max)
+ * @method string       zIncrBy(string $key, int $increment, string $member)
+ * @method int          zInterStore(string $destination, string|array $key, array $options = [])
+ * @method int          zLexCount(string $key, int|string $min, int|string $max)
+ * @method array        zPopMax(string $key, int $count = null)
+ * @method array        zPopMin(string $key, int $count = null)
+ * @method array        zRange(string $key, int|string $min, int|string $max, array $options = [])
+ * @method array        zRangeByLex(string $key, int|string $min, int|string $max, array $limit = [])
+ * @method array        zRangeByScore(string $key, int|string $min, int|string $max, array $options = [])
+ * @method int|null     zRank(string $key, string $member)
+ * @method int          zRem(string $key, string ...$member)
+ * @method int          zRemRangeByLex(string $key, int|string $min, int|string $max)
+ * @method int          zRemRangeByRank(string $key, int $start, int $stop)
+ * @method int          zRemRangeByScore(string $key, int|string $min, int|string $max)
+ * @method array        zRevRange(string $key, int $start, int $stop, bool $withScores = false)
+ * @method array        zRevRangeByLex(string $key, int|string $max, int|string $min, array $limit = [])
+ * @method array        zRevRangeByScore(string $key, int|string $max, int|string $min, array $options = [])
+ * @method int|null     zRevRank(string $key, string $member)
+ * @method array        zScan(string $key, int $cursor, string $match = null, int $count = null)
+ * @method int|null     zScore(string $key, string $member)
+ * @method int          zUnionStore(string $destination, int $numKeys, string|array $key, array $options = [])
  */
 class PhpRedis implements Client
 {
     private Parameter $connectionParameter;
 
     private ?Connection $connection = null;
+
+    private $redisVersion;
 
     public function __construct(Parameter $parameter)
     {
@@ -206,8 +235,12 @@ class PhpRedis implements Client
 
     public function getRedisVersion(): string
     {
+        if ($this->redisVersion) {
+            return $this->redisVersion;
+        }
+
         $this->connect();
-        return $this->connection->getInfo('server')['redis_version'];
+        return $this->redisVersion = $this->connection->getInfo('server')['redis_version'];
     }
 
     public function connect(): bool

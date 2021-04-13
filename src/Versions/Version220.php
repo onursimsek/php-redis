@@ -26,6 +26,9 @@ class Version220 implements Version
             'LINSERT' => $this->commandObject(),
             'LPUSHX' => $this->commandObject(),
             'RPUSHX' => $this->commandObject(),
+
+            // Sorted set commands
+            'ZREVRANGEBYSCORE' => $this->commandObject(),
         ];
     }
 
