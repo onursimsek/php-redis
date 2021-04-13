@@ -165,6 +165,7 @@ use PhpRedis\Versions\CommandList;
  * @method array        zRevRangeByLex(string $key, int|string $max, int|string $min, array $limit = [])
  * @method array        zRevRangeByScore(string $key, int|string $max, int|string $min, array $options = [])
  * @method int|null     zRevRank(string $key, string $member)
+ * @method array        zScan(string $key, int $cursor, string $match = null, int $count = null)
  */
 class PhpRedis implements Client
 {
