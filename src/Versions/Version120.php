@@ -28,6 +28,7 @@ class Version120 implements Version
             'ZREM' => $this->commandObject(),
             'ZREMRANGEBYSCORE' => $this->commandObject(),
             'ZREVRANGE' => $this->commandObject(ZRevRange::class),
+            'ZSCORE' => $this->commandObject(),
         ];
     }
 

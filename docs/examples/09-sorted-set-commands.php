@@ -79,3 +79,6 @@ var_dump($redis->zRevRank('sorted-set04', 'foo'));
 
 echoInfo('ZSCAN');
 var_dump($redis->zScan('sorted-set04', 0, 'a*'));
+
+echoInfo('ZSCORE');
+var_dump($redis->zScore('sorted-set04', 'alpha'));
