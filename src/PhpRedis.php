@@ -168,6 +168,9 @@ use PhpRedis\Versions\CommandList;
  * @method array        zScan(string $key, int $cursor, string $match = null, int $count = null)
  * @method int|null     zScore(string $key, string $member)
  * @method int          zUnionStore(string $destination, int $numKeys, string|array $key, array $options = [])
+ *
+ * Geo commands
+ * @method int          geoAdd(string $key, array $member, array $options = [])
  */
 class PhpRedis implements Client
 {
