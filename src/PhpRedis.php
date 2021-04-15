@@ -175,6 +175,7 @@ use PhpRedis\Versions\CommandList;
  * @method array        geoHash(string $key, string ...$member)
  * @method array        geoPos(string $key, string ...$member)
  * @method array        geoRadius(string $key, float $longitude, float $latitude, int $radius, string $unit, array $options = [])
+ * @method array        geoRadiusByMember(string $key, string $member, int $radius, string $unit, array $options = [])
  */
 class PhpRedis implements Client
 {

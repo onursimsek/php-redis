@@ -36,6 +36,7 @@ class Version320 implements Version
             'GEOHASH' => $this->commandObject(),
             'GEOPOS' => $this->commandObject(),
             'GEORADIUS' => $this->commandObject(GeoRadius::class),
+            'GEORADIUSBYMEMBER' => $this->commandObject(GeoRadius::class),
         ];
     }
 
