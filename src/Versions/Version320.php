@@ -32,6 +32,7 @@ class Version320 implements Version
             // Geo commands
             'GEOADD' => $this->commandObject(GeoAdd::class),
             'GEODIST' => $this->commandObject(GeoDist::class),
+            'GEOHASH' => $this->commandObject(),
         ];
     }
 

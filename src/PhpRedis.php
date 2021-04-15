@@ -172,6 +172,7 @@ use PhpRedis\Versions\CommandList;
  * Geo commands
  * @method int          geoAdd(string $key, array $member, array $options = [])
  * @method string|null  geoDist(string $key, string $member1, string $member2, string $unit = 'm')
+ * @method array        geoHash(string $key, string ...$member)
  */
 class PhpRedis implements Client
 {
