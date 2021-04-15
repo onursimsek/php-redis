@@ -8,6 +8,7 @@ use PhpRedis\Commands\Connections\ClientPause;
 use PhpRedis\Commands\Connections\ClientReply;
 use PhpRedis\Commands\Geos\GeoAdd;
 use PhpRedis\Commands\Geos\GeoDist;
+use PhpRedis\Commands\Geos\GeoRadius;
 
 class Version320 implements Version
 {
@@ -33,6 +34,8 @@ class Version320 implements Version
             'GEOADD' => $this->commandObject(GeoAdd::class),
             'GEODIST' => $this->commandObject(GeoDist::class),
             'GEOHASH' => $this->commandObject(),
+            'GEOPOS' => $this->commandObject(),
+            'GEORADIUS' => $this->commandObject(GeoRadius::class),
         ];
     }
 
