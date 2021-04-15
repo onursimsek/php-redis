@@ -7,6 +7,7 @@ namespace PhpRedis\Versions;
 use PhpRedis\Commands\Connections\ClientPause;
 use PhpRedis\Commands\Connections\ClientReply;
 use PhpRedis\Commands\Geos\GeoAdd;
+use PhpRedis\Commands\Geos\GeoDist;
 
 class Version320 implements Version
 {
@@ -30,6 +31,7 @@ class Version320 implements Version
 
             // Geo commands
             'GEOADD' => $this->commandObject(GeoAdd::class),
+            'GEODIST' => $this->commandObject(GeoDist::class),
         ];
     }
 
