@@ -50,12 +50,13 @@ class RequestSerializer implements SerializationProtocol
     private function arrayProtocol(array $array): string
     {
         $array = $this->flattenArray($array);
+
         return self::ARRAY_FIRST_BYTE . count($array) . self::CRLF . array_reduce(
-                $array,
-                function (?string $carry, string $item): string {
-                    return $carry . $this->bulkStringProtocol($item);
-                }
-            );
+            $array,
+            function (?string $carry, string $item): string {
+                return $carry . $this->bulkStringProtocol($item);
+            }
+        );
     }
 
     /**
@@ -79,7 +80,7 @@ class RequestSerializer implements SerializationProtocol
                 $result[] = $key;
             }
 
-            if (!is_array($item)) {
+            if (! is_array($item)) {
                 $result[] = $item;
             } else {
                 $result = array_merge($result, $this->flattenArray($item));

@@ -8,7 +8,6 @@ use PhpRedis\Tests\Commands\BaseCommand;
 
 class GeoAddTest extends BaseCommand
 {
-
     public function test_the_command_should_have_a_name()
     {
         self::assertEquals('GEOADD', $this->command->getCommand());

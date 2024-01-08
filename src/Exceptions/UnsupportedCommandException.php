@@ -6,5 +6,4 @@ namespace PhpRedis\Exceptions;
 
 class UnsupportedCommandException extends PhpRedisException
 {
-
 }

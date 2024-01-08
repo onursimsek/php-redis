@@ -34,7 +34,7 @@ class CommandList
             $commandList = array_filter(
                 array_merge($commandList, $version->added()),
                 static function ($key) use ($version) {
-                    return !in_array($key, $version->deleted());
+                    return ! in_array($key, $version->deleted());
                 },
                 ARRAY_FILTER_USE_KEY
             );

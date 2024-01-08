@@ -50,13 +50,13 @@ class GeoRadiusByMember implements Command, ArgumentativeCommand, Normalizable
     public function normalizeArguments(): array
     {
         [$key, $member, $radius, $unit] = array_slice($this->arguments, 0, 4);
-        if (!in_array($unit, self::UNITS)) {
+        if (! in_array($unit, self::UNITS)) {
             throw new ValidationException(
                 sprintf('The unit argument does not exist in %s', implode(', ', self::UNITS))
             );
         }
 
-        if (!isset($this->arguments[4])) {
+        if (! isset($this->arguments[4])) {
             return $this->arguments;
         }
 

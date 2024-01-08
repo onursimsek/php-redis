@@ -15,7 +15,7 @@ class AuthTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->command = new Auth();
     }
 

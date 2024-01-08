@@ -116,21 +116,22 @@ class StreamConnection implements Connection
         $activeSection = '';
         $info = [];
         foreach (explode(Protocol::CRLF, $response) as $row) {
-            if (!$row) {
+            if (! $row) {
                 continue;
             }
 
             if ($row[0] == '#') {
                 $activeSection = strtolower(substr($row, 2));
+
                 continue;
             }
 
-            if (!$activeSection) {
+            if (! $activeSection) {
                 throw new PhpRedisException('Section not found');
             }
 
             [$key, $value] = array_pad(explode(':', $row), 2, null);
-            if (!$key || !$value) {
+            if (! $key || ! $value) {
                 continue;
             }
 

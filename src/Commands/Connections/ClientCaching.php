@@ -37,6 +37,7 @@ class ClientCaching implements Command, ArgumentativeCommand, Normalizable
     public function normalizeArguments(): array
     {
         $this->arguments[0] = $this->arguments[0] ? 'yes' : 'no';
+
         return $this->arguments;
     }
 }

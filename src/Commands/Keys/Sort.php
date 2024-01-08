@@ -40,7 +40,7 @@ class Sort implements Command, Normalizable, ArgumentativeCommand
     public function normalizeArguments(): array
     {
         [$key, $options] = array_pad($this->arguments, 2, null);
-        if (!is_array($options)) {
+        if (! is_array($options)) {
             return $this->arguments;
         }
 
@@ -50,14 +50,14 @@ class Sort implements Command, Normalizable, ArgumentativeCommand
         $arguments->append($key);
 
         foreach ([self::OPTION_DIRECTION, self::OPTION_SORT, self::OPTION_STORE] as $key) {
-            if (!array_key_exists($key, $options)) {
+            if (! array_key_exists($key, $options)) {
                 continue;
             }
             $arguments->append($options[$key]);
         }
 
         foreach ([self::OPTION_BY, self::OPTION_GET, self::OPTION_LIMIT] as $key) {
-            if (!array_key_exists($key, $options)) {
+            if (! array_key_exists($key, $options)) {
                 continue;
             }
 

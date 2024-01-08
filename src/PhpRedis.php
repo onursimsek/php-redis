@@ -210,7 +210,7 @@ class PhpRedis implements Client
         $commandName = strtoupper($name);
         $commandList = $this->getCommandList()->toArray();
 
-        if (!array_key_exists($commandName, $commandList)) {
+        if (! array_key_exists($commandName, $commandList)) {
             throw new UnsupportedCommandException("This command ('{$commandName}') is not supported");
         }
 
@@ -248,12 +248,13 @@ class PhpRedis implements Client
         }
 
         $this->connect();
+
         return $this->redisVersion = $this->connection->getInfo('server')['redis_version'];
     }
 
     public function connect(): bool
     {
-        if (!$this->connection) {
+        if (! $this->connection) {
             $this->connection = new StreamConnection();
         }
 

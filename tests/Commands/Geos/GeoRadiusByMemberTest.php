@@ -9,7 +9,6 @@ use PhpRedis\Tests\Commands\BaseCommand;
 
 class GeoRadiusByMemberTest extends BaseCommand
 {
-
     public function test_the_command_should_have_a_name()
     {
         self::assertEquals('GEORADIUSBYMEMBER', $this->command->getCommand());
@@ -26,7 +25,7 @@ class GeoRadiusByMemberTest extends BaseCommand
                 'Istanbul',
                 500,
                 'km',
-                [GeoRadius::WITHCOORD, GeoRadius::WITHDIST, GeoRadius::WITHHASH, GeoRadius::COUNT => 5, GeoRadius::ASC]
+                [GeoRadius::WITHCOORD, GeoRadius::WITHDIST, GeoRadius::WITHHASH, GeoRadius::COUNT => 5, GeoRadius::ASC],
             ]
         );
         self::assertEquals(
@@ -40,7 +39,7 @@ class GeoRadiusByMemberTest extends BaseCommand
                 GeoRadius::WITHHASH,
                 GeoRadius::COUNT,
                 5,
-                GeoRadius::ASC
+                GeoRadius::ASC,
             ],
             $this->command->normalizeArguments()
         );
@@ -51,7 +50,7 @@ class GeoRadiusByMemberTest extends BaseCommand
                 'Istanbul',
                 500,
                 'km',
-                [GeoRadius::STORE => 'Turkey-out', GeoRadius::STOREDIST => 'Turkey-dist-out']
+                [GeoRadius::STORE => 'Turkey-out', GeoRadius::STOREDIST => 'Turkey-dist-out'],
             ]
         );
         self::assertEquals(

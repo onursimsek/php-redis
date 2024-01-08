@@ -7,7 +7,6 @@ use PhpRedis\Tests\Commands\BaseCommand;
 
 class ZRevRangeTest extends BaseCommand
 {
-
     public function test_the_command_should_have_a_name()
     {
         self::assertEquals('ZREVRANGE', $this->command->getCommand());

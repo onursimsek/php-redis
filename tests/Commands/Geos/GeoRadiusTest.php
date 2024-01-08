@@ -8,7 +8,6 @@ use PhpRedis\Tests\Commands\BaseCommand;
 
 class GeoRadiusTest extends BaseCommand
 {
-
     public function test_the_command_should_have_a_name()
     {
         self::assertEquals('GEORADIUS', $this->command->getCommand());
@@ -26,7 +25,7 @@ class GeoRadiusTest extends BaseCommand
                 50,
                 500,
                 'km',
-                [GeoRadius::WITHCOORD, GeoRadius::WITHDIST, GeoRadius::WITHHASH, GeoRadius::COUNT => 5, GeoRadius::ASC]
+                [GeoRadius::WITHCOORD, GeoRadius::WITHDIST, GeoRadius::WITHHASH, GeoRadius::COUNT => 5, GeoRadius::ASC],
             ]
         );
         self::assertEquals(
@@ -41,7 +40,7 @@ class GeoRadiusTest extends BaseCommand
                 GeoRadius::WITHHASH,
                 GeoRadius::COUNT,
                 5,
-                GeoRadius::ASC
+                GeoRadius::ASC,
             ],
             $this->command->normalizeArguments()
         );

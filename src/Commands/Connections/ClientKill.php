@@ -22,9 +22,10 @@ class ClientKill implements Command, ArgumentativeCommand, Normalizable
     use Stringify;
     use ToArray;
     use HasArguments;
-    const TYPE_ADDR = 'ADDR';
-    const TYPE_ID = 'ID';
-    const TYPE_USER = 'USER';
+
+    public const TYPE_ADDR = 'ADDR';
+    public const TYPE_ID = 'ID';
+    public const TYPE_USER = 'USER';
 
     /**
      * {@inheritDoc}

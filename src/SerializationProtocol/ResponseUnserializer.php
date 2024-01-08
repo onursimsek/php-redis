@@ -60,7 +60,7 @@ class ResponseUnserializer implements UnserializationProtocol
         while ($response->valid()) {
             $response->next();
             $data .= $response->current();
-            if (strlen($data) === $totalBytes + 2 && !$this->stop($response)) {
+            if (strlen($data) === $totalBytes + 2 && ! $this->stop($response)) {
                 break;
             }
         }
@@ -101,7 +101,7 @@ class ResponseUnserializer implements UnserializationProtocol
         while ($response->valid()) {
             $response->next();
             $data[] = $this->unserialize($response);
-            if (count($data) === $totalRow && !$this->stop($response)) {
+            if (count($data) === $totalRow && ! $this->stop($response)) {
                 break;
             }
         }

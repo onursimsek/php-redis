@@ -24,7 +24,7 @@ class SortTest extends BaseCommand
                     Sort::OPTION_DIRECTION => Sort::DESC,
                     Sort::OPTION_SORT => Sort::SORT_ALPHA,
                     Sort::OPTION_STORE => 'other_key',
-                ]
+                ],
             ]
         );
         self::assertEquals(['key', Sort::DESC, Sort::SORT_ALPHA, 'other_key'], $this->command->normalizeArguments());
@@ -36,7 +36,7 @@ class SortTest extends BaseCommand
                     Sort::OPTION_BY => 'by*',
                     Sort::OPTION_GET => 'get*',
                     Sort::OPTION_LIMIT => '0 10',
-                ]
+                ],
             ]
         );
         self::assertEquals(

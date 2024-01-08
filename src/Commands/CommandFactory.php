@@ -11,7 +11,7 @@ class CommandFactory
     public static function make(CommandObject $commandObject, array $arguments = [], string $name = null): Command
     {
         $class = $commandObject->getClass();
-        if (!class_exists($class)) {
+        if (! class_exists($class)) {
             throw new PhpRedisException("The '{$class}' class is not defined");
         }
 

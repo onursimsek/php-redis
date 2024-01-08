@@ -30,13 +30,13 @@ class GeoAdd implements Command, ArgumentativeCommand, Normalizable
     public function normalizeArguments(): array
     {
         $arguments = [];
-        if (!isset($this->arguments[0])) {
+        if (! isset($this->arguments[0])) {
             throw new ValidationException('First (key) argument is required');
         }
 
         $arguments[] = $this->arguments[0];
 
-        if (!isset($this->arguments[1]) || !is_array($this->arguments[1])) {
+        if (! isset($this->arguments[1]) || ! is_array($this->arguments[1])) {
             throw new ValidationException('Second (members) argument is required');
         }
 

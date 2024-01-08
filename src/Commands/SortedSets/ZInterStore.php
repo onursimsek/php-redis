@@ -60,7 +60,7 @@ class ZInterStore implements Command, ArgumentativeCommand, Normalizable
 
 
             if (array_key_exists(self::AGGREGATE, $options)) {
-                if (!in_array(strtoupper($options[self::AGGREGATE]), [self::SUM, self::MIN, self::MAX])) {
+                if (! in_array(strtoupper($options[self::AGGREGATE]), [self::SUM, self::MIN, self::MAX])) {
                     throw new ValidationException();
                 }
 

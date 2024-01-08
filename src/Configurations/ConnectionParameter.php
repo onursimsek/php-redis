@@ -26,16 +26,18 @@ class ConnectionParameter implements Parameter
      */
     public function __construct($hosts = null, array $options = [])
     {
-        if (!$hosts) {
+        if (! $hosts) {
             return;
         }
 
         switch (true) {
             case is_string($hosts):
                 $this->setConnectionString($hosts);
+
                 break;
             case is_array($hosts):
                 $this->hosts = $hosts;
+
                 break;
             default:
                 throw new \InvalidArgumentException('Not supported host type');
@@ -76,6 +78,7 @@ class ConnectionParameter implements Parameter
     {
         $this->connectionString = $connectionString;
         $this->hosts = parse_url($connectionString);
+
         return $this;
     }
 }

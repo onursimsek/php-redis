@@ -23,6 +23,7 @@ trait AnonymousCommand
     public function setCommand(string $command): self
     {
         $this->command = $command;
+
         return $this;
     }
 }

@@ -39,11 +39,11 @@ class GeoDist implements Command, ArgumentativeCommand, Normalizable
 
     public function normalizeArguments(): array
     {
-        if (!isset($this->arguments[3])) {
+        if (! isset($this->arguments[3])) {
             $this->arguments[3] = self::UNIT_METERS;
         }
 
-        if (!in_array($this->arguments[3], self::UNITS)) {
+        if (! in_array($this->arguments[3], self::UNITS)) {
             throw new ValidationException(
                 sprintf('The unit argument does not exist in %s', implode(', ', self::UNITS))
             );

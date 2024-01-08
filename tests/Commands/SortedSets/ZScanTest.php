@@ -7,7 +7,6 @@ use PhpRedis\Tests\Commands\BaseCommand;
 
 class ZScanTest extends BaseCommand
 {
-
     public function test_the_command_should_have_a_name()
     {
         self::assertEquals('ZSCAN', $this->command->getCommand());
