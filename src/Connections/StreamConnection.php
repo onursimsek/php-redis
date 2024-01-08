@@ -33,12 +33,12 @@ class StreamConnection implements Connection
     public function connect(Parameter $parameter): bool
     {
         try {
-            $this->resource = stream_socket_client($parameter->getConnectionString(), $errNo, $errStr);
-
-            return true;
-        } catch (\Exception $e) {
-            throw new ConnectionException($e->getMessage(), $e->getCode());
+            $this->resource = stream_socket_client($parameter->getConnectionString(), $errorCode, $errorMessage);
+        } catch (\Throwable $e) {
+            throw new ConnectionException($errorMessage, $errorCode);
         }
+
+        return true;
     }
 
     public function disconnect(): bool

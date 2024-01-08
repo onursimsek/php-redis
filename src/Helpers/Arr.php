@@ -12,13 +12,13 @@ class Arr
         foreach ($array as $key => $value) {
             $flatten = [];
             if (is_string($key)) {
-                array_push($flatten, $key);
+                $flatten[] = $key;
             }
 
             if (is_array($value)) {
                 $flatten = array_merge($flatten, static::flattenWithKeys($value));
             } else {
-                array_push($flatten, $value);
+                $flatten[] = $value;
             }
 
             $result = array_merge($result, $flatten);

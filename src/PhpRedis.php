@@ -9,6 +9,7 @@ use PhpRedis\Commands\CommandFactory;
 use PhpRedis\Configurations\Parameter;
 use PhpRedis\Connections\Connection;
 use PhpRedis\Connections\StreamConnection;
+use PhpRedis\Enums\Version;
 use PhpRedis\Exceptions\UnsupportedCommandException;
 use PhpRedis\Parameters\ClientKill;
 use PhpRedis\Versions\CommandList;
@@ -228,17 +229,14 @@ class PhpRedis implements Client
     {
         [$major, $minor] = explode('.', $this->getRedisVersion());
         $version = $major . '.' . $minor;
-        switch (true) {
-            case self::REDIS_VERSION_320 >= $version:
-            default:
-                return self::REDIS_VERSION_320;
-            case self::REDIS_VERSION_400 >= $version:
-                return self::REDIS_VERSION_400;
-            case self::REDIS_VERSION_500 >= $version:
-                return self::REDIS_VERSION_500;
-            case self::REDIS_VERSION_600 >= $version:
-                return self::REDIS_VERSION_600;
-        }
+
+        return match (true) {
+            Version::V320->value >= $version => Version::V320->value,
+            Version::V400->value >= $version => Version::V400->value,
+            Version::V500->value >= $version => Version::V500->value,
+            Version::V600->value >= $version => Version::V600->value,
+            default => Version::V720->value,
+        };
     }
 
     public function getRedisVersion(): string

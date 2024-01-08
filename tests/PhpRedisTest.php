@@ -3,29 +3,38 @@
 namespace PhpRedis\Tests;
 
 use PhpRedis\Configurations\Parameter;
+use PhpRedis\Enums\Version;
 use PhpRedis\Exceptions\UnsupportedCommandException;
 use PhpRedis\PhpRedis;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class PhpRedisTest extends TestCase
 {
-    /**
-     * @var PhpRedis
-     */
-    protected $client;
+    protected PhpRedis $client;
 
-    public function test_client_can_be_connected_with_correct_parameters()
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->client = new PhpRedis($this->getParameter());
+    }
+
+    #[Test]
+    public function client_can_be_connected_with_correct_parameters()
     {
         self::assertTrue($this->client->connect());
     }
 
-    public function test_client_can_be_disconnectable()
+    #[Test]
+    public function client_can_be_disconnectable()
     {
         $this->client->connect();
         self::assertFalse($this->client->disconnect());
     }
 
-    public function test_client_can_be_returned_connection_status()
+    #[Test]
+    public function client_can_be_returned_connection_status()
     {
         self::assertFalse($this->client->isConnected());
 
@@ -33,7 +42,8 @@ class PhpRedisTest extends TestCase
         self::assertTrue($this->client->isConnected());
     }
 
-    public function test_client_can_be_returned_redis_version()
+    #[Test]
+    public function client_can_be_returned_redis_version()
     {
         $redisVersion = $this->client->getRedisVersion();
         self::assertIsString($redisVersion);
@@ -51,7 +61,7 @@ class PhpRedisTest extends TestCase
             ->method('getRedisVersion')
             ->willReturn('3.2.0');
 
-        self::assertEquals(PhpRedis::REDIS_VERSION_320, $client->getLibraryRedisVersion());
+        self::assertEquals(Version::V320->value, $client->getLibraryRedisVersion());
 
         $client = $this->getMockBuilder(PhpRedis::class)
             ->disableOriginalConstructor()
@@ -62,7 +72,7 @@ class PhpRedisTest extends TestCase
             ->method('getRedisVersion')
             ->willReturn('4.0.0');
 
-        self::assertEquals(PhpRedis::REDIS_VERSION_400, $client->getLibraryRedisVersion());
+        self::assertEquals(Version::V400->value, $client->getLibraryRedisVersion());
 
         $client = $this->getMockBuilder(PhpRedis::class)
             ->disableOriginalConstructor()
@@ -73,10 +83,33 @@ class PhpRedisTest extends TestCase
             ->method('getRedisVersion')
             ->willReturn('5.0.0');
 
-        self::assertEquals(PhpRedis::REDIS_VERSION_500, $client->getLibraryRedisVersion());
+        self::assertEquals(Version::V500->value, $client->getLibraryRedisVersion());
+
+        $client = $this->getMockBuilder(PhpRedis::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['getRedisVersion'])
+            ->getMock();
+
+        $client->expects($this->once())
+            ->method('getRedisVersion')
+            ->willReturn('6.0.0');
+
+        self::assertEquals(Version::V600->value, $client->getLibraryRedisVersion());
+
+        $client = $this->getMockBuilder(PhpRedis::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['getRedisVersion'])
+            ->getMock();
+
+        $client->expects($this->once())
+            ->method('getRedisVersion')
+            ->willReturn('7.0.0');
+
+        self::assertEquals(Version::V720->value, $client->getLibraryRedisVersion());
     }
 
-    public function test_client_can_be_run_raw_command()
+    #[Test]
+    public function client_can_be_run_raw_command()
     {
         $this->client->connect();
 
@@ -86,7 +119,8 @@ class PhpRedisTest extends TestCase
         self::assertEquals($expect, $this->client->raw('get', 'mykey'));
     }
 
-    public function test_client_should_be_run_defined_command()
+    #[Test]
+    public function client_should_be_run_defined_command()
     {
         $this->client->connect();
 
@@ -96,7 +130,8 @@ class PhpRedisTest extends TestCase
         self::assertEquals($expect, $this->client->get('mykey'));
     }
 
-    public function test_client_should_be_run_defined_command_on_version_320()
+    #[Test]
+    public function client_should_be_run_defined_command_on_version_320()
     {
         $this->client->connect();
 
@@ -107,7 +142,8 @@ class PhpRedisTest extends TestCase
         self::assertEquals($expect, $this->client->get('mykey'));
     }
 
-    public function test_client_should_be_run_defined_command_on_version_600()
+    #[Test]
+    public function client_should_be_run_defined_command_on_version_600()
     {
         $this->client->connect();
 
@@ -117,7 +153,8 @@ class PhpRedisTest extends TestCase
         self::assertEquals($expect, $this->client->get('mykey'));
     }
 
-    public function test_client_should_not_be_run_undefined_command()
+    #[Test]
+    public function client_should_not_be_run_undefined_command()
     {
         $this->client->connect();
 
@@ -125,13 +162,7 @@ class PhpRedisTest extends TestCase
         $this->client->foo('key', 'value');
     }
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->client = new PhpRedis($this->getParameter());
-    }
-
+    #[Test]
     private function getParameter(): Parameter
     {
         /** @var Parameter $parameter */

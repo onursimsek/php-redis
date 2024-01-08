@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace PhpRedis\Versions;
 
-use PhpRedis\Client;
+use PhpRedis\Enums\Version;
 
 class CommandList
 {
@@ -68,18 +68,19 @@ class CommandList
     private function versions(): array
     {
         return [
-            Client::REDIS_VERSION_100 => Version100::class,
-            Client::REDIS_VERSION_120 => Version120::class,
-            Client::REDIS_VERSION_200 => Version200::class,
-            Client::REDIS_VERSION_220 => Version220::class,
-            Client::REDIS_VERSION_240 => Version240::class,
-            Client::REDIS_VERSION_260 => Version260::class,
-            Client::REDIS_VERSION_280 => Version280::class,
-            Client::REDIS_VERSION_300 => Version300::class,
-            Client::REDIS_VERSION_320 => Version320::class,
-            Client::REDIS_VERSION_400 => Version400::class,
-            Client::REDIS_VERSION_500 => Version500::class,
-            Client::REDIS_VERSION_600 => Version600::class,
+            Version::V100->value => Version100::class,
+            Version::V120->value => Version120::class,
+            Version::V200->value => Version200::class,
+            Version::V220->value => Version220::class,
+            Version::V240->value => Version240::class,
+            Version::V260->value => Version260::class,
+            Version::V280->value => Version280::class,
+            Version::V300->value => Version300::class,
+            Version::V320->value => Version320::class,
+            Version::V400->value => Version400::class,
+            Version::V500->value => Version500::class,
+            Version::V600->value => Version600::class,
+            Version::V720->value => Version720::class,
         ];
     }
 

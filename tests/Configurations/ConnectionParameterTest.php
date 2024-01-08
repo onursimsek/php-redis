@@ -2,20 +2,21 @@
 
 namespace PhpRedis\Tests\Configurations;
 
+use Error;
 use PhpRedis\Configurations\ConnectionParameter;
 use PHPUnit\Framework\TestCase;
 
 class ConnectionParameterTest extends TestCase
 {
-    protected $connectionString = 'tcp://localhost:6379';
+    protected string $connectionString = 'tcp://localhost:6379';
 
-    protected $hosts = [
+    protected array $hosts = [
         'scheme' => 'tcp',
         'host' => 'localhost',
         'port' => 6379,
     ];
 
-    protected $options = [
+    protected array $options = [
         'timeout' => 10,
         'persistent' => true,
     ];
@@ -42,23 +43,20 @@ class ConnectionParameterTest extends TestCase
 
     public function test_connection_options()
     {
+        $connectionParameter = new ConnectionParameter($this->connectionString, $this->options);
+        $this->assertEquals($this->options, $connectionParameter->getOptions());
+
         $connectionParameter = new ConnectionParameter($this->hosts, $this->options);
         $this->assertEquals($this->options, $connectionParameter->getOptions());
     }
 
     public function test_host_should_not_be_null_on_construct()
     {
-        $connectionParameter = new ConnectionParameter($this->connectionString, $this->options);
-
-        $this->assertEquals($this->connectionString, $connectionParameter->getConnectionString());
-        $this->assertEquals(parse_url($this->connectionString), $connectionParameter->getHosts());
-        $this->assertEquals($this->options, $connectionParameter->getOptions());
-
         $connectionParameter = new ConnectionParameter(null, $this->options);
 
         $this->assertEquals([], $connectionParameter->getHosts());
         $this->assertEquals([], $connectionParameter->getOptions());
-        $this->expectException(\TypeError::class);
+        $this->expectException(Error::class);
         $connectionParameter->getConnectionString();
     }
 

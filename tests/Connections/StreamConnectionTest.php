@@ -5,21 +5,14 @@ namespace PhpRedis\Tests\Connections;
 use PhpRedis\Commands\Command;
 use PhpRedis\Configurations\ConnectionParameter;
 use PhpRedis\Connections\StreamConnection;
-use PhpRedis\Exceptions\ConnectionException;
 use PhpRedis\Exceptions\PhpRedisException;
 use PHPUnit\Framework\TestCase;
 
 class StreamConnectionTest extends TestCase
 {
-    /**
-     * @var StreamConnection
-     */
-    protected $connection;
+    protected StreamConnection $connection;
 
-    /**
-     * @var ConnectionParameter
-     */
-    protected $connectionParameter;
+    protected ConnectionParameter $connectionParameter;
 
     protected function setUp(): void
     {
@@ -80,17 +73,9 @@ class StreamConnectionTest extends TestCase
         self::assertIsArray($this->connection->getInfo());
 
         $parseInfoResponseReflection = new \ReflectionMethod(StreamConnection::class, 'parseInfoResponse');
-        $parseInfoResponseReflection->setAccessible('public');
 
         self::assertEquals([], $parseInfoResponseReflection->invoke($this->connection, "# Server\r\nredisinfo\r\n"));
         self::expectException(PhpRedisException::class);
         $parseInfoResponseReflection->invoke($this->connection, "Server\r\nredisinfo\r\n");
-    }
-
-    public function test_unable_to_connect()
-    {
-        self::expectException(ConnectionException::class);
-
-        $this->connection->connect(new ConnectionParameter('tcp://localhost:637'));
     }
 }

@@ -4,20 +4,9 @@ namespace PhpRedis\Configurations;
 
 class ConnectionParameter implements Parameter
 {
-    /**
-     * @var array
-     */
-    private $hosts = [];
-
-    /**
-     * @var array
-     */
-    private $options = [];
-
-    /**
-     * @var string
-     */
-    private $connectionString;
+    private array $hosts = [];
+    private array $options = [];
+    private string $connectionString;
 
     /**
      * ConnectionParameter constructor.
@@ -30,17 +19,12 @@ class ConnectionParameter implements Parameter
             return;
         }
 
-        switch (true) {
-            case is_string($hosts):
-                $this->setConnectionString($hosts);
-
-                break;
-            case is_array($hosts):
-                $this->hosts = $hosts;
-
-                break;
-            default:
-                throw new \InvalidArgumentException('Not supported host type');
+        if (is_string($hosts)) {
+            $this->setConnectionString($hosts);
+        } elseif (is_array($hosts)) {
+            $this->hosts = $hosts;
+        } else {
+            throw new \InvalidArgumentException('Not supported host type');
         }
 
         $this->options = $options;
