@@ -6,7 +6,6 @@ use PhpRedis\Commands\Connections\ClientKill;
 use PhpRedis\Tests\Commands\BaseCommand;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
-use PHPUnit\Framework\TestCase;
 
 #[CoversClass(ClientKill::class)]
 class ClientKillTest extends BaseCommand

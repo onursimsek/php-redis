@@ -6,7 +6,6 @@ use PhpRedis\Commands\Connections\ClientId;
 use PhpRedis\Tests\Commands\BaseCommand;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
-use PHPUnit\Framework\TestCase;
 
 #[CoversClass(ClientId::class)]
 class ClientIdTest extends BaseCommand

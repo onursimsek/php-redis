@@ -6,7 +6,6 @@ use PhpRedis\Commands\Connections\ClientSetName;
 use PhpRedis\Tests\Commands\BaseCommand;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
-use PHPUnit\Framework\TestCase;
 
 #[CoversClass(ClientSetName::class)]
 class ClientSetNameTest extends BaseCommand

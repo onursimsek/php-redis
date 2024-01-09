@@ -6,7 +6,6 @@ use PhpRedis\Commands\Connections\ClientUnblock;
 use PhpRedis\Tests\Commands\BaseCommand;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
-use PHPUnit\Framework\TestCase;
 
 #[CoversClass(ClientUnblock::class)]
 class ClientUnblockTest extends BaseCommand
