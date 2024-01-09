@@ -3,11 +3,15 @@
 namespace PhpRedis\Tests\Helpers;
 
 use PhpRedis\Helpers\Arr;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(Arr::class)]
 class ArrTest extends TestCase
 {
-    public function test_can_be_flatten_an_array_with_keys()
+    #[Test]
+    public function can_be_flatten_an_array_with_keys()
     {
         $arguments = ['key', 'foo'];
         $expected = ['key', 'foo'];
@@ -34,7 +38,8 @@ class ArrTest extends TestCase
         self::assertEquals($expected, Arr::flattenWithKeys($arguments));
     }
 
-    public function test_can_be_get_only()
+    #[Test]
+    public function can_be_get_only()
     {
         $arguments = ['foo' => 1, 'bar' => 2];
         $expected = ['foo' => 1];

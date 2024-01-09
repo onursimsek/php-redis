@@ -3,9 +3,13 @@
 namespace PhpRedis\Tests\Configurations;
 
 use Error;
+use InvalidArgumentException;
 use PhpRedis\Configurations\ConnectionParameter;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(ConnectionParameter::class)]
 class ConnectionParameterTest extends TestCase
 {
     protected string $connectionString = 'tcp://localhost:6379';
@@ -21,7 +25,8 @@ class ConnectionParameterTest extends TestCase
         'persistent' => true,
     ];
 
-    public function test_connection_with_string()
+    #[Test]
+    public function connection_with_string()
     {
         $connectionParameter = new ConnectionParameter();
         $connectionParameter->setConnectionString($this->connectionString);
@@ -35,13 +40,15 @@ class ConnectionParameterTest extends TestCase
         $this->assertEquals(parse_url($this->connectionString), $connectionParameter->getHosts());
     }
 
-    public function test_connection_with_array()
+    #[Test]
+    public function connection_with_array()
     {
         $connectionParameter = new ConnectionParameter($this->hosts);
         $this->assertEquals($this->hosts, $connectionParameter->getHosts());
     }
 
-    public function test_connection_options()
+    #[Test]
+    public function connection_options()
     {
         $connectionParameter = new ConnectionParameter($this->connectionString, $this->options);
         $this->assertEquals($this->options, $connectionParameter->getOptions());
@@ -50,7 +57,8 @@ class ConnectionParameterTest extends TestCase
         $this->assertEquals($this->options, $connectionParameter->getOptions());
     }
 
-    public function test_host_should_not_be_null_on_construct()
+    #[Test]
+    public function host_should_not_be_null_on_construct()
     {
         $connectionParameter = new ConnectionParameter(null, $this->options);
 
@@ -60,9 +68,10 @@ class ConnectionParameterTest extends TestCase
         $connectionParameter->getConnectionString();
     }
 
-    public function test_host_should_be_set_string_or_array_on_construct()
+    #[Test]
+    public function host_should_be_set_string_or_array_on_construct()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         new ConnectionParameter(123);
     }
 }

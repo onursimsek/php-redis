@@ -3,14 +3,14 @@
 namespace PhpRedis\Tests\Commands;
 
 use PhpRedis\Commands\GenericCommand;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(GenericCommand::class)]
 class GenericCommandTest extends TestCase
 {
-    /**
-     * @var GenericCommand
-     */
-    protected $command;
+    protected GenericCommand $command;
 
     protected function setUp(): void
     {
@@ -19,7 +19,8 @@ class GenericCommandTest extends TestCase
         $this->command = new GenericCommand();
     }
 
-    public function test_generic_command_can_take_a_name()
+    #[Test]
+    public function generic_command_can_take_a_name()
     {
         $expected = 'SET';
         $this->command->setCommand('SET');
@@ -27,7 +28,8 @@ class GenericCommandTest extends TestCase
         self::assertEquals($expected, $this->command->getCommand());
     }
 
-    public function test_generic_command_can_take_arguments()
+    #[Test]
+    public function generic_command_can_take_arguments()
     {
         $expected = ['key', 'value'];
         $this->command->setArguments(['key', 'value']);
@@ -35,7 +37,8 @@ class GenericCommandTest extends TestCase
         self::assertEquals($expected, $this->command->getArguments());
     }
 
-    public function test_generic_command_can_be_serialize()
+    #[Test]
+    public function generic_command_can_be_serialize()
     {
         $expected = "*3\r\n$3\r\nSET\r\n$3\r\nfoo\r\n$3\r\nbar\r\n";
         $this->command->setCommand('SET')

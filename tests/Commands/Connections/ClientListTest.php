@@ -3,15 +3,13 @@
 namespace PhpRedis\Tests\Commands\Connections;
 
 use PhpRedis\Commands\Connections\ClientList;
-use PHPUnit\Framework\TestCase;
+use PhpRedis\Tests\Commands\BaseCommand;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 
-class ClientListTest extends TestCase
+#[CoversClass(ClientList::class)]
+class ClientListTest extends BaseCommand
 {
-    /**
-     * @var ClientList
-     */
-    protected $command;
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -19,12 +17,14 @@ class ClientListTest extends TestCase
         $this->command = new ClientList();
     }
 
-    public function test_the_command_should_have_a_name()
+    #[Test]
+    public function the_command_should_have_a_name()
     {
         self::assertEquals('CLIENT LIST', $this->command->getCommand());
     }
 
-    public function test_the_command_can_be_normalize_arguments()
+    #[Test]
+    public function the_command_can_be_normalize_arguments()
     {
         $this->command->setArguments(['normal']);
         self::assertEquals(['TYPE', 'normal'], $this->command->normalizeArguments());

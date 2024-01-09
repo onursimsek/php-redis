@@ -4,15 +4,27 @@ namespace PhpRedis\Tests\Commands\Sets;
 
 use PhpRedis\Commands\Sets\SScan;
 use PhpRedis\Tests\Commands\BaseCommand;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 
+#[CoversClass(SScan::class)]
 class SScanTest extends BaseCommand
 {
-    public function test_the_command_should_have_a_name()
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->command = new SScan();
+    }
+
+    #[Test]
+    public function the_command_should_have_a_name()
     {
         self::assertEquals('SSCAN', $this->command->getCommand());
     }
 
-    public function test_the_command_can_be_normalize_arguments()
+    #[Test]
+    public function the_command_can_be_normalize_arguments()
     {
         $this->command->setArguments(['key', 'cursor']);
         self::assertEquals(['key', 'cursor'], $this->command->normalizeArguments());
@@ -25,12 +37,5 @@ class SScanTest extends BaseCommand
 
         $this->command->setArguments(['key', 'cursor', null, 10]);
         self::assertEquals(['key', 'cursor', 'COUNT', 10], $this->command->normalizeArguments());
-    }
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->command = new SScan();
     }
 }

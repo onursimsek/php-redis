@@ -2,13 +2,14 @@
 
 namespace PhpRedis\Tests\Commands;
 
+use PhpRedis\Commands\Command;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 abstract class BaseCommand extends TestCase
 {
-    protected $command;
+    protected Command $command;
 
-    abstract public function test_the_command_should_have_a_name();
-
-    abstract public function test_the_command_can_be_normalize_arguments();
+    #[Test]
+    abstract public function the_command_should_have_a_name();
 }

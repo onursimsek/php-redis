@@ -2,17 +2,18 @@
 
 namespace PhpRedis\Tests\SerializationProtocol;
 
+use Generator;
 use PhpRedis\Exceptions\IOException;
 use PhpRedis\Exceptions\RespException;
 use PhpRedis\SerializationProtocol\ResponseUnserializer;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(ResponseUnserializer::class)]
 class ResponseUnserializerTest extends TestCase
 {
-    /**
-     * @var ResponseUnserializer
-     */
-    protected $unserializer;
+    protected ResponseUnserializer $unserializer;
 
     protected function setUp(): void
     {
@@ -21,29 +22,34 @@ class ResponseUnserializerTest extends TestCase
         $this->unserializer = new ResponseUnserializer();
     }
 
-    public function test_unserialize_success_response()
+    #[Test]
+    public function unserialize_success_response()
     {
         self::assertTrue($this->unserializer->unserialize($this->dataAsGenerator("+OK\r\n")));
     }
 
-    public function test_unserialize_simple_string_response()
+    #[Test]
+    public function unserialize_simple_string_response()
     {
         self::assertEquals('foo', $this->unserializer->unserialize($this->dataAsGenerator("+foo\r\n")));
     }
 
-    public function test_unserialize_bulk_string()
+    #[Test]
+    public function unserialize_bulk_string()
     {
         self::assertEquals('bar', $this->unserializer->unserialize($this->dataAsGenerator("$3\r\nbar\r\n")));
 
         self::assertNull($this->unserializer->unserialize($this->dataAsGenerator("$-1\r\n")));
     }
 
-    public function test_unserialize_integer_response()
+    #[Test]
+    public function unserialize_integer_response()
     {
         self::assertEquals(123, $this->unserializer->unserialize($this->dataAsGenerator(":123\r\n")));
     }
 
-    public function test_unserialize_array_response()
+    #[Test]
+    public function unserialize_array_response()
     {
         $arguments = $this->dataAsGenerator("*2\r\n$3\r\nfoo\r\n$3\r\nbar\r\n");
         $expected = ['foo', 'bar'];
@@ -74,21 +80,24 @@ class ResponseUnserializerTest extends TestCase
         self::assertEquals([], $this->unserializer->unserialize($arguments));
     }
 
-    public function test_unserialize_error_response()
+    #[Test]
+    public function unserialize_error_response()
     {
         self::expectException(RespException::class);
 
         $this->unserializer->unserialize($this->dataAsGenerator("-ERR wrong command\r\n"));
     }
 
-    public function test_unserialize_unknown_response()
+    #[Test]
+    public function unserialize_unknown_response()
     {
         self::expectException(IOException::class);
 
         $this->unserializer->unserialize($this->dataAsGenerator("/OK\r\n"));
     }
 
-    private function dataAsGenerator($data)
+    #[Test]
+    private function dataAsGenerator($data): Generator
     {
         $lines = explode("\r\n", $data);
         array_pop($lines);

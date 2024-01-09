@@ -3,15 +3,14 @@
 namespace PhpRedis\Tests\Commands\Connections;
 
 use PhpRedis\Commands\Connections\ClientSetName;
+use PhpRedis\Tests\Commands\BaseCommand;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-class ClientSetNameTest extends TestCase
+#[CoversClass(ClientSetName::class)]
+class ClientSetNameTest extends BaseCommand
 {
-    /**
-     * @var ClientSetName
-     */
-    protected $command;
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -19,7 +18,8 @@ class ClientSetNameTest extends TestCase
         $this->command = new ClientSetName();
     }
 
-    public function test_the_command_should_have_a_name()
+    #[Test]
+    public function the_command_should_have_a_name()
     {
         self::assertEquals('CLIENT SETNAME', $this->command->getCommand());
     }

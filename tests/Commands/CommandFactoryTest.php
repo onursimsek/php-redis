@@ -7,11 +7,15 @@ use PhpRedis\Commands\CommandObject;
 use PhpRedis\Commands\Connections\ClientId;
 use PhpRedis\Commands\GenericCommand;
 use PhpRedis\Exceptions\PhpRedisException;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(CommandFactory::class)]
 class CommandFactoryTest extends TestCase
 {
-    public function test_can_be_make_a_command()
+    #[Test]
+    public function can_be_make_a_command()
     {
         $class = $this->getMockBuilder(CommandObject::class)->disableOriginalConstructor()->getMock();
         $class->expects($this->once())
@@ -40,7 +44,8 @@ class CommandFactoryTest extends TestCase
         self::assertEquals($serialized, (string)$command);
     }
 
-    public function test_should_not_make_a_command_with_dont_exists_class()
+    #[Test]
+    public function should_not_make_a_command_with_dont_exists_class()
     {
         $namespace = '\There\Is\Not\A\Class';
         $class = $this->getMockBuilder(CommandObject::class)->disableOriginalConstructor()->getMock();
@@ -54,7 +59,8 @@ class CommandFactoryTest extends TestCase
         CommandFactory::make($class);
     }
 
-    public function test_should_not_be_make_a_command_without_name_when_generic_command()
+    #[Test]
+    public function should_not_be_make_a_command_without_name_when_generic_command()
     {
         $namespace = GenericCommand::class;
         $class = $this->getMockBuilder(CommandObject::class)->disableOriginalConstructor()->getMock();

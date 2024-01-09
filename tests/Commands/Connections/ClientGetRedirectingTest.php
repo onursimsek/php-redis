@@ -3,15 +3,14 @@
 namespace PhpRedis\Tests\Commands\Connections;
 
 use PhpRedis\Commands\Connections\ClientGetRedirecting;
+use PhpRedis\Tests\Commands\BaseCommand;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-class ClientGetRedirectingTest extends TestCase
+#[CoversClass(ClientGetRedirecting::class)]
+class ClientGetRedirectingTest extends BaseCommand
 {
-    /**
-     * @var ClientGetRedirecting
-     */
-    protected $command;
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -19,7 +18,8 @@ class ClientGetRedirectingTest extends TestCase
         $this->command = new ClientGetRedirecting();
     }
 
-    public function test_the_command_should_have_a_name()
+    #[Test]
+    public function the_command_should_have_a_name()
     {
         self::assertEquals('CLIENT GETREDIR', $this->command->getCommand());
     }

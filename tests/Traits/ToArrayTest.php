@@ -4,11 +4,16 @@ namespace PhpRedis\Tests\Traits;
 
 use PhpRedis\Commands\Connections\Auth;
 use PhpRedis\Commands\GenericCommand;
+use PhpRedis\Traits\ToArray;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(ToArray::class)]
 class ToArrayTest extends TestCase
 {
-    public function test_the_trait_can_be_convert_to_array_a_argumentative_command()
+    #[Test]
+    public function the_trait_can_be_convert_to_array_a_argumentative_command()
     {
         $command = new GenericCommand();
         $command->setCommand('SET')
@@ -17,7 +22,8 @@ class ToArrayTest extends TestCase
         self::assertEquals(['SET', 'key', 'value'], $command->toArray());
     }
 
-    public function test_the_trait_can_be_convert_to_array_a_normalize_command()
+    #[Test]
+    public function the_trait_can_be_convert_to_array_a_normalize_command()
     {
         $command = new Auth();
         $command->setArguments(['password', 'username']);

@@ -3,15 +3,13 @@
 namespace PhpRedis\Tests\Commands\Connections;
 
 use PhpRedis\Commands\Connections\Auth;
-use PHPUnit\Framework\TestCase;
+use PhpRedis\Tests\Commands\BaseCommand;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 
-class AuthTest extends TestCase
+#[CoversClass(Auth::class)]
+class AuthTest extends BaseCommand
 {
-    /**
-     * @var Auth
-     */
-    protected $command;
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -19,12 +17,14 @@ class AuthTest extends TestCase
         $this->command = new Auth();
     }
 
-    public function test_the_command_should_have_a_name()
+    #[Test]
+    public function the_command_should_have_a_name()
     {
         self::assertEquals('AUTH', $this->command->getCommand());
     }
 
-    public function test_the_command_can_be_normalize_arguments()
+    #[Test]
+    public function the_command_can_be_normalize_arguments()
     {
         $this->command->setArguments(['password']);
         self::assertEquals(['password'], $this->command->normalizeArguments());
@@ -33,7 +33,8 @@ class AuthTest extends TestCase
         self::assertEquals(['username', 'password'], $this->command->normalizeArguments());
     }
 
-    public function test_the_command_can_be_convert_to_array()
+    #[Test]
+    public function the_command_can_be_convert_to_array()
     {
         $this->command->setArguments(['password']);
         self::assertEquals(['AUTH', 'password'], $this->command->toArray());

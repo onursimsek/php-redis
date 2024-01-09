@@ -4,18 +4,23 @@ namespace PhpRedis\Tests\Commands;
 
 use PhpRedis\Commands\CommandObject;
 use PhpRedis\Commands\GenericCommand;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(CommandObject::class)]
 class CommandObjectTest extends TestCase
 {
-    public function test_should_be_set_command_class()
+    #[Test]
+    public function should_be_set_command_class()
     {
         $commandObject = new CommandObject(GenericCommand::class);
 
         self::assertEquals(GenericCommand::class, $commandObject->getClass());
     }
 
-    public function test_can_be_set_command_class()
+    #[Test]
+    public function can_be_set_command_class()
     {
         $rules = ['key' => ['required', 'string'], 'value' => ['required', 'integer']];
         $expected = ['key' => ['required', 'string'], 'value' => ['required', 'integer']];

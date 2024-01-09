@@ -6,8 +6,11 @@ use PhpRedis\Commands\Command;
 use PhpRedis\Configurations\ConnectionParameter;
 use PhpRedis\Connections\StreamConnection;
 use PhpRedis\Exceptions\PhpRedisException;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(StreamConnection::class)]
 class StreamConnectionTest extends TestCase
 {
     protected StreamConnection $connection;
@@ -22,19 +25,22 @@ class StreamConnectionTest extends TestCase
         $this->connectionParameter = new ConnectionParameter('tcp://127.0.0.1:6379');
     }
 
-    public function test_connect()
+    #[Test]
+    public function connect()
     {
         $this->assertTrue($this->connection->connect($this->connectionParameter));
     }
 
-    public function test_is_connected()
+    #[Test]
+    public function is_connected()
     {
         $this->connection->connect($this->connectionParameter);
 
         self::assertTrue($this->connection->isConnected());
     }
 
-    public function test_disconnect()
+    #[Test]
+    public function disconnect()
     {
         $this->connection->connect($this->connectionParameter);
 
@@ -45,7 +51,8 @@ class StreamConnectionTest extends TestCase
         self::assertFalse($this->connection->isConnected());
     }
 
-    public function test_execute_command()
+    #[Test]
+    public function execute_command()
     {
         $this->connection->connect($this->connectionParameter);
 
@@ -58,14 +65,16 @@ class StreamConnectionTest extends TestCase
         self::assertTrue($this->connection->executeCommand($command));
     }
 
-    public function test_raw_command()
+    #[Test]
+    public function raw_command()
     {
         $this->connection->connect($this->connectionParameter);
 
         self::assertTrue($this->connection->rawCommand(['SET', 'key', 'value']));
     }
 
-    public function test_redis_info()
+    #[Test]
+    public function redis_info()
     {
         $this->connection->connect($this->connectionParameter);
 

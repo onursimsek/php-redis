@@ -4,14 +4,15 @@ namespace PhpRedis\Tests\SerializationProtocol;
 
 use PhpRedis\Commands\GenericCommand;
 use PhpRedis\SerializationProtocol\RequestSerializer;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
+use UnexpectedValueException;
 
+#[CoversClass(RequestSerializer::class)]
 class RequestSerializerTest extends TestCase
 {
-    /**
-     * @var RequestSerializer
-     */
-    protected $serializer;
+    protected RequestSerializer $serializer;
 
     protected function setUp(): void
     {
@@ -20,7 +21,8 @@ class RequestSerializerTest extends TestCase
         $this->serializer = new RequestSerializer();
     }
 
-    public function test_serialize_string()
+    #[Test]
+    public function serialize_string()
     {
         $argument = 'PING';
         $expected = "$4\r\nPING\r\n";
@@ -28,7 +30,8 @@ class RequestSerializerTest extends TestCase
         self::assertEquals($expected, $this->serializer->serialize($argument));
     }
 
-    public function test_serialize_array()
+    #[Test]
+    public function serialize_array()
     {
         $arguments = ['key', 'value'];
         $expected = "*2\r\n$3\r\nkey\r\n$5\r\nvalue\r\n";
@@ -46,7 +49,8 @@ class RequestSerializerTest extends TestCase
         self::assertEquals($expected, $this->serializer->serialize($arguments));
     }
 
-    public function test_serialize_command()
+    #[Test]
+    public function serialize_command()
     {
         $arguments = ['SET', 'key', 'value'];
         $expected = "*3\r\n$3\r\nSET\r\n$3\r\nkey\r\n$5\r\nvalue\r\n";
@@ -63,9 +67,10 @@ class RequestSerializerTest extends TestCase
         self::assertEquals($expected, $this->serializer->serialize($command));
     }
 
-    public function test_serialize_invalid_type()
+    #[Test]
+    public function serialize_invalid_type()
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(UnexpectedValueException::class);
         $this->serializer->serialize(new \stdClass());
     }
 }

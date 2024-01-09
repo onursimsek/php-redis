@@ -4,15 +4,27 @@ namespace PhpRedis\Tests\Commands\Keys;
 
 use PhpRedis\Commands\Keys\Sort;
 use PhpRedis\Tests\Commands\BaseCommand;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 
+#[CoversClass(Sort::class)]
 class SortTest extends BaseCommand
 {
-    public function test_the_command_should_have_a_name()
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->command = new Sort();
+    }
+
+    #[Test]
+    public function the_command_should_have_a_name()
     {
         self::assertEquals('SORT', $this->command->getCommand());
     }
 
-    public function test_the_command_can_be_normalize_arguments()
+    #[Test]
+    public function the_command_can_be_normalize_arguments()
     {
         $this->command->setArguments(['key']);
         self::assertEquals(['key'], $this->command->normalizeArguments());
@@ -43,12 +55,5 @@ class SortTest extends BaseCommand
             ['key', Sort::OPTION_BY, 'by*', Sort::OPTION_GET, 'get*', Sort::OPTION_LIMIT, '0 10'],
             $this->command->normalizeArguments()
         );
-    }
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->command = new Sort();
     }
 }

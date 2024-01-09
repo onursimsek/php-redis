@@ -3,15 +3,13 @@
 namespace PhpRedis\Tests\Commands\Connections;
 
 use PhpRedis\Commands\Connections\ClientPause;
-use PHPUnit\Framework\TestCase;
+use PhpRedis\Tests\Commands\BaseCommand;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 
-class ClientPauseTest extends TestCase
+#[CoversClass(ClientPause::class)]
+class ClientPauseTest extends BaseCommand
 {
-    /**
-     * @var ClientPause
-     */
-    protected $command;
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -19,7 +17,8 @@ class ClientPauseTest extends TestCase
         $this->command = new ClientPause();
     }
 
-    public function test_the_command_should_have_a_name()
+    #[Test]
+    public function the_command_should_have_a_name()
     {
         self::assertEquals('CLIENT PAUSE', $this->command->getCommand());
     }

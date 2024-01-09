@@ -4,15 +4,27 @@ namespace PhpRedis\Tests\Commands\Keys;
 
 use PhpRedis\Commands\Keys\Scan;
 use PhpRedis\Tests\Commands\BaseCommand;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 
+#[CoversClass(Scan::class)]
 class ScanTest extends BaseCommand
 {
-    public function test_the_command_should_have_a_name()
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->command = new Scan();
+    }
+
+    #[Test]
+    public function the_command_should_have_a_name()
     {
         self::assertEquals('SCAN', $this->command->getCommand());
     }
 
-    public function test_the_command_can_be_normalize_arguments()
+    #[Test]
+    public function the_command_can_be_normalize_arguments()
     {
         $this->command->setArguments(['cursor']);
         self::assertEquals(['cursor'], $this->command->normalizeArguments());
@@ -28,12 +40,5 @@ class ScanTest extends BaseCommand
 
         $this->command->setArguments(['cursor', null, null, 'zset']);
         self::assertEquals(['cursor', 'TYPE', 'zset'], $this->command->normalizeArguments());
-    }
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->command = new Scan();
     }
 }

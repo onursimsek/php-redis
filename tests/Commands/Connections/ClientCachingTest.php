@@ -3,15 +3,13 @@
 namespace PhpRedis\Tests\Commands\Connections;
 
 use PhpRedis\Commands\Connections\ClientCaching;
-use PHPUnit\Framework\TestCase;
+use PhpRedis\Tests\Commands\BaseCommand;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 
-class ClientCachingTest extends TestCase
+#[CoversClass(ClientCaching::class)]
+class ClientCachingTest extends BaseCommand
 {
-    /**
-     * @var ClientCaching
-     */
-    protected $command;
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -19,12 +17,14 @@ class ClientCachingTest extends TestCase
         $this->command = new ClientCaching();
     }
 
-    public function test_the_command_should_have_a_name()
+    #[Test]
+    public function the_command_should_have_a_name()
     {
         self::assertEquals('CLIENT CACHING', $this->command->getCommand());
     }
 
-    public function test_the_command_can_be_normalize_arguments()
+    #[Test]
+    public function the_command_can_be_normalize_arguments()
     {
         $this->command->setArguments([true]);
         self::assertEquals(['yes'], $this->command->normalizeArguments());

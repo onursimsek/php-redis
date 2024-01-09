@@ -6,9 +6,11 @@ use PhpRedis\Configurations\Parameter;
 use PhpRedis\Enums\Version;
 use PhpRedis\Exceptions\UnsupportedCommandException;
 use PhpRedis\PhpRedis;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(PhpRedis::class)]
 class PhpRedisTest extends TestCase
 {
     protected PhpRedis $client;

@@ -5,15 +5,27 @@ namespace PhpRedis\Tests\Commands\Geos;
 use PhpRedis\Commands\Geos\GeoRadius;
 use PhpRedis\Exceptions\ValidationException;
 use PhpRedis\Tests\Commands\BaseCommand;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 
+#[CoversClass(GeoRadius::class)]
 class GeoRadiusTest extends BaseCommand
 {
-    public function test_the_command_should_have_a_name()
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->command = new GeoRadius();
+    }
+
+    #[Test]
+    public function the_command_should_have_a_name()
     {
         self::assertEquals('GEORADIUS', $this->command->getCommand());
     }
 
-    public function test_the_command_can_be_normalize_arguments()
+    #[Test]
+    public function the_command_can_be_normalize_arguments()
     {
         $this->command->setArguments(['Turkey', 15, 50, 500, 'km']);
         self::assertEquals(['Turkey', 15, 50, 500, 'km'], $this->command->normalizeArguments());
@@ -54,17 +66,11 @@ class GeoRadiusTest extends BaseCommand
         );
     }
 
-    public function test_the_command_can_not_be_normalize_invalid_unit()
+    #[Test]
+    public function the_command_can_not_be_normalize_invalid_unit()
     {
         $this->command->setArguments(['Turkey', 15, 50, 500, 'mm']);
         self::expectException(ValidationException::class);
         $this->command->normalizeArguments();
-    }
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->command = new GeoRadius();
     }
 }
