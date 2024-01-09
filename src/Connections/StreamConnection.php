@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace PhpRedis\Connections;
 
+use Generator;
 use PhpRedis\Commands\Command;
 use PhpRedis\Configurations\Parameter;
+use PhpRedis\Enums\Protocol;
 use PhpRedis\Exceptions\ConnectionException;
 use PhpRedis\Exceptions\IOException;
 use PhpRedis\Exceptions\PhpRedisException;
-use PhpRedis\SerializationProtocol\Protocol;
 use PhpRedis\SerializationProtocol\RequestSerializer;
 use PhpRedis\SerializationProtocol\ResponseUnserializer;
 
@@ -20,15 +21,7 @@ class StreamConnection implements Connection
      */
     private $resource;
 
-    /**
-     * @var Parameter
-     */
-    private $parameters;
-
-    /**
-     * @var array
-     */
-    private $info = [];
+    private array $info = [];
 
     public function connect(Parameter $parameter): bool
     {
@@ -51,24 +44,19 @@ class StreamConnection implements Connection
         return (bool)$this->resource;
     }
 
-    public function executeCommand(Command $command)
+    public function executeCommand(Command $command): array|bool|int|string|null
     {
         return $this->write((string)$command)
             ->readResponse();
     }
 
-    public function rawCommand(array $command)
+    public function rawCommand(array $command): array|bool|int|string|null
     {
         return $this->write((new RequestSerializer())->serialize($command))
             ->readResponse();
     }
 
-    /**
-     * @param string $string
-     * @return $this
-     * @throws IOException
-     */
-    protected function write(string $string)
+    protected function write(string $string): static
     {
         $written = fwrite($this->resource, $string);
         if ($written !== strlen($string)) {
@@ -78,12 +66,12 @@ class StreamConnection implements Connection
         return $this;
     }
 
-    public function readResponse()
+    public function readResponse(): array|bool|int|string|null
     {
         return (new ResponseUnserializer())->unserialize($this->read());
     }
 
-    public function read(): \Generator
+    public function read(): Generator
     {
         while (true) {
             $data = yield fgets($this->resource);
@@ -92,8 +80,6 @@ class StreamConnection implements Connection
                 break;
             }
         }
-
-        return;
     }
 
     public function getInfo(string $section = null): array
@@ -115,7 +101,7 @@ class StreamConnection implements Connection
     {
         $activeSection = '';
         $info = [];
-        foreach (explode(Protocol::CRLF, $response) as $row) {
+        foreach (explode(Protocol::CRLF->value, $response) as $row) {
             if (! $row) {
                 continue;
             }

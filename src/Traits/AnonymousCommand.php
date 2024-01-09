@@ -8,19 +8,12 @@ trait AnonymousCommand
 {
     private string $command;
 
-    /**
-     * @return string
-     */
     public function getCommand(): string
     {
         return $this->command;
     }
 
-    /**
-     * @param string $command
-     * @return self
-     */
-    public function setCommand(string $command): self
+    public function setCommand(string $command): static
     {
         $this->command = $command;
 

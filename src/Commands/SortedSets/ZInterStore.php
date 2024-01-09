@@ -38,9 +38,6 @@ class ZInterStore implements Command, ArgumentativeCommand, Normalizable
     public function normalizeArguments(): array
     {
         $this->arguments[1] = (array)$this->arguments[1];
-        $arguments[] = $this->arguments[0];
-        $arguments[] = count($this->arguments[1]);
-        $arguments[] = $this->arguments[1];
 
         $arguments = [
             $this->arguments[0],

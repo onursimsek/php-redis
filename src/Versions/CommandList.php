@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace PhpRedis\Versions;
 
+use PhpRedis\Commands\Command;
 use PhpRedis\Enums\Version;
 
 class CommandList
 {
     /**
-     * @var array Command list
+     * @var Command[] Command list
      */
     private array $commandList = [];
 

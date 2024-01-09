@@ -12,13 +12,13 @@ class CommandFactory
     {
         $class = $commandObject->getClass();
         if (! class_exists($class)) {
-            throw new PhpRedisException("The '{$class}' class is not defined");
+            throw new PhpRedisException(sprintf('The \'%s\' class is not defined', $class));
         }
 
         $command = new $class();
         if ($command instanceof AnonymousCommand) {
             if (is_null($name)) {
-                throw new PhpRedisException("The '{$class}' is an anonymous class. It must have a name");
+                throw new PhpRedisException(sprintf('The \'%s\' is an anonymous class. It must have a name', $class));
             }
             $command->setCommand($name);
         }

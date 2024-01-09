@@ -6,19 +6,12 @@ trait HasArguments
 {
     private array $arguments = [];
 
-    /**
-     * @return array
-     */
     public function getArguments(): array
     {
         return $this->arguments;
     }
 
-    /**
-     * @param array $arguments
-     * @return $this
-     */
-    public function setArguments(array $arguments): self
+    public function setArguments(array $arguments): static
     {
         $this->arguments = $arguments;
 

@@ -4,31 +4,16 @@ declare(strict_types=1);
 
 namespace PhpRedis\Parameters;
 
-class ClientKill
+final class ClientKill
 {
-    /**
-     * @var string
-     */
-    private $value;
-
-    /**
-     * @var string
-     */
-    private $type;
-
-    /**
-     * @var bool
-     */
-    private $skipMe;
-
-    public function __construct(string $value, string $type = 'ADDR', bool $skipMe = true)
-    {
-        $this->value = $value;
-        $this->type = $type;
-        $this->skipMe = $skipMe;
+    public function __construct(
+        private readonly string $value,
+        private readonly string $type = 'ADDR',
+        private readonly bool $skipMe = true
+    ) {
     }
 
-    public function toArray()
+    public function toArray(): array
     {
         return [$this->type, $this->value, 'SKIPME', $this->skipMe ? 'yes' : 'no'];
     }
