@@ -1,16 +1,14 @@
 <?php
 
-namespace PhpRedis\Tests\SerializationProtocol;
+namespace PhpRedis\Tests\Unit\SerializationProtocol;
 
 use Generator;
 use PhpRedis\Exceptions\IOException;
 use PhpRedis\Exceptions\RespException;
 use PhpRedis\SerializationProtocol\ResponseUnserializer;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass(ResponseUnserializer::class)]
 class ResponseUnserializerTest extends TestCase
 {
     protected ResponseUnserializer $unserializer;

@@ -1,13 +1,11 @@
 <?php
 
-namespace PhpRedis\Tests\Commands\SortedSets;
+namespace PhpRedis\Tests\Unit\Commands\SortedSets;
 
 use PhpRedis\Commands\SortedSets\ZRevRangeByLex;
-use PhpRedis\Tests\Commands\BaseCommand;
-use PHPUnit\Framework\Attributes\CoversClass;
+use PhpRedis\Tests\Unit\Commands\BaseCommand;
 use PHPUnit\Framework\Attributes\Test;
 
-#[CoversClass(ZRevRangeByLex::class)]
 class ZRevRangeByLexTest extends BaseCommand
 {
     protected function setUp(): void

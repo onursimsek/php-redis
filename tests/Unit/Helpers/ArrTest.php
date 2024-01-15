@@ -1,13 +1,11 @@
 <?php
 
-namespace PhpRedis\Tests\Helpers;
+namespace PhpRedis\Tests\Unit\Helpers;
 
 use PhpRedis\Helpers\Arr;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass(Arr::class)]
 class ArrTest extends TestCase
 {
     #[Test]

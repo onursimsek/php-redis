@@ -1,13 +1,11 @@
 <?php
 
-namespace PhpRedis\Tests\Commands\Connections;
+namespace PhpRedis\Tests\Unit\Commands\Connections;
 
 use PhpRedis\Commands\Connections\ClientList;
-use PhpRedis\Tests\Commands\BaseCommand;
-use PHPUnit\Framework\Attributes\CoversClass;
+use PhpRedis\Tests\Unit\Commands\BaseCommand;
 use PHPUnit\Framework\Attributes\Test;
 
-#[CoversClass(ClientList::class)]
 class ClientListTest extends BaseCommand
 {
     protected function setUp(): void

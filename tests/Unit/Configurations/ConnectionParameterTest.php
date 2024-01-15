@@ -1,15 +1,13 @@
 <?php
 
-namespace PhpRedis\Tests\Configurations;
+namespace PhpRedis\Tests\Unit\Configurations;
 
 use Error;
 use InvalidArgumentException;
 use PhpRedis\Configurations\ConnectionParameter;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass(ConnectionParameter::class)]
 class ConnectionParameterTest extends TestCase
 {
     protected string $connectionString = 'tcp://localhost:6379';

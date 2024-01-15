@@ -1,14 +1,12 @@
 <?php
 
-namespace PhpRedis\Tests\Commands\Geos;
+namespace PhpRedis\Tests\Unit\Commands\Geos;
 
 use PhpRedis\Commands\Geos\GeoRadius;
 use PhpRedis\Exceptions\ValidationException;
-use PhpRedis\Tests\Commands\BaseCommand;
-use PHPUnit\Framework\Attributes\CoversClass;
+use PhpRedis\Tests\Unit\Commands\BaseCommand;
 use PHPUnit\Framework\Attributes\Test;
 
-#[CoversClass(GeoRadius::class)]
 class GeoRadiusTest extends BaseCommand
 {
     protected function setUp(): void

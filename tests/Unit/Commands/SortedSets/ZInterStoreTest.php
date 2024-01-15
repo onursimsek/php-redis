@@ -1,14 +1,12 @@
 <?php
 
-namespace PhpRedis\Tests\Commands\SortedSets;
+namespace PhpRedis\Tests\Unit\Commands\SortedSets;
 
 use PhpRedis\Commands\SortedSets\ZInterStore;
 use PhpRedis\Exceptions\ValidationException;
-use PhpRedis\Tests\Commands\BaseCommand;
-use PHPUnit\Framework\Attributes\CoversClass;
+use PhpRedis\Tests\Unit\Commands\BaseCommand;
 use PHPUnit\Framework\Attributes\Test;
 
-#[CoversClass(ZInterStore::class)]
 class ZInterStoreTest extends BaseCommand
 {
     protected function setUp(): void
@@ -37,7 +35,10 @@ class ZInterStoreTest extends BaseCommand
         self::assertEquals(['out', 2, 'key01', 'key02', 'WEIGHTS', 1, 1], $this->command->normalizeArguments());
 
         $this->command->setArguments(['out', ['key01', 'key02'], ['weights' => [1, 1], 'aggregate' => 'sum']]);
-        self::assertEquals(['out', 2, 'key01', 'key02', 'WEIGHTS', 1, 1, 'AGGREGATE', 'sum'], $this->command->normalizeArguments());
+        self::assertEquals(
+            ['out', 2, 'key01', 'key02', 'WEIGHTS', 1, 1, 'AGGREGATE', 'sum'],
+            $this->command->normalizeArguments()
+        );
     }
 
     #[Test]

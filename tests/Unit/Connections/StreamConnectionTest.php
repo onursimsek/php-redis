@@ -1,16 +1,14 @@
 <?php
 
-namespace PhpRedis\Tests\Connections;
+namespace PhpRedis\Tests\Unit\Connections;
 
 use PhpRedis\Commands\Command;
 use PhpRedis\Configurations\ConnectionParameter;
 use PhpRedis\Connections\StreamConnection;
 use PhpRedis\Exceptions\PhpRedisException;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass(StreamConnection::class)]
 class StreamConnectionTest extends TestCase
 {
     protected StreamConnection $connection;

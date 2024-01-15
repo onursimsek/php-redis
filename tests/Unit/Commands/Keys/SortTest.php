@@ -1,13 +1,11 @@
 <?php
 
-namespace PhpRedis\Tests\Commands\Keys;
+namespace PhpRedis\Tests\Unit\Commands\Keys;
 
 use PhpRedis\Commands\Keys\Sort;
-use PhpRedis\Tests\Commands\BaseCommand;
-use PHPUnit\Framework\Attributes\CoversClass;
+use PhpRedis\Tests\Unit\Commands\BaseCommand;
 use PHPUnit\Framework\Attributes\Test;
 
-#[CoversClass(Sort::class)]
 class SortTest extends BaseCommand
 {
     protected function setUp(): void

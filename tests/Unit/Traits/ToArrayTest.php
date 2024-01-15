@@ -1,15 +1,12 @@
 <?php
 
-namespace PhpRedis\Tests\Traits;
+namespace PhpRedis\Tests\Unit\Traits;
 
 use PhpRedis\Commands\Connections\Auth;
 use PhpRedis\Commands\GenericCommand;
-use PhpRedis\Traits\ToArray;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass(ToArray::class)]
 class ToArrayTest extends TestCase
 {
     #[Test]

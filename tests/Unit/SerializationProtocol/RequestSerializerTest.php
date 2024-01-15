@@ -1,15 +1,13 @@
 <?php
 
-namespace PhpRedis\Tests\SerializationProtocol;
+namespace PhpRedis\Tests\Unit\SerializationProtocol;
 
 use PhpRedis\Commands\GenericCommand;
 use PhpRedis\SerializationProtocol\RequestSerializer;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use UnexpectedValueException;
 
-#[CoversClass(RequestSerializer::class)]
 class RequestSerializerTest extends TestCase
 {
     protected RequestSerializer $serializer;

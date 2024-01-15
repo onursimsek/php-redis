@@ -1,13 +1,11 @@
 <?php
 
-namespace PhpRedis\Tests\Commands\Lists;
+namespace PhpRedis\Tests\Unit\Commands\Lists;
 
 use PhpRedis\Commands\Lists\LPos;
-use PhpRedis\Tests\Commands\BaseCommand;
-use PHPUnit\Framework\Attributes\CoversClass;
+use PhpRedis\Tests\Unit\Commands\BaseCommand;
 use PHPUnit\Framework\Attributes\Test;
 
-#[CoversClass(LPos::class)]
 class LPosTest extends BaseCommand
 {
     protected function setUp(): void

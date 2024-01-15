@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpRedis\Tests\Commands;
+namespace PhpRedis\Tests\Unit\Commands;
 
 use PhpRedis\Commands\Command;
 use PHPUnit\Framework\Attributes\Test;

@@ -1,14 +1,12 @@
 <?php
 
-namespace PhpRedis\Tests\Commands\SortedSets;
+namespace PhpRedis\Tests\Unit\Commands\SortedSets;
 
 use PhpRedis\Commands\SortedSets\ZAdd;
 use PhpRedis\Exceptions\ValidationException;
-use PhpRedis\Tests\Commands\BaseCommand;
-use PHPUnit\Framework\Attributes\CoversClass;
+use PhpRedis\Tests\Unit\Commands\BaseCommand;
 use PHPUnit\Framework\Attributes\Test;
 
-#[CoversClass(ZAdd::class)]
 class ZAddTest extends BaseCommand
 {
     protected function setUp(): void

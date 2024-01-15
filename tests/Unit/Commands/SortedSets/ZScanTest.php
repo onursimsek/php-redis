@@ -1,13 +1,11 @@
 <?php
 
-namespace PhpRedis\Tests\Commands\SortedSets;
+namespace PhpRedis\Tests\Unit\Commands\SortedSets;
 
 use PhpRedis\Commands\SortedSets\ZScan;
-use PhpRedis\Tests\Commands\BaseCommand;
-use PHPUnit\Framework\Attributes\CoversClass;
+use PhpRedis\Tests\Unit\Commands\BaseCommand;
 use PHPUnit\Framework\Attributes\Test;
 
-#[CoversClass(ZScan::class)]
 class ZScanTest extends BaseCommand
 {
     protected function setUp(): void

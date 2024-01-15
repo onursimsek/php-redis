@@ -38,13 +38,13 @@ var_dump($redis->mGet('paraf', 'counter'));
 
 echoInfo('ERROR');
 try {
-    var_dump($redis->foobar());
+    $redis->foobar();
 } catch (Exception $e) {
     var_dump($e->getMessage());
 }
 
 try {
-    var_dump($redis->incrBy('counterBy', 'asd'));
+    $redis->incrBy('counterBy', 'asd');
 } catch (Exception $e) {
     var_dump($e->getMessage());
 }

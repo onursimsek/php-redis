@@ -1,13 +1,11 @@
 <?php
 
-namespace PhpRedis\Tests\Commands\Sets;
+namespace PhpRedis\Tests\Unit\Commands\Sets;
 
 use PhpRedis\Commands\Sets\SScan;
-use PhpRedis\Tests\Commands\BaseCommand;
-use PHPUnit\Framework\Attributes\CoversClass;
+use PhpRedis\Tests\Unit\Commands\BaseCommand;
 use PHPUnit\Framework\Attributes\Test;
 
-#[CoversClass(SScan::class)]
 class SScanTest extends BaseCommand
 {
     protected function setUp(): void
