@@ -8,17 +8,18 @@ use PhpRedis\Exceptions\PhpRedisException;
 
 class CommandFactory
 {
-    public static function make(CommandObject $commandObject, array $arguments = [], string $name = null): Command
+    public static function make(string $commandName, array $arguments = [], string $name = null): Command
     {
-        $class = $commandObject->getClass();
-        if (! class_exists($class)) {
-            throw new PhpRedisException(sprintf('The \'%s\' class is not defined', $class));
+        if (! class_exists($commandName)) {
+            throw new PhpRedisException(sprintf('The \'%s\' class is not defined', $commandName));
         }
 
-        $command = new $class();
+        $command = new $commandName();
         if ($command instanceof AnonymousCommand) {
             if (is_null($name)) {
-                throw new PhpRedisException(sprintf('The \'%s\' is an anonymous class. It must have a name', $class));
+                throw new PhpRedisException(
+                    sprintf('The \'%s\' is an anonymous class. It must have a name', $commandName)
+                );
             }
             $command->setCommand($name);
         }

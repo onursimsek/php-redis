@@ -76,7 +76,7 @@ class StreamConnection implements Connection
         while (true) {
             $data = yield fgets($this->resource);
 
-            if ($data == 'stop') {
+            if ($data == Connection::STOP_KEYWORD) {
                 break;
             }
         }
@@ -99,16 +99,16 @@ class StreamConnection implements Connection
 
     private function parseInfoResponse(string $response): array
     {
-        $activeSection = '';
+        $activeSection = null;
         $info = [];
         foreach (explode(Protocol::CRLF->value, $response) as $row) {
             if (! $row) {
                 continue;
             }
 
-            if ($row[0] == '#') {
+            $columns = explode(':', $row, 2);
+            if (count($columns) == 1 && str_starts_with($columns[0], '#')) {
                 $activeSection = strtolower(substr($row, 2));
-
                 continue;
             }
 
@@ -116,12 +116,7 @@ class StreamConnection implements Connection
                 throw new PhpRedisException('Section not found');
             }
 
-            [$key, $value] = array_pad(explode(':', $row), 2, null);
-            if (! $key || ! $value) {
-                continue;
-            }
-
-            $info[$activeSection][$key] = $value;
+            $info[$activeSection][$columns[0]] = $columns[1];
         }
 
         return $info;
