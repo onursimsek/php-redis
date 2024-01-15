@@ -83,8 +83,12 @@ class StreamConnectionTest extends TestCase
 
         $parseInfoResponseReflection = new \ReflectionMethod(StreamConnection::class, 'parseInfoResponse');
 
-        self::assertEquals([], $parseInfoResponseReflection->invoke($this->connection, "# Server\r\nredisinfo\r\n"));
+        self::assertEquals(
+            ['server' => ['redis_version' => 'a.b.c']],
+            $parseInfoResponseReflection->invoke($this->connection, "# Server\r\nredis_version:a.b.c\r\n")
+        );
+
         self::expectException(PhpRedisException::class);
-        $parseInfoResponseReflection->invoke($this->connection, "Server\r\nredisinfo\r\n");
+        $parseInfoResponseReflection->invoke($this->connection, "Server\r\nredis_version:7.2.4\r\n");
     }
 }
